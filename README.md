@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
 
-MVVMFrame for Android 是一个基于Google官方Architecture Components dependencies （Lifecycle，LiveData，ViewModel，Room）构建的快速开发框架，从此构建一个MVVM模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies （Lifecycle，LiveData，ViewModel，Room）构建的快速开发框架，从此构建一个MVVM模式的项目变得快捷简单。
 
 ## 架构图
 ![Image](image/mvvm_architecture.jpg)
