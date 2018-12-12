@@ -51,6 +51,7 @@ allprojects {
 ## 示例
 
 代码示例 （示例出自于[app](app)中）
+
 Step.1 自定义全局配置
 ```Java
 /**
