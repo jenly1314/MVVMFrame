@@ -14,7 +14,7 @@ MVVMFrame for Android 是一个基于google官方Architecture Components depende
 ## 架构图
 ![Image](image/mvvm_architecture.jpg)
 
-> 框架整体结构基本完善，因最近可能没多少时间继续写，以此记录。Wiki待续...
+> 框架整体结构基本完善，因最近可能没多少时间完善相关文档，以此记录。Wiki待续...
 
 ## 引入 (待发布)
 
@@ -86,9 +86,9 @@ public class ConfigModule extends FrameConfigModule {
 ```
 Step.2 在你的项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
 ```Xml
-        <!-- MVVMFrame 全局配置 -->
-        <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
-                   android:value="FrameConfigModule"/>
+<!-- MVVMFrame 全局配置 -->
+<meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
+           android:value="FrameConfigModule"/>
 ```
 Step.3 用你的项目的Application集成MVVMFrame中的BaseApplication
 ```Java
