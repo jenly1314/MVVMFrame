@@ -51,6 +51,7 @@ allprojects {
 ## 示例
 
 代码示例 （示例出自于[app](app)中）
+step.1 自定义全局配置
 ```Java
 /**
  * 自定义全局配置
@@ -82,7 +83,15 @@ public class ConfigModule extends FrameConfigModule {
         });
     }
 }
-
+```
+step.2 在你的项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
+```Xml
+        <!-- MVVMFrame 全局配置 -->
+        <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
+                   android:value="FrameConfigModule"/>
+```
+step.3 用你的项目的Application集成MVVMFrame中的BaseApplication
+```Java
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -102,6 +111,8 @@ public class App extends BaseApplication {
 
 }
 ```
+
+
 更多使用详情，请查看[app](app)中的源码使用示例；
 
 ## 关于我
