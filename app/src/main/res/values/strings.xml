@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MVVMFrame</string>
+    <string name="author_">作者：</string>
+
+    <string name="result_failure">获取失败</string>
+</resources>

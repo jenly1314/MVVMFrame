@@ -1,0 +1,53 @@
+package com.king.frame.mvvmframe.base.livedata;
+
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
+import android.support.annotation.MainThread;
+import android.support.annotation.Nullable;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import timber.log.Timber;
+
+/**
+ * 提供观察单个对象{@link T}事件
+ * 参见：<a href="https://github.com/googlesamples/android-architecture/blob/6419d4c523b67d020120fc400ed5a7372e5615f2/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">google sample</a>
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+public class SingleLiveEvent<T> extends MutableLiveData<T> {
+
+    private final AtomicBoolean mPending = new AtomicBoolean(false);
+
+    @MainThread
+    public void observe(LifecycleOwner owner, final Observer<T> observer) {
+
+        if (hasActiveObservers()) {
+            Timber.w("Multiple observers registered but only one will be notified of changes.");
+        }
+
+        // Observe the internal MutableLiveData
+        super.observe(owner, new Observer<T>() {
+            @Override
+            public void onChanged(@Nullable T t) {
+                if (mPending.compareAndSet(true, false)) {
+                    observer.onChanged(t);
+                }
+            }
+        });
+    }
+
+    @MainThread
+    public void setValue(@Nullable T t) {
+        mPending.set(true);
+        super.setValue(t);
+    }
+
+    /**
+     * Used for cases where T is Void, to make calls cleaner.
+     */
+    @MainThread
+    public void call() {
+        setValue(null);
+    }
+}
