@@ -1,7 +1,10 @@
 package com.king.frame.mvvmframe.base;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
@@ -25,5 +28,16 @@ public class DataViewModel extends BaseViewModel<BaseModel> {
      */
     public <T> T getRetrofitService(Class<T> service){
         return mModel.getRetrofitService(service);
+    }
+
+    /**
+     * 传入Class 通过{@link Room#databaseBuilder},{@link RoomDatabase.Builder<T>#build()}获得对应的Class
+     * @param database
+     * @param dbName
+     * @param <T>
+     * @return {@link RoomDatabase.Builder<T>#build()}
+     */
+    public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database, @Nullable String dbName){
+        return mModel.getRoomDatabase(database,dbName);
     }
 }
