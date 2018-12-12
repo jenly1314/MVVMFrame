@@ -14,9 +14,8 @@ MVVMFrame for Android 是一个基于google官方Architecture Components depende
 ## 架构图
 ![Image](image/mvvm_architecture.jpg)
 
-> 框架整体结构基本完善，因最近可能没多少时间完善相关文档，以此记录。Wiki待续...
-
 ## 引入 (待发布)
+> 框架整体结构基本完善，还有部分收尾工作，所以暂未发布。
 
 ### Maven：
 ```maven
@@ -114,7 +113,7 @@ public class App extends BaseApplication {
 ```
 
 
-更多使用详情，请查看[app](app)中的源码使用示例；
+更多使用详情，请查看[app](app)中的源码使用示例或查看[Wiki](https://github.com/jenly1314/MVVMFrame/wiki)
 
 ## 关于我
    Name: <a title="关于作者" href="https://about.me/jenly1314" target="_blank">Jenly</a>
