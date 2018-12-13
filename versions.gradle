@@ -17,7 +17,7 @@ ext.deps = [:]
 // App dependencies
 def versions = [:]
 //support
-versions.supportLibrary = "27.1.1"
+versions.supportLibrary = "28.0.0"
 versions.constraintLayout = "1.1.3"
 
 //test
@@ -29,10 +29,11 @@ versions.espresso = "3.0.2"
 // Architecture Components dependencies
 versions.archLifecycle = "1.1.1"
 versions.room = "1.1.1"
+
 //dagger
 versions.dagger = "2.16"
 
-versions.retrofit = "2.4.0"
+versions.retrofit = "2.5.0"
 versions.gson = "2.8.5"
 
 versions.glide = "4.7.1"

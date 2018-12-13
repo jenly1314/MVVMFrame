@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: 'bintray.gradle'
 
 android {
 
@@ -27,12 +28,7 @@ android {
 
     lintOptions {
         abortOnError false
-    }
-
-    repositories {
-        flatDir {
-            dirs 'libs'   // aar目录
-        }
+        warning 'InvalidPackage'
     }
 
 }
@@ -59,11 +55,8 @@ dependencies {
     annotationProcessor deps.lifecycle.compiler
 
     //room
-//    api deps.room.runtime
-//    annotationProcessor deps.room.compiler
-
-    //TODO 暂引入aar
-    api (name:"room-runtime-1.1.1",ext:"aar")
+    api deps.room.runtime
+    annotationProcessor deps.room.compiler
 
     //dagger
     api deps.dagger.dagger

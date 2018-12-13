@@ -33,11 +33,6 @@ android {
         abortOnError false
     }
 
-    repositories {
-        flatDir {
-            dirs 'libs','../lib/libs'   // aar目录
-        }
-    }
 
 }
 
@@ -56,6 +51,8 @@ dependencies {
 
     annotationProcessor deps.dagger.android_processor
     annotationProcessor deps.dagger.compiler
+
+    annotationProcessor deps.room.compiler
 
     implementation deps.jenly.base_util
 

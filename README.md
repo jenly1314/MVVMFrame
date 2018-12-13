@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
 
-MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies （Lifecycle，LiveData，ViewModel，Room）构建的快速开发框架，从此构建一个MVVM模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies （Lifecycle，LiveData，ViewModel，Room）构建的快速开发框架。有了MVVMFrame的加持，从此构建一个MVVM模式的项目变得快捷简单。
 
 ## 架构图
 ![Image](image/mvvm_architecture.jpg)
@@ -51,7 +51,7 @@ allprojects {
 
 集成步骤代码示例 （示例出自于[app](app)中）
 
-Step.1 自定义全局配置
+Step.1 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
 ```Java
 /**
  * 自定义全局配置
@@ -84,13 +84,13 @@ public class ConfigModule extends FrameConfigModule {
     }
 }
 ```
-Step.2 在你的项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
+Step.2 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
 ```Xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
            android:value="FrameConfigModule"/>
 ```
-Step.3 用你的项目的Application继承MVVMFrame中的BaseApplication
+Step.3 用你项目的Application继承MVVMFrame中的BaseApplication
 ```Java
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
