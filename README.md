@@ -14,8 +14,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 ## 架构图
 ![Image](image/mvvm_architecture.jpg)
 
-## 引入 (待发布)
-> 框架整体结构基本完善，还在测试阶段，所以暂未发布。
+## 引入
 
 ### Maven：
 ```maven
