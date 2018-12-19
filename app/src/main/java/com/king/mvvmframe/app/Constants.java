@@ -8,4 +8,9 @@ public final class Constants {
     public static final String BASE_URL = "https://api.apiopen.top/";
 
     public static final String TAG = "Jenly";
+
+    public static final String KEY_POETRY_INFO = "key_poetry_info";
+
+    public static final int COLOR_RGB_MIN = 20;
+    public static final int COLOR_RGB_MAX = 230;
 }

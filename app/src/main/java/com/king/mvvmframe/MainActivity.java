@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.king.base.util.ToastUtils;
 import com.king.frame.mvvmframe.base.BaseActivity;
 import com.king.frame.mvvmframe.base.BaseViewModel;
+import com.king.mvvmframe.app.likepoetry.LikePoetryActivity;
 import com.king.mvvmframe.app.poetry.PoetryActivity;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteActivity;
 import com.king.mvvmframe.databinding.MainActivityBinding;
@@ -32,10 +32,7 @@ public class MainActivity extends BaseActivity<BaseViewModel,MainActivityBinding
                 startActivity(PoetryLiteActivity.class);
                 break;
             case R.id.btn3:
-                ToastUtils.showToast(getContext(),"待续");
-                break;
-            case R.id.btn4:
-                ToastUtils.showToast(getContext(),"待续");
+                startActivity(LikePoetryActivity.class);
                 break;
         }
     }

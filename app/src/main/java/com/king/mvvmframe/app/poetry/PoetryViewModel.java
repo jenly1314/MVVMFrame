@@ -21,6 +21,8 @@ public class PoetryViewModel extends BaseViewModel<PoetryModel> {
 
     private MediatorLiveData<PoetryInfo> poetryLiveData = new MediatorLiveData<>();
 
+    private LiveData<Resource<PoetryInfo>> source;
+
     @Inject
     public PoetryViewModel(@NonNull Application application, PoetryModel model) {
         super(application, model);
@@ -37,21 +39,21 @@ public class PoetryViewModel extends BaseViewModel<PoetryModel> {
      * 获取诗词信息
      */
     public void getPoetryInfo(){
-        LiveData<Resource<PoetryInfo>> source = mModel.getPoetryInfo();
-        poetryLiveData.addSource(source, poetryInfoResource -> {
+        if(source!=null){
             poetryLiveData.removeSource(source);
-            poetryLiveData.addSource(source, resource -> {
-                updateStatus(resource.status);
-                if(resource.isSuccess()){//成功
-                    poetryLiveData.setValue(resource.data);
-                }else if(resource.isFailure()){//失败
-                    if(!TextUtils.isEmpty(resource.message)){
-                        sendMessage(resource.message);
-                    }else{
-                        sendMessage(R.string.result_failure);
-                    }
+        }
+        source = mModel.getPoetryInfo();
+        poetryLiveData.addSource(source, resource -> {
+            updateStatus(resource.status);
+            if(resource.isSuccess()){//成功
+                poetryLiveData.setValue(resource.data);
+            }else if(resource.isFailure()){//失败
+                if(!TextUtils.isEmpty(resource.message)){
+                    sendMessage(resource.message);
+                }else{
+                    sendMessage(R.string.result_failure);
                 }
-            });
+            }
         });
 
     }

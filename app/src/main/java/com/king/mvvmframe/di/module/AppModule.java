@@ -7,7 +7,7 @@ import dagger.Module;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-@Module(includes = {ViewModelFactoryModule.class,ViewModelModule.class,ActivityModule.class})
+@Module(includes = {ViewModelFactoryModule.class,ViewModelModule.class,ActivityModule.class,DialogFragmentModule.class})
 public class AppModule {
 
 }

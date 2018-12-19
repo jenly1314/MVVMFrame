@@ -52,11 +52,15 @@ dependencies {
     annotationProcessor deps.dagger.android_processor
     annotationProcessor deps.dagger.compiler
 
+    implementation deps.room.rxjava2
     annotationProcessor deps.room.compiler
 
     implementation deps.jenly.base_util
+    implementation deps.jenly.base_adapter
 
     implementation deps.logger
+
+    implementation deps.flowlayout
 
     //leakCanary
     debugImplementation deps.leakcanary.debug

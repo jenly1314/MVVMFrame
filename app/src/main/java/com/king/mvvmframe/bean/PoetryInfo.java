@@ -1,11 +1,13 @@
 package com.king.mvvmframe.bean;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class PoetryInfo {
+public class PoetryInfo implements Parcelable {
 
 
     /**
@@ -50,4 +52,37 @@ public class PoetryInfo {
                 ", authors='" + authors + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeString(this.content);
+        dest.writeString(this.authors);
+    }
+
+    public PoetryInfo() {
+    }
+
+    protected PoetryInfo(Parcel in) {
+        this.title = in.readString();
+        this.content = in.readString();
+        this.authors = in.readString();
+    }
+
+    public static final Creator<PoetryInfo> CREATOR = new Creator<PoetryInfo>() {
+        @Override
+        public PoetryInfo createFromParcel(Parcel source) {
+            return new PoetryInfo(source);
+        }
+
+        @Override
+        public PoetryInfo[] newArray(int size) {
+            return new PoetryInfo[size];
+        }
+    };
 }

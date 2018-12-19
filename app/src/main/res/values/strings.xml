@@ -3,4 +3,11 @@
     <string name="author_">作者：</string>
 
     <string name="result_failure">获取失败</string>
+
+    <string name="label_search_history">历史搜索</string>
+    <string name="label_search_result">搜索结果</string>
+
+    <string name="tips_search_poetry_">搜索内容不能为空</string>
+
+    <string name="btn_close">关闭</string>
 </resources>

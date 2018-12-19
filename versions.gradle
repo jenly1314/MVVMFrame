@@ -54,6 +54,8 @@ versions.leakcanary = "1.5.4"
 
 versions.persistentCookieJar = "v1.0.1"
 
+versions.flowlayout = "1.1.2"
+
 versions.multidex = "1.0.2"
 
 ext.deps = [:]
@@ -142,6 +144,8 @@ deps.leakcanary = leakcanary
 //cookie
 deps.cookie_jar = "com.github.franmontiel:PersistentCookieJar:$versions.persistentCookieJar"
 
+//flowlayout
+deps.flowlayout = "com.hyman:flowlayout-lib:$versions.flowlayout"
 
 //多dex
 deps.multidex = "com.android.support:multidex:$versions.multidex"

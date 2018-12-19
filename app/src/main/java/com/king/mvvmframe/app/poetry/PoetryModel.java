@@ -20,6 +20,9 @@ import retrofit2.Call;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class PoetryModel extends BaseModel {
+
+    private MutableLiveData<Resource<PoetryInfo>> poetryLiveData = new MutableLiveData<>();
+
     @Inject
     public PoetryModel(IDataRepository dataRepository) {
         super(dataRepository);
@@ -30,7 +33,6 @@ public class PoetryModel extends BaseModel {
      * @return
      */
     public LiveData<Resource<PoetryInfo>> getPoetryInfo(){
-        MutableLiveData<Resource<PoetryInfo>> poetryLiveData = new MutableLiveData<>();
         poetryLiveData.setValue(Resource.loading());
         getRetrofitService(ApiService.class)
                 .getRecommendPoetry()

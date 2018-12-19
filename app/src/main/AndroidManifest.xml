@@ -27,7 +27,10 @@
         </activity>
 
         <activity android:name=".app.poetry.PoetryActivity"/>
+
         <activity android:name=".app.poetrylite.PoetryLiteActivity"/>
+
+        <activity android:name=".app.likepoetry.LikePoetryActivity"/>
 
         <!-- MVVMFrame 全局配置 -->
         <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"

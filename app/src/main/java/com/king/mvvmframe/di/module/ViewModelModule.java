@@ -3,6 +3,7 @@ package com.king.mvvmframe.di.module;
 import android.arch.lifecycle.ViewModel;
 
 import com.king.frame.mvvmframe.di.scope.ViewModelKey;
+import com.king.mvvmframe.app.likepoetry.LikePoetryViewModel;
 import com.king.mvvmframe.app.poetry.PoetryViewModel;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteViewModel;
 
@@ -16,7 +17,6 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class ViewModelModule {
 
-
     @Binds
     @IntoMap
     @ViewModelKey(PoetryViewModel.class)
@@ -26,4 +26,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PoetryLiteViewModel.class)
     abstract ViewModel bindPoetryLiteViewModel(PoetryLiteViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LikePoetryViewModel.class)
+    abstract ViewModel bindLikePoetryViewModel(LikePoetryViewModel viewModel);
+
 }

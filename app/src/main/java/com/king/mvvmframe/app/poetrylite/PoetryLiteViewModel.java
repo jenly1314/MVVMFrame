@@ -4,7 +4,6 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
