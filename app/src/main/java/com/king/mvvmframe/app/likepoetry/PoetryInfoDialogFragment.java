@@ -27,20 +27,6 @@ public class PoetryInfoDialogFragment extends BaseDialogFragment<DataViewModel,P
         return fragment;
     }
 
-    protected void setDialogWindow(Dialog dialog, float widthRatio){
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams lp = window.getAttributes();
-        lp.width = (int)(getWidthPixels() * widthRatio);
-        window.setAttributes(lp);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getDialog().setCanceledOnTouchOutside(false);
-        setDialogWindow(getDialog(),.8f);
-    }
-
     @Override
     public int getLayoutId() {
         return R.layout.poetry_info_dialog_fragment;

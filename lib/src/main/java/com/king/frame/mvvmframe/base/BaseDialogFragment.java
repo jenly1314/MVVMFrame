@@ -59,6 +59,8 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     protected View mRootView;
 
+    protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
+
     private Dialog mProgressDialog;
 
     @Override
@@ -92,6 +94,8 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         super.getDialog().getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+        getDialog().setCanceledOnTouchOutside(false);
+        setDialogWindow(getDialog(),DEFAULT_WIDTH_RATIO);
     }
 
     /**
