@@ -18,8 +18,11 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * ApplicationDelegate 代理{@link Application} ,在 {@link Application}相应的生命周期{@link Application {@link #attachBaseContext(Context)}}，
- * {@link Application {@link #onCreate()}},{@link Application {@link #onTerminate()}} 方法中调用{@link ApplicationDelegate} 对应的方法，初始化框架基本的配置信息。
+ * ApplicationDelegate 代理{@link Application}，在{@link Application}相应的生命周期
+ * {@link Application#attachBaseContext(Context)}，{@link Application#onCreate()}，
+ * {@link Application#onTerminate()}，{@link Application#onLowMemory()}，
+ * {@link Application#onTrimMemory(int)}方法中调用{@link ApplicationDelegate} 对应的方法，
+ * 即可初始化框架基本的配置信息。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
