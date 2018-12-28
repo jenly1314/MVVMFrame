@@ -29,7 +29,7 @@ public class PoetryActivity extends BaseActivity<PoetryViewModel,PoetryActivityB
             mBinding.setData(poetryInfo);
 
         });
-
+        //添加registerStatusEvent后使用方式，推荐
         registerStatusEvent(status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
@@ -45,7 +45,7 @@ public class PoetryActivity extends BaseActivity<PoetryViewModel,PoetryActivityB
                     break;
             }
         });
-
+        //添加registerMessageEvent后使用方式,推荐
         registerMessageEvent(message -> {
             Timber.d("message:%s" , message);
             ToastUtils.showToast(getContext(), message);
