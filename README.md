@@ -50,7 +50,14 @@ allprojects {
 
 集成步骤代码示例 （示例出自于[app](app)中）
 
-Step.1 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
+Step.1 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
+```gradle
+dataBinding {
+    enabled true
+}
+```
+
+Step.2 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
 ```Java
 /**
  * 自定义全局配置
@@ -83,13 +90,15 @@ public class ConfigModule extends FrameConfigModule {
     }
 }
 ```
-Step.2 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
+
+Step.3 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
 ```Xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
            android:value="FrameConfigModule"/>
 ```
-Step.3 用你项目的Application继承MVVMFrame中的BaseApplication
+
+Step.4 用你项目的Application继承MVVMFrame中的BaseApplication
 ```Java
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -114,7 +123,7 @@ public class App extends BaseApplication {
 更多使用详情，请查看[app](app)中的源码使用示例或查看[Wiki](https://github.com/jenly1314/MVVMFrame/wiki)
 
 ## 版本记录
-#### v1.0.0 &ensp;&ensp; 2018-12-12
+#### v1.0.0：2018-12-12
 *  MVVMFrame初始版本
 
 ## 关于我
