@@ -19,10 +19,9 @@ public class StatusEvent extends SingleLiveEvent<Integer> {
         super.observe(owner, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer t) {
-                if (t != null) {
-                    observer.onStatusChanged(t);
-                    return;
-                }
+            if (t != null) {
+                observer.onStatusChanged(t);
+            }
             }
         });
     }

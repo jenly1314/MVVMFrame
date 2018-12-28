@@ -16,11 +16,11 @@ public class MessageEvent extends SingleLiveEvent<String> {
         super.observe(owner, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String t) {
-                //过滤空消息
-                if (TextUtils.isEmpty(t)) {
-                    return;
-                }
-                observer.onNewMessage(t);
+            //过滤空消息
+            if (TextUtils.isEmpty(t)) {
+                return;
+            }
+            observer.onNewMessage(t);
             }
         });
     }

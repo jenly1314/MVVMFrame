@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,6 +30,8 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.king.frame.mvvmframe.R;
+import com.king.frame.mvvmframe.base.livedata.MessageEvent;
+import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -111,7 +114,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * 注册状态监听
+     * 注册状态加载事件
      */
     protected void registerLoadingEvent(){
         mViewModel.mLoadingEvent.observe(this, new Observer<Boolean>() {
@@ -134,6 +137,29 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     @Override
     public void hideLoading() {
         dismissProgressDialog();
+    }
+
+    /**
+     * 注册消息事件
+     */
+    protected void registerMessageEvent(@NonNull MessageEvent.MessageObserver observer){
+        mViewModel.getMessageEvent().observe(this,observer);
+    }
+
+    /**
+     * 注册单个消息事件，消息对象:{@link Message}
+     * @param observer
+     */
+    protected void registerSingleLiveEvent(@NonNull Observer<Message> observer){
+        mViewModel.getSingleLiveEvent().observe(this,observer);
+    }
+
+    /**
+     * 注册状态事件
+     * @param observer
+     */
+    protected void registerStatusEvent(@NonNull StatusEvent.StatusObserver observer){
+        mViewModel.getStatusEvent().observe(this,observer);
     }
 
     public Context getContext(){

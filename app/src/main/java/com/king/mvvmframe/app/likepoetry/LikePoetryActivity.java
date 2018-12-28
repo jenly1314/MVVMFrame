@@ -8,13 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.king.base.adapter.HolderRecyclerAdapter;
 import com.king.base.adapter.divider.DividerItemDecoration;
 import com.king.base.util.StringUtils;
-import com.king.base.util.SystemUtils;
 import com.king.base.util.ToastUtils;
 import com.king.frame.mvvmframe.base.BaseActivity;
-import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import com.king.mvvmframe.R;
 import com.king.mvvmframe.app.adapter.BindingAdapter;
@@ -87,7 +84,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel,LikePoe
             }
         });
 
-        mViewModel.getStatusEvent().observe(this, (StatusEvent.StatusObserver) status -> {
+        registerStatusEvent(status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
                     if(!mBinding.srl.isRefreshing()){
@@ -103,10 +100,9 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel,LikePoe
             }
         });
 
-        mViewModel.getMessageEvent().observe(this, (MessageEvent.MessageObserver) message -> {
+        registerMessageEvent(message -> {
             Timber.d("message:%s" , message);
             ToastUtils.showToast(getContext(), message);
-
         });
 
         mViewModel.getSearchHistoryLiveData().observe(this,list ->{

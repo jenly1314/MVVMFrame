@@ -12,6 +12,7 @@ import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,9 +24,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.king.frame.mvvmframe.R;
+import com.king.frame.mvvmframe.base.livedata.MessageEvent;
+import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -157,6 +161,29 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     @Override
     public void hideLoading() {
         dismissProgressDialog();
+    }
+
+    /**
+     * 注册消息事件
+     */
+    protected void registerMessageEvent(@NonNull MessageEvent.MessageObserver observer){
+        mViewModel.getMessageEvent().observe(this,observer);
+    }
+
+    /**
+     * 注册单个消息事件，消息对象:{@link Message}
+     * @param observer
+     */
+    protected void registerSingleLiveEvent(@NonNull Observer<Message> observer){
+        mViewModel.getSingleLiveEvent().observe(this,observer);
+    }
+
+    /**
+     * 注册状态事件
+     * @param observer
+     */
+    protected void registerStatusEvent(@NonNull StatusEvent.StatusObserver observer){
+        mViewModel.getStatusEvent().observe(this,observer);
     }
 
     /**
@@ -301,6 +328,12 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         mProgressDialog.show();
     }
 
+    protected void setDialogWindow(Dialog dialog, float widthRatio){
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = (int)(getWidthPixels() * widthRatio);
+        window.setAttributes(lp);
+    }
 
     //---------------------------------------
 

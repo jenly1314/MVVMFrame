@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -99,7 +100,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 暴露给观察者提供消息事件
+     * 暴露给观察者提供消息事件，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件
      * @return {@link #mMessageEvent}
      */
     public MessageEvent getMessageEvent(){
@@ -107,7 +110,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 暴露给观察者提供状态变化事件
+     * 暴露给观察者提供状态变化事件，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
+     * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件
      * @return {@link #mStatusEvent}
      */
     public StatusEvent getStatusEvent(){
@@ -115,7 +120,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 暴露给观察者提供接收单个消息事件
+     * 暴露给观察者提供接收单个消息事件，通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件
      * @return {@link #mSingleLiveEvent}
      */
     public SingleLiveEvent<Message> getSingleLiveEvent(){
@@ -123,7 +130,10 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送消息,通过观察{@link #getMessageEvent()}接收消息
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
      * @param message 消息内容
      */
     public void sendMessage(String message){
@@ -131,7 +141,10 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送消息,通过观察{@link #getMessageEvent()}接收消息
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
      * @param msgId 资源文件id
      */
     public void sendMessage(@StringRes int msgId) {
@@ -139,7 +152,10 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 更新状态，通过观察{@link #getStatusEvent()}接收状态改变
+     * 更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
+     * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件，
+     * 也可通过观察{@link #getStatusEvent()}接收消息事件
      * @param status
      */
     public void updateStatus(@StatusEvent.Status int status){
@@ -147,7 +163,11 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送单个消息，如通过{@link Message#what}区分消息类型，用法与{@link Message}一致,通过观察{@link #getSingleLiveEvent()}接收消息事件
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
+     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
      * @param message
      */
     public void sendSingleLiveEvent(Message message){
@@ -155,7 +175,11 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送单个消息，如通过{@link Message#what}区分消息类型，用法与{@link Message}一致,通过观察{@link #getSingleLiveEvent()}接收消息事件
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
+     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
      * @param what
      */
     public void sendSingleLiveEvent(int what){
@@ -165,7 +189,8 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 调用此类会通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或{@link BaseDialogFragment#showLoading()}
+     * 调用此类会通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
+     * {@link BaseDialogFragment#showLoading()}
      */
     @Override
     public void showLoading() {
@@ -173,7 +198,8 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 调用此类会通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或{@link BaseDialogFragment#hideLoading()}
+     * 调用此类会通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
+     * {@link BaseDialogFragment#hideLoading()}
      */
     @Override
     public void hideLoading() {

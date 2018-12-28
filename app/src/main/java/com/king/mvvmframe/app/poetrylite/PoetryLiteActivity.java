@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 
 import com.king.base.util.ToastUtils;
 import com.king.frame.mvvmframe.base.BaseActivity;
-import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import com.king.mvvmframe.R;
 import com.king.mvvmframe.databinding.PoetryLiteActivityBinding;
@@ -31,7 +30,7 @@ public class PoetryLiteActivity extends BaseActivity<PoetryLiteViewModel,PoetryL
 
         });
 
-        mViewModel.getStatusEvent().observe(this, (StatusEvent.StatusObserver) status -> {
+        registerStatusEvent(status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
                     if(!mBinding.srl.isRefreshing()){
@@ -47,11 +46,11 @@ public class PoetryLiteActivity extends BaseActivity<PoetryLiteViewModel,PoetryL
             }
         });
 
-        mViewModel.getMessageEvent().observe(this, (MessageEvent.MessageObserver) message -> {
+        registerMessageEvent(message -> {
             Timber.d("message:%s" , message);
             ToastUtils.showToast(getContext(), message);
-
         });
+
         mBinding.srl.setOnRefreshListener(()-> mViewModel.getPoetryInfo());
     }
 }
