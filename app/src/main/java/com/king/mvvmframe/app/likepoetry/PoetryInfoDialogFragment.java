@@ -1,10 +1,7 @@
 package com.king.mvvmframe.app.likepoetry;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.king.frame.mvvmframe.base.BaseDialogFragment;
 import com.king.frame.mvvmframe.base.DataViewModel;
