@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="73" />
+                                                <entry key="scalingPercent" value="86" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,8 +34,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="008577" />
-                                      <entry key="foregroundImage" value="C:\Users\Administrator\Documents\Tencent Files\453973021\FileRecv\logo.png" />
+                                      <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="foregroundImage" value="C:\Users\Administrator\desktop\mvvm_frame.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
