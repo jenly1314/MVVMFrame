@@ -121,7 +121,7 @@ public class App extends BaseApplication {
 }
 ```
 
-更多使用详情，请查看[app](app)中的源码使用示例或查看[Wiki](https://github.com/jenly1314/MVVMFrame/wiki)
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
 
 ## 版本记录
 #### v1.0.0：2018-12-12
