@@ -14,6 +14,8 @@ import com.king.mvvmframe.api.ApiService;
 import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.bean.Result;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -24,7 +26,7 @@ import retrofit2.Call;
  */
 public class PoetryLiteViewModel extends DataViewModel {
 
-    private MutableLiveData<PoetryInfo> poetryLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<PoetryInfo>> poetryLiveData = new MutableLiveData<>();
 
     @Inject
     public PoetryLiteViewModel(@NonNull Application application, BaseModel model) {
@@ -44,9 +46,9 @@ public class PoetryLiteViewModel extends DataViewModel {
         updateStatus(StatusEvent.Status.LOADING);
         getRetrofitService(ApiService.class)
                 .getRecommendPoetry()
-                .enqueue(new ApiCallback<Result<PoetryInfo>>() {
+                .enqueue(new ApiCallback<Result<List<PoetryInfo>>>() {
                     @Override
-                    public void onResponse(Call<Result<PoetryInfo>> call, Result<PoetryInfo> result) {
+                    public void onResponse(Call<Result<List<PoetryInfo>>> call, Result<List<PoetryInfo>> result) {
                         if (result != null) {
                             if(result.isSuccess()){//成功
                                 updateStatus(StatusEvent.Status.SUCCESS);
@@ -61,14 +63,14 @@ public class PoetryLiteViewModel extends DataViewModel {
                     }
 
                     @Override
-                    public void onError(Call<Result<PoetryInfo>> call, Throwable t) {
+                    public void onError(Call<Result<List<PoetryInfo>>> call, Throwable t) {
                         updateStatus(StatusEvent.Status.ERROR);
                         sendMessage(t.getMessage());
                     }
                 });
     }
 
-    public LiveData<PoetryInfo> getPoetryLiveData(){
+    public LiveData<List<PoetryInfo>> getPoetryLiveData(){
         return poetryLiveData;
     }
 }

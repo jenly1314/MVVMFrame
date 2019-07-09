@@ -1,6 +1,11 @@
 package com.king.frame.mvvmframe.util;
 
 import android.support.annotation.Nullable;
+import java.lang.String;
+import java.lang.Object;
+import java.lang.IllegalStateException;
+import java.lang.IllegalArgumentException;
+import java.lang.NullPointerException;
 
 /**
  * 参见：<a href="https://github.com/google/guava/blob/b86fe4fc7ec511d78507c3ba32c789d1f250f827/guava/src/com/google/common/base/Preconditions.java">guava</a>

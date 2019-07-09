@@ -16,6 +16,8 @@ import com.king.mvvmframe.bean.SearchHistory;
 import com.king.mvvmframe.dao.AppDatabase;
 import com.king.mvvmframe.dao.SearchHistoryDao;
 
+import java.lang.Class;
+import java.lang.String;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,13 +40,13 @@ public class LikePoetryModel extends BaseModel {
 
     /**
      * 模糊搜索诗词
-     * @param name 搜索诗词名、诗词内容、诗词作者
+     * @param keyword 搜索诗词名、诗词内容、诗词作者
      * @return
      */
-    public LiveData<Resource<List<PoetryInfo>>> getLikePoetry(@NonNull String name){
+    public LiveData<Resource<List<PoetryInfo>>> getLikePoetry(@NonNull String keyword){
         poetryLiveData.setValue(Resource.loading());
         getRetrofitService(ApiService.class)
-                .getLikePoetry(name)
+                .searchPoetry(keyword,1)
                 .enqueue(new ApiCallback<Result<List<PoetryInfo>>>() {
                     @Override
                     public void onResponse(Call<Result<List<PoetryInfo>>> call, Result<List<PoetryInfo>> result) {
@@ -64,7 +66,7 @@ public class LikePoetryModel extends BaseModel {
                     }
                 });
         //添加历史
-        addHistory(name);
+        addHistory(keyword);
         return  poetryLiveData;
     }
 

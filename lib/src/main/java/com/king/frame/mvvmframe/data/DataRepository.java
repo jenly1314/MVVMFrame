@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import com.king.frame.mvvmframe.config.Constants;
 import com.king.frame.mvvmframe.util.Preconditions;
 
+import java.lang.Class;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

@@ -5,7 +5,7 @@ package com.king.mvvmframe.app;
  */
 public final class Constants {
 
-    public static final String BASE_URL = "https://api.apiopen.top/";
+    public static final String BASE_URL = "http://502tech.com:8090";
 
     public static final String TAG = "Jenly";
 

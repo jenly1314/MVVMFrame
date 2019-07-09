@@ -11,6 +11,8 @@ import com.king.frame.mvvmframe.bean.Resource;
 import com.king.mvvmframe.R;
 import com.king.mvvmframe.bean.PoetryInfo;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -19,9 +21,9 @@ import javax.inject.Inject;
  */
 public class PoetryViewModel extends BaseViewModel<PoetryModel> {
 
-    private MediatorLiveData<PoetryInfo> poetryLiveData = new MediatorLiveData<>();
+    private MediatorLiveData<List<PoetryInfo>> poetryLiveData = new MediatorLiveData<>();
 
-    private LiveData<Resource<PoetryInfo>> source;
+    private LiveData<Resource<List<PoetryInfo>>> source;
 
     @Inject
     public PoetryViewModel(@NonNull Application application, PoetryModel model) {
@@ -58,7 +60,7 @@ public class PoetryViewModel extends BaseViewModel<PoetryModel> {
 
     }
 
-    public LiveData<PoetryInfo> getPoetryLiveData(){
+    public LiveData<List<PoetryInfo>> getPoetryLiveData(){
         return poetryLiveData;
     }
 }

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.lang.Class;
+
 /**
  * 统一管理数据业务层，实现类见{@link DataRepository}
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

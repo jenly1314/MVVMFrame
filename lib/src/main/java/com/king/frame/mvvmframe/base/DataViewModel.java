@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.lang.Class;
 import javax.inject.Inject;
 
 /**

@@ -302,7 +302,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void showProgressDialog(boolean isCancel){
-        showProgressDialog(R.layout.progress_dialog,isCancel);
+        showProgressDialog(R.layout.mvvmframe_progress_dialog,isCancel);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){
@@ -330,7 +330,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void showDialog(View contentView,boolean isCancel){
-        showDialog(getContext(),contentView,R.style.dialog,DEFAULT_WIDTH_RATIO,isCancel);
+        showDialog(getContext(),contentView,R.style.mvvmframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
     }
 
     protected void showDialog(View contentView,float widthRatio){
@@ -338,11 +338,11 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void showDialog(View contentView,float widthRatio,boolean isCancel){
-        showDialog(getContext(),contentView,R.style.dialog,widthRatio,isCancel);
+        showDialog(getContext(),contentView,R.style.mvvmframe_dialog,widthRatio,isCancel);
     }
 
     protected void showDialog(Context context,View contentView,float widthRatio){
-        showDialog(context,contentView, R.style.dialog,widthRatio);
+        showDialog(context,contentView, R.style.mvvmframe_dialog,widthRatio);
     }
 
     protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){

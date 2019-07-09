@@ -11,24 +11,24 @@ import android.support.annotation.NonNull;
 public interface ApplicationLifecycle {
 
     /**
-     * 在{@link Application {@link #attachBaseContext(Context)}} 中执行
+     * 在{@link Application#attachBaseContext(Context)} 中执行
      * @param base
      */
     void attachBaseContext(@NonNull Context base);
     /**
-     * 在{@link Application {@link #onCreate()}} 中执行
+     * 在{@link Application#onCreate()} 中执行
      */
     void onCreate();
     /**
-     * 在{@link Application {@link #onTerminate()}} 中执行
+     * 在{@link Application#onTerminate()} 中执行
      */
     void onTerminate();
     /**
-     * 在{@link Application {@link #onLowMemory()}} 中执行
+     * 在{@link Application#onLowMemory()} 中执行
      */
     void onLowMemory();
     /**
-     * 在{@link Application {@link #onTrimMemory(int)}} 中执行
+     * 在{@link Application#onTrimMemory(int)} 中执行
      */
     void onTrimMemory(int level);
 }

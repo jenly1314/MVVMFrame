@@ -11,6 +11,8 @@ import com.king.mvvmframe.api.ApiService;
 import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.bean.Result;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -21,7 +23,7 @@ import retrofit2.Call;
  */
 public class PoetryModel extends BaseModel {
 
-    private MutableLiveData<Resource<PoetryInfo>> poetryLiveData = new MutableLiveData<>();
+    private MutableLiveData<Resource<List<PoetryInfo>>> poetryLiveData = new MutableLiveData<>();
 
     @Inject
     public PoetryModel(IDataRepository dataRepository) {
@@ -32,13 +34,13 @@ public class PoetryModel extends BaseModel {
      * 获取诗词信息
      * @return
      */
-    public LiveData<Resource<PoetryInfo>> getPoetryInfo(){
+    public LiveData<Resource<List<PoetryInfo>>> getPoetryInfo(){
         poetryLiveData.setValue(Resource.loading());
         getRetrofitService(ApiService.class)
                 .getRecommendPoetry()
-                .enqueue(new ApiCallback<Result<PoetryInfo>>() {
+                .enqueue(new ApiCallback<Result<List<PoetryInfo>>>() {
                     @Override
-                    public void onResponse(Call<Result<PoetryInfo>> call, Result<PoetryInfo> result) {
+                    public void onResponse(Call<Result<List<PoetryInfo>>> call, Result<List<PoetryInfo>> result) {
                         if (result != null) {
                             if(result.isSuccess()){
                                 poetryLiveData.setValue(Resource.success(result.getData()));
@@ -50,7 +52,7 @@ public class PoetryModel extends BaseModel {
                     }
 
                     @Override
-                    public void onError(Call<Result<PoetryInfo>> call, Throwable t) {
+                    public void onError(Call<Result<List<PoetryInfo>>> call, Throwable t) {
                         poetryLiveData.setValue(Resource.error(t));
                     }
                 });

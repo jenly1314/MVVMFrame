@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.king.frame.mvvmframe.config.FrameConfigModule;
 import com.king.frame.mvvmframe.base.IAppComponent;
 import com.king.frame.mvvmframe.base.lifecycle.ApplicationLifecycle;
+import com.king.frame.mvvmframe.config.FrameConfigModule;
 import com.king.frame.mvvmframe.config.ManifestParser;
 import com.king.frame.mvvmframe.di.component.AppComponent;
 import com.king.frame.mvvmframe.di.component.DaggerAppComponent;
@@ -18,10 +18,7 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * ApplicationDelegate 代理{@link Application}，在{@link Application}相应的生命周期
- * {@link Application#attachBaseContext(Context)}，{@link Application#onCreate()}，
- * {@link Application#onTerminate()}，{@link Application#onLowMemory()}，
- * {@link Application#onTrimMemory(int)}方法中调用{@link ApplicationDelegate} 对应的方法，
+ * ApplicationDelegate 代理{@link Application}，在{@link Application}相应的生命周期中调用{@link ApplicationDelegate}对应的方法，
  * 即可初始化框架基本的配置信息。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -59,7 +56,7 @@ public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
     }
 
     /**
-     * 在{@link Application {@link #attachBaseContext(Context)}} 中执行,获取{@link #mModules}
+     * 在{@link Application#attachBaseContext(Context)} 中执行,获取{@link #mModules}
      * @param base
      */
     @Override
@@ -71,7 +68,7 @@ public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
     }
 
     /**
-     * 在{@link Application {@link #onCreate()}} 中执行，初始化{@link #mAppComponent}
+     * 在{@link Application#onCreate()} 中执行，初始化{@link #mAppComponent}
      */
     @Override
     public void onCreate() {
@@ -86,7 +83,7 @@ public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
     }
 
     /**
-     * 在{@link Application {@link #onTerminate()}} 中执行
+     * 在{@link Application#onTerminate()} 中执行
      */
     @Override
     public void onTerminate() {
@@ -96,7 +93,7 @@ public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
     }
 
     /**
-     * 在{@link Application {@link #onLowMemory()}} 中执行,低内存的时候执行。（非必须调用）
+     * 在{@link Application#onLowMemory()} 中执行,低内存的时候执行。（非必须调用）
      */
     @Override
     public void onLowMemory() {
@@ -104,7 +101,7 @@ public class ApplicationDelegate implements ApplicationLifecycle,IAppComponent {
     }
 
     /**
-     * 在{@link Application {@link #onTrimMemory(int)}} 中执行，清理内存时执行。（非必须调用）
+     * 在{@link Application#onTrimMemory(int)} 中执行，清理内存时执行。（非必须调用）
      */
     @Override
     public void onTrimMemory(int level) {

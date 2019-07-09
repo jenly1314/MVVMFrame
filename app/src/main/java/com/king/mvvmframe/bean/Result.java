@@ -1,7 +1,5 @@
 package com.king.mvvmframe.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -11,7 +9,6 @@ public class Result<T> {
 
     private String message;
 
-    @SerializedName("result")
     private T data;
 
     public int getCode() {
@@ -39,7 +36,7 @@ public class Result<T> {
     }
 
     public boolean isSuccess(){
-        return  code == 200;
+        return  code == 0;
     }
 
     @Override

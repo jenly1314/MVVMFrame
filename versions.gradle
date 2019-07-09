@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 1
-app_version.versionName = "1.0.0"
+app_version.versionCode = 2
+app_version.versionName = "1.0.1"
 ext.app_version = app_version
 
 //build version
@@ -31,32 +31,24 @@ versions.archLifecycle = "1.1.1"
 versions.room = "1.1.1"
 
 //dagger
-versions.dagger = "2.16"
+versions.dagger = "2.17"
 
-versions.retrofit = "2.5.0"
+versions.retrofit = "2.6.0"
 versions.gson = "2.8.5"
 
-versions.glide = "4.7.1"
 //jenly
-versions.base = "1.1.2"
-versions.appupdater = "1.0"
+versions.base = "3.2.1"
+versions.appupdater = "1.0.4"
 versions.neverCrash= "1.0.0"
 
 versions.timber = "4.7.1"
 versions.logger = "2.2.0"
 
-versions.agentweb = "4.0.2"
-//router
-versions.arouterApi = "1.3.1"
-versions.arouterCompiler = "1.1.4"
-
-versions.leakcanary = "1.5.4"
-
-versions.persistentCookieJar = "v1.0.1"
+versions.leakcanary = "1.6.3"
 
 versions.flowlayout = "1.1.2"
 
-versions.multidex = "1.0.2"
+versions.multidex = "1.0.3"
 
 ext.deps = [:]
 
@@ -107,12 +99,6 @@ retrofit.gson = "com.google.code.gson:gson:$versions.gson"
 retrofit.converter_gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 deps.retrofit = retrofit
 
-//glide
-def glide = [:]
-glide.glide = "com.github.bumptech.glide:glide:$versions.glide"
-glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
-deps.glide = glide
-
 //jenly1314
 def jenly = [:]
 jenly.base_adapter = "com.king.base:adapter:$versions.base"
@@ -127,29 +113,19 @@ deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 
 deps.logger = "com.orhanobut:logger:$versions.logger"
 
-//web
-deps.agentweb = "com.just.agentweb:agentweb:$versions.agentweb"
 ext.deps = deps
-//router
-def arouter = [:]
-arouter.arouter = "com.alibaba:arouter-api:$versions.arouterApi"
-arouter.compiler = "com.alibaba:arouter-compiler:$versions.arouterCompiler"
-deps.arouter = arouter
 
 //leakcanary
 def leakcanary = [:]
 leakcanary.debug = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
 leakcanary.release = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary"
 deps.leakcanary = leakcanary
-//cookie
-deps.cookie_jar = "com.github.franmontiel:PersistentCookieJar:$versions.persistentCookieJar"
 
 //flowlayout
 deps.flowlayout = "com.hyman:flowlayout-lib:$versions.flowlayout"
 
 //多dex
 deps.multidex = "com.android.support:multidex:$versions.multidex"
-
 
 ext.deps = deps
 

@@ -18,7 +18,7 @@ public abstract class ContentActivity extends BaseActivity<DataViewModel,ViewDat
 
     @Override
     public int getLayoutId() {
-        return R.layout.content_activity;
+        return R.layout.mvvmframe_content_activity;
     }
 
     @Override

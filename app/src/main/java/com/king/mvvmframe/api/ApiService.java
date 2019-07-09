@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -15,17 +16,18 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     /**
-     * 推荐诗词
+     * 获取随机十条推荐的诗词
      * @return
      */
-    @GET("recommendPoetry")
-    Call<Result<PoetryInfo>> getRecommendPoetry();
+    @POST("poetry/poetrys/randomTenPoetry")
+    Call<Result<List<PoetryInfo>>> getRecommendPoetry();
 
     /**
      * 模糊搜索诗词
-     * @param name 搜索诗词名、诗词内容、诗词作者
+     * @param keyword 搜索诗词名、诗词内容、诗词作者
+     * @param page 页码
      * @return
      */
-    @GET("likePoetry")
-    Call<Result<List<PoetryInfo>>> getLikePoetry(@Query("name")String name);
+    @POST("poetry/poetrys/searchPoetry")
+    Call<Result<List<PoetryInfo>>> searchPoetry(@Query("keyword")String keyword,@Query("page")int page);
 }

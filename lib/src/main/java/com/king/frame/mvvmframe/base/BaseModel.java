@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.king.frame.mvvmframe.data.IDataRepository;
 
+import java.lang.Class;
 import javax.inject.Inject;
 
 /**

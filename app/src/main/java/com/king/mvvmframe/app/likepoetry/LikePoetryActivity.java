@@ -21,6 +21,7 @@ import com.king.mvvmframe.bean.SearchHistory;
 import com.king.mvvmframe.databinding.LikePoetryActivityBinding;
 import com.king.mvvmframe.databinding.RvPoetryItemBinding;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,11 @@ import timber.log.Timber;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel,LikePoetryActivityBinding> {
+public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePoetryActivityBinding> {
 
     private SearchView searchView;
 
-    private BindingAdapter<PoetryInfo,RvPoetryItemBinding> mAdapter;
-
-    private List<PoetryInfo> listData;
+    private BindingAdapter<PoetryInfo, RvPoetryItemBinding> mAdapter;
 
     private SearchHistoryAdapter mSearchHistoryAdapter;
 
@@ -54,8 +53,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel,LikePoe
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
 
-        listData = new ArrayList<>();
-        mAdapter = new BindingAdapter<>(getContext(),listData,R.layout.rv_poetry_item);
+        mAdapter = new BindingAdapter<>(getContext(),R.layout.rv_poetry_item);
 
         mBinding.recyclerView.setAdapter(mAdapter);
 

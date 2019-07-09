@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
-<data>
-    <variable
-        name="data"
-        type="com.king.mvvmframe.bean.PoetryInfo"/>
-</data>
+    <data>
+        <variable
+            name="data"
+            type="com.king.mvvmframe.bean.PoetryInfo"/>
+    </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_margin="2dp"
             android:layout_alignParentRight="true"
             android:textSize="12sp"
-            android:text="@{data.authors == null ? null : data.authors}"
+            android:text="@{data.author == null ? null : data.author}"
             tools:text="陆游"/>
         <TextView
             android:id="@+id/tvTitle"
@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/text_6"
-            android:gravity="center"
             android:layout_below="@+id/tvTitle"
             android:maxLines="2"
             android:text="@{data.content.replace('|',' ')}"

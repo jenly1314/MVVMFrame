@@ -13,12 +13,12 @@ public class PoetryInfo implements Parcelable {
     /**
      * title : 幽居
      * content : 小舫藤为缆，幽居竹织门。|短篱围藕荡，细路入桑村。|鱼脍槎头美，醅倾粥面浑。|残年谢轩冕，犹足号黎元。
-     * authors : 陆游
+     * author : 陆游
      */
 
     private String title;
     private String content;
-    private String authors;
+    private String author;
 
     public String getTitle() {
         return title;
@@ -36,12 +36,12 @@ public class PoetryInfo implements Parcelable {
         this.content = content;
     }
 
-    public String getAuthors() {
-        return authors;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthors(String authors) {
-        this.authors = authors;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PoetryInfo implements Parcelable {
         return "PoetryInfo{" +
                 "title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", authors='" + authors + '\'' +
+                ", author='" + author + '\'' +
                 '}';
     }
 
@@ -62,7 +62,7 @@ public class PoetryInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.title);
         dest.writeString(this.content);
-        dest.writeString(this.authors);
+        dest.writeString(this.author);
     }
 
     public PoetryInfo() {
@@ -71,7 +71,7 @@ public class PoetryInfo implements Parcelable {
     protected PoetryInfo(Parcel in) {
         this.title = in.readString();
         this.content = in.readString();
-        this.authors = in.readString();
+        this.author = in.readString();
     }
 
     public static final Creator<PoetryInfo> CREATOR = new Creator<PoetryInfo>() {

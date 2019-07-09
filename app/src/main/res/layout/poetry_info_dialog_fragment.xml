@@ -13,42 +13,55 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:textSize="18sp"
                 android:textColor="@color/text_3"
                 android:gravity="center"
-                android:layout_marginTop="20dp"
                 android:text="@{data.title}"
                 tools:text="幽居"/>
             <TextView
                 android:id="@+id/tvAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:textSize="16sp"
                 android:textColor="@color/text_9"
                 android:gravity="center"
                 android:layout_margin="6dp"
-                android:text="@{data.authors == null ? null : @string/author_ + data.authors}"
+                android:text="@{data.author == null ? null : @string/author_ + data.author}"
                 tools:text="作者：陆游"/>
             <TextView
                 android:id="@+id/tvContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:textSize="16sp"
                 android:textColor="@color/text_6"
                 android:gravity="center"
                 android:text="@{data.content.replace('|','\n')}"
                 tools:text="小舫藤为缆，幽居竹织门。\n短篱围藕荡，细路入桑村。\n鱼脍槎头美，醅倾粥面浑。\n残年谢轩冕，犹足号黎元。"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/line_h"/>
             <Button
                 android:id="@+id/btnClose"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="16sp"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/btn_close"/>
         </LinearLayout>

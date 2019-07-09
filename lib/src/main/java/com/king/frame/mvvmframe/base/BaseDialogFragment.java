@@ -93,7 +93,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        super.getDialog().getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+        super.getDialog().getWindow().getAttributes().windowAnimations = R.style.mvvmframe_dialog_animation;
         getDialog().setCanceledOnTouchOutside(false);
         setDialogWindow(getDialog(),DEFAULT_WIDTH_RATIO);
     }
@@ -309,7 +309,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     protected void showProgressDialog(boolean isCancel){
-        showProgressDialog(R.layout.progress_dialog,isCancel);
+        showProgressDialog(R.layout.mvvmframe_progress_dialog,isCancel);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){

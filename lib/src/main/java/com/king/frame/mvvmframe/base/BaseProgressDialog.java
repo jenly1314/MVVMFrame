@@ -20,7 +20,7 @@ public class BaseProgressDialog extends Dialog {
     }
 
     public BaseProgressDialog(@NonNull Context context) {
-        this(context, R.style.progress_dialog);
+        this(context, R.style.mvvmframe_progress_dialog);
     }
 
     public BaseProgressDialog(@NonNull Context context, int themeResId) {

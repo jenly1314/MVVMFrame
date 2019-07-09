@@ -6,52 +6,15 @@
         <variable
             name="viewModel"
             type="com.king.mvvmframe.app.poetry.PoetryViewModel"/>
-        <variable
-            name="data"
-            type="com.king.mvvmframe.bean.PoetryInfo"/>
     </data>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-                <TextView
-                    android:id="@+id/tvTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_3"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:text="@{data.title}"
-                    tools:text="幽居"/>
-                <TextView
-                    android:id="@+id/tvAuthor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_9"
-                    android:gravity="center"
-                    android:layout_margin="6dp"
-                    android:text="@{data.authors == null ? null : @string/author_ + data.authors}"
-                    tools:text="作者：陆游"/>
-                <TextView
-                    android:id="@+id/tvContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_6"
-                    android:gravity="center"
-                    android:text="@{data.content.replace('|','\n')}"
-                    tools:text="小舫藤为缆，幽居竹织门。\n短篱围藕荡，细路入桑村。\n鱼脍槎头美，醅倾粥面浑。\n残年谢轩冕，犹足号黎元。"/>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_poetry_item"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 </layout>
