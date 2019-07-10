@@ -1,12 +1,12 @@
 package com.king.frame.mvvmframe.di.module;
 
-import android.support.annotation.Nullable;
 
 import com.king.frame.mvvmframe.config.AppliesOptions;
 import com.king.frame.mvvmframe.util.Preconditions;
 
 import javax.inject.Singleton;
 
+import androidx.annotation.Nullable;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;

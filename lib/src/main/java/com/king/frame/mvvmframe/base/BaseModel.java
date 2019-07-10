@@ -1,15 +1,16 @@
 package com.king.frame.mvvmframe.base;
 
 
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.king.frame.mvvmframe.data.IDataRepository;
 
 import java.lang.Class;
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 /**
  * 标准MVVM模式中的M (Model)层基类

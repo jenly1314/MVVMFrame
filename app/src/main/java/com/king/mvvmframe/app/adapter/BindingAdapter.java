@@ -1,13 +1,15 @@
 package com.king.mvvmframe.app.adapter;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.LayoutRes;
+
 
 import com.king.base.adapter.BaseRecyclerAdapter;
-import com.king.mvvmframe.BR;
+import com.king.frame.mvvmframe.BR;
 
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
+import androidx.databinding.ViewDataBinding;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

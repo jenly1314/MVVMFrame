@@ -3,7 +3,6 @@ package com.king.frame.mvvmframe.base;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 
 import com.king.frame.mvvmframe.base.delegate.ApplicationDelegate;
 import com.king.frame.mvvmframe.di.component.AppComponent;
@@ -11,6 +10,7 @@ import com.king.frame.mvvmframe.util.Preconditions;
 
 import javax.inject.Inject;
 
+import androidx.fragment.app.Fragment;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;

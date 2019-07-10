@@ -1,9 +1,9 @@
 package com.king.frame.mvvmframe.base;
 
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

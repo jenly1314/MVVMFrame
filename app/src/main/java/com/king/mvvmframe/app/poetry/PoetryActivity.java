@@ -1,8 +1,6 @@
 package com.king.mvvmframe.app.poetry;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 
 import com.king.base.adapter.divider.DividerItemDecoration;
 import com.king.base.util.ToastUtils;
@@ -15,9 +13,9 @@ import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.databinding.PoetryActivityBinding;
 import com.king.mvvmframe.databinding.RvPoetryItemBinding;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import timber.log.Timber;
 
 /**

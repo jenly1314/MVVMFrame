@@ -1,9 +1,10 @@
 package com.king.mvvmframe.dao;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
 
 import com.king.mvvmframe.bean.SearchHistory;
+
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

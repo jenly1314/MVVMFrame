@@ -1,19 +1,21 @@
 package com.king.frame.mvvmframe.base;
 
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
 import com.king.frame.mvvmframe.R;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
 
 /**
  * 用于容纳Fragment的通用Activity，相当于一个Fragment容器，通过{@link Intent} 传递参数和标识，然后实现{@link #switchFragment}处理对应的逻辑
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class ContentActivity extends BaseActivity<DataViewModel,ViewDataBinding> {
+public abstract class ContentActivity extends BaseActivity<DataViewModel, ViewDataBinding> {
 
 
     @Override
@@ -27,7 +29,7 @@ public abstract class ContentActivity extends BaseActivity<DataViewModel,ViewDat
     }
 
     /**
-     * 不使用DataBinding {@link android.databinding.DataBindingUtil}
+     * 不使用DataBinding {@link DataBindingUtil}
      * @return
      */
     @Override

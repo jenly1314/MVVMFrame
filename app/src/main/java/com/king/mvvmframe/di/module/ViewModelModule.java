@@ -1,12 +1,12 @@
 package com.king.mvvmframe.di.module;
 
-import android.arch.lifecycle.ViewModel;
 
 import com.king.frame.mvvmframe.di.scope.ViewModelKey;
 import com.king.mvvmframe.app.likepoetry.LikePoetryViewModel;
 import com.king.mvvmframe.app.poetry.PoetryViewModel;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteViewModel;
 
+import androidx.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;

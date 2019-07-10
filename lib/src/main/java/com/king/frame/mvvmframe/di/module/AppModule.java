@@ -1,6 +1,5 @@
 package com.king.frame.mvvmframe.di.module;
 
-import android.arch.lifecycle.ViewModel;
 
 import com.king.frame.mvvmframe.base.BaseViewModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
@@ -8,6 +7,7 @@ import com.king.frame.mvvmframe.data.DataRepository;
 import com.king.frame.mvvmframe.data.IDataRepository;
 import com.king.frame.mvvmframe.di.scope.ViewModelKey;
 
+import androidx.lifecycle.ViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;

@@ -1,7 +1,6 @@
 package com.king.mvvmframe;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.king.frame.mvvmframe.base.BaseActivity;
@@ -10,6 +9,8 @@ import com.king.mvvmframe.app.likepoetry.LikePoetryActivity;
 import com.king.mvvmframe.app.poetry.PoetryActivity;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteActivity;
 import com.king.mvvmframe.databinding.MainActivityBinding;
+
+import androidx.annotation.Nullable;
 
 public class MainActivity extends BaseActivity<BaseViewModel,MainActivityBinding> {
 

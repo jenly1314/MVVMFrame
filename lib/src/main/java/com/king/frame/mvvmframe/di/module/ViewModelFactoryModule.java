@@ -1,9 +1,9 @@
 package com.king.frame.mvvmframe.di.module;
 
-import android.arch.lifecycle.ViewModelProvider;
 
 import com.king.frame.mvvmframe.base.ViewModelFactory;
 
+import androidx.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.android.AndroidInjectionModule;

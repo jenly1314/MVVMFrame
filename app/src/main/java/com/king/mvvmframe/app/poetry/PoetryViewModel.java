@@ -1,9 +1,6 @@
 package com.king.mvvmframe.app.poetry;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.king.frame.mvvmframe.base.BaseViewModel;
@@ -14,6 +11,10 @@ import com.king.mvvmframe.bean.PoetryInfo;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 /**
  * 标准版

@@ -10,7 +10,8 @@ android {
         targetSdkVersion build_versions.targetSdk
         versionCode app_version.versionCode
         versionName app_version.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
 
     }
     buildTypes {
@@ -41,12 +42,10 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
-    //support
-    implementation deps.support.v4
+
     implementation deps.support.design
     implementation deps.support.appcompat
     implementation deps.support.recyclerview
-    implementation deps.support.cardview
     implementation deps.support.constraintlayout
 
     annotationProcessor deps.dagger.android_processor

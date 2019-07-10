@@ -1,7 +1,5 @@
 package com.king.mvvmframe.app.poetry;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 
 import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.bean.Resource;
@@ -15,6 +13,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 
 /**

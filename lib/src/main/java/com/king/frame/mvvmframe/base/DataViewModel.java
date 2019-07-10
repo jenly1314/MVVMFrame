@@ -1,13 +1,14 @@
 package com.king.frame.mvvmframe.base;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.lang.Class;
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 /**
  * 默认提供{@link BaseModel#getRetrofitService}的功能，当ViewModel和Model数据比较简单时可使用本类，弱化Model层。

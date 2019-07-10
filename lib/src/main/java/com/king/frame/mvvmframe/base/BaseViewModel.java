@@ -1,19 +1,20 @@
 package com.king.frame.mvvmframe.base;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 
 import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.SingleLiveEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
 import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 
 /**
@@ -44,7 +45,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     private SingleLiveEvent<Message> mSingleLiveEvent  = new SingleLiveEvent<>();
 
     @Inject
-    public BaseViewModel(@NonNull Application application,M model) {
+    public BaseViewModel(@NonNull Application application, M model) {
         super(application);
         this.mModel = model;
     }

@@ -3,12 +3,11 @@ package com.king.frame.mvvmframe.base;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.king.frame.mvvmframe.R;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

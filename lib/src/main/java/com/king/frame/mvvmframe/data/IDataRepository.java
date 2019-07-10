@@ -1,12 +1,13 @@
 package com.king.frame.mvvmframe.data;
 
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.lang.Class;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 /**
  * 统一管理数据业务层，实现类见{@link DataRepository}
@@ -33,6 +34,6 @@ public interface IDataRepository {
      * @param <T>
      * @return {@link RoomDatabase.Builder<T>#build()}
      */
-    <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database,@Nullable String dbName);
+    <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database, @Nullable String dbName);
 
 }

@@ -1,7 +1,5 @@
 package com.king.frame.mvvmframe.config;
 
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.google.gson.Gson;

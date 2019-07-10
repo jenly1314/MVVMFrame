@@ -1,6 +1,5 @@
 package com.king.frame.mvvmframe.di.module;
 
-import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import androidx.annotation.Nullable;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
@@ -28,7 +28,7 @@ public class HttpModule {
 
     @Singleton
     @Provides
-    Retrofit provideRetrofit(Retrofit.Builder builder, HttpUrl httpUrl, @Nullable AppliesOptions.RetrofitOptions options, OkHttpClient client,Gson gson){
+    Retrofit provideRetrofit(Retrofit.Builder builder, HttpUrl httpUrl, @Nullable AppliesOptions.RetrofitOptions options, OkHttpClient client, Gson gson){
         builder.baseUrl(httpUrl)
                 .client(client);
         builder.addConverterFactory(GsonConverterFactory.create(gson));

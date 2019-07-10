@@ -1,10 +1,11 @@
 package com.king.mvvmframe.app.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.view.View;
 
 import com.king.base.adapter.holder.ViewHolder;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

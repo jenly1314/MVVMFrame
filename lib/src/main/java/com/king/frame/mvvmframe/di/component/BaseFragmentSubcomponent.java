@@ -15,6 +15,6 @@ public interface BaseFragmentSubcomponent extends AndroidInjector<BaseFragment> 
 
     @Subcomponent.Builder
     abstract class Builder extends AndroidInjector.Builder<BaseFragment>{
-
+        
     }
 }

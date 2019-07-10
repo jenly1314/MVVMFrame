@@ -2,7 +2,6 @@ package com.king.frame.mvvmframe.base.delegate;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.king.frame.mvvmframe.base.IAppComponent;
 import com.king.frame.mvvmframe.base.lifecycle.ApplicationLifecycle;
@@ -15,6 +14,7 @@ import com.king.frame.mvvmframe.util.Preconditions;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import timber.log.Timber;
 
 /**

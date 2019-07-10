@@ -1,8 +1,9 @@
 package com.king.frame.mvvmframe.bean;
 
-import android.support.annotation.Nullable;
 
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

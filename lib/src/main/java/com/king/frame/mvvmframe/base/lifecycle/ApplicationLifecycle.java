@@ -2,7 +2,8 @@ package com.king.frame.mvvmframe.base.lifecycle;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 /**
  * 代理{@link Application} 的生命周期, 实现类见{@link com.king.frame.mvvmframe.base.delegate.ApplicationDelegate}

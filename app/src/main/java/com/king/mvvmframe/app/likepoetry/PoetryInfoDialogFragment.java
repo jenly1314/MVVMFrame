@@ -1,7 +1,6 @@
 package com.king.mvvmframe.app.likepoetry;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.king.frame.mvvmframe.base.BaseDialogFragment;
 import com.king.frame.mvvmframe.base.DataViewModel;
@@ -9,6 +8,8 @@ import com.king.mvvmframe.R;
 import com.king.mvvmframe.app.Constants;
 import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.databinding.PoetryInfoDialogFragmentBinding;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

@@ -1,12 +1,7 @@
 package com.king.frame.mvvmframe.data;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.LruCache;
 import android.text.TextUtils;
 
 import com.king.frame.mvvmframe.config.Constants;
@@ -16,6 +11,11 @@ import java.lang.Class;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.LruCache;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import dagger.Lazy;
 import retrofit2.Retrofit;
 
@@ -85,7 +85,7 @@ public class DataRepository implements IDataRepository {
      * @return {@link RoomDatabase.Builder<T>#build()}
      */
     @Override
-    public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database,@Nullable String dbName) {
+    public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database, @Nullable String dbName) {
         if(mRoomDatabaseCache == null){
             mRoomDatabaseCache = new LruCache<>(Constants.DEFAULT_ROOM_DATABASE_MAX_SIZE);
         }

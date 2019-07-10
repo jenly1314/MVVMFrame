@@ -1,10 +1,11 @@
 package com.king.mvvmframe.util;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntRange;
 
 import java.util.Random;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.IntRange;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
