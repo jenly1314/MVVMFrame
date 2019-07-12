@@ -1,8 +1,9 @@
 package com.king.mvvmframe.bean;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
