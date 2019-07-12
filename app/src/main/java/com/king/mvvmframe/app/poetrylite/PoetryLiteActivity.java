@@ -16,9 +16,6 @@ import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.databinding.PoetryLiteActivityBinding;
 import com.king.mvvmframe.databinding.RvPoetryItemBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import timber.log.Timber;
 
 /**

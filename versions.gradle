@@ -31,7 +31,7 @@ versions.archLifecycle = "1.1.1"
 versions.room = "1.1.1"
 
 //dagger
-versions.dagger = "2.17"
+versions.dagger = "2.19"
 
 versions.retrofit = "2.6.0"
 versions.gson = "2.8.5"
