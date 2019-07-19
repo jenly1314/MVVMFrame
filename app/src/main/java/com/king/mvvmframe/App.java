@@ -15,6 +15,12 @@ import timber.log.Timber;
 
 
 /**
+ *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
+ *  1.你的项目中的Application中需初始化MVVMFrame框架相关信息，有两种方式处理：
+ *      a.直接继承本类{@link BaseApplication}即可；
+ *      b.如你的项目中的Application本身继承了其它第三方的Application，因为Java是单继承原因，导致没法继承本类，可参照{@link BaseApplication}类，
+ *      将{@link BaseApplication}中相关代码复制到你项目的Application中，在相应的生命周期中调用即可。
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class App extends BaseApplication {
