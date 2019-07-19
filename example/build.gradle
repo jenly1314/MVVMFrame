@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion build_versions.compileSdk
+    buildToolsVersion build_versions.buildTools
+
+    defaultConfig {
+        applicationId "com.king.mvvmframe.example"
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+configurations.all() {
+    resolutionStrategy.force "org.antlr:antlr4-runtime:4.5.3"
+    resolutionStrategy.force "org.antlr:antlr4-tool:4.5.3"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
+
+    implementation deps.support.design
+    implementation deps.support.appcompat
+    implementation deps.support.recyclerview
+    implementation deps.support.constraintlayout
+
+    annotationProcessor deps.dagger.android_processor
+    annotationProcessor deps.dagger.compiler
+
+    implementation deps.room.rxjava2
+    annotationProcessor deps.room.compiler
+
+    implementation deps.jenly.base_util
+    implementation deps.jenly.base_adapter
+
+    implementation deps.logger
+
+    implementation deps.flowlayout
+
+    //leakCanary
+    debugImplementation deps.leakcanary.debug
+    releaseImplementation deps.leakcanary.release
+
+    implementation project(':lib')
+}

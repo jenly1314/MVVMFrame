@@ -12,6 +12,7 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 
 /**
+ * ViewModel模块统一管理：通过{@link Binds}和{@link ViewModelKey}绑定关联对应的ViewModel
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @Module

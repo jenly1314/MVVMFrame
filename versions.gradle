@@ -28,8 +28,8 @@ versions.espresso = "3.2.0"
 
 
 // Architecture Components dependencies
-versions.archLifecycle = "2.1.0-rc01"
-versions.room = "2.1.0"
+versions.archLifecycle = "2.2.0-alpha02"
+versions.room = "2.2.0-alpha01"
 
 //dagger
 versions.dagger = "2.23.2"

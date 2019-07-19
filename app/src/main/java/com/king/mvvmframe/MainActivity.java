@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.king.frame.mvvmframe.base.BaseActivity;
+import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.base.BaseViewModel;
+import com.king.frame.mvvmframe.base.DataViewModel;
 import com.king.mvvmframe.app.likepoetry.LikePoetryActivity;
 import com.king.mvvmframe.app.poetry.PoetryActivity;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteActivity;
@@ -12,7 +14,7 @@ import com.king.mvvmframe.databinding.MainActivityBinding;
 
 import androidx.annotation.Nullable;
 
-public class MainActivity extends BaseActivity<BaseViewModel,MainActivityBinding> {
+public class MainActivity extends BaseActivity<DataViewModel,MainActivityBinding> {
 
     @Override
     public int getLayoutId() {

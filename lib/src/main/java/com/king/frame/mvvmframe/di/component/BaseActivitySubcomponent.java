@@ -14,9 +14,9 @@ import dagger.android.AndroidInjector;
 @Subcomponent(modules = {AndroidInjectionModule.class})
 public interface BaseActivitySubcomponent extends AndroidInjector<BaseActivity<BaseViewModel, ViewDataBinding>> {
 
-
-    @Subcomponent.Builder
-    abstract class Builder extends AndroidInjector.Builder<BaseActivity<BaseViewModel, ViewDataBinding>>{
+    @Subcomponent.Factory
+    interface Factory extends AndroidInjector.Factory<BaseActivity<BaseViewModel, ViewDataBinding>>{
 
     }
+
 }

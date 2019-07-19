@@ -12,5 +12,5 @@ import androidx.room.RoomDatabase;
 @Database(entities = {SearchHistory.class}, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract SearchHistoryDao searchHistoryDao();
+//    public abstract SearchHistoryDao searchHistoryDao();
 }

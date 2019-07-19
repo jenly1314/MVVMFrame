@@ -5,7 +5,7 @@ buildscript {
     addRepos(repositories)
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
 
         classpath 'com.novoda:bintray-release:0.9'
 
@@ -34,5 +34,11 @@ allprojects {
         }
         options.addStringOption('Xdoclint:none', '-quiet')
         failOnError false
+    }
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xmaxerrs" << "500"
     }
 }

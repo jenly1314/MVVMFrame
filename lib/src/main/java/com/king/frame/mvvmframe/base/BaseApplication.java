@@ -1,6 +1,5 @@
 package com.king.frame.mvvmframe.base;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
@@ -10,11 +9,9 @@ import com.king.frame.mvvmframe.util.Preconditions;
 
 import javax.inject.Inject;
 
-import androidx.fragment.app.Fragment;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.HasAndroidInjector;
 
 /**
  *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
@@ -25,7 +22,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class BaseApplication extends Application implements IAppComponent, HasActivityInjector, HasSupportFragmentInjector {
+public class BaseApplication extends Application implements IAppComponent, HasAndroidInjector {
 
     /**
      * Application 代理 规避项目中集成了其它第三方类或其它原因，不能集成本类{@link BaseApplication}时，
@@ -34,15 +31,11 @@ public class BaseApplication extends Application implements IAppComponent, HasAc
     private ApplicationDelegate mApplicationDelegate;
 
     /**
-     * Dagger.Android Activity 注入
+     * Dagger.Android 注入
      */
     @Inject
-    DispatchingAndroidInjector<Activity> mActivityInjector;
-    /**
-     * Dagger.Android Fragment 注入
-     */
-    @Inject
-    DispatchingAndroidInjector<Fragment> mFragmentInjector;
+    DispatchingAndroidInjector<Object> mAndroidInjector;
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -89,12 +82,8 @@ public class BaseApplication extends Application implements IAppComponent, HasAc
     }
 
     @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return mActivityInjector;
+    public AndroidInjector<Object> androidInjector() {
+        return mAndroidInjector;
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return mFragmentInjector;
-    }
 }

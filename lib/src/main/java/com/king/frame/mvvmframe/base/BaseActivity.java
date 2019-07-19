@@ -32,7 +32,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -41,15 +40,15 @@ import androidx.lifecycle.ViewModelProviders;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.HasAndroidInjector;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewDataBinding> extends AppCompatActivity implements IView<VM>, BaseNavigator, HasSupportFragmentInjector {
+public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewDataBinding> extends AppCompatActivity implements IView<VM>, BaseNavigator, HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Fragment> mFragmentInjector;
+    DispatchingAndroidInjector<Object> mAndroidInjector;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -95,8 +94,8 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return mFragmentInjector;
+    public AndroidInjector<Object> androidInjector() {
+        return mAndroidInjector;
     }
 
     @Override

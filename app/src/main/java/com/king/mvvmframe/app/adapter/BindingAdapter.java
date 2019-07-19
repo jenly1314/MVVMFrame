@@ -4,7 +4,7 @@ import android.content.Context;
 
 
 import com.king.base.adapter.BaseRecyclerAdapter;
-import com.king.frame.mvvmframe.BR;
+import com.king.mvvmframe.BR;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class BindingAdapter<T,VDB extends ViewDataBinding> extends BaseRecyclerA
 
     @Override
     public void bindViewDatas(BindingHolder<VDB> holder, T item, int position) {
+
         holder.mBinding.setVariable(BR.data,item);
         holder.mBinding.executePendingBindings();
     }

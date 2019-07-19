@@ -108,6 +108,7 @@ public class LikePoetryModel extends BaseModel {
      * @return {@link SearchHistoryDao}
      */
     public SearchHistoryDao getSearchHistoryDao(){
-        return getRoomDatabase(AppDatabase.class,Constants.DEFAULT_DATABASE_NAME).searchHistoryDao();
+        return null;
+//        return getRoomDatabase(AppDatabase.class,Constants.DEFAULT_DATABASE_NAME).searchHistoryDao();
     }
 }

@@ -39,17 +39,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
-import dagger.android.support.HasSupportFragmentInjector;
 
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends Fragment implements IView<VM>, BaseNavigator, HasSupportFragmentInjector {
+public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends Fragment implements IView<VM>, BaseNavigator, HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Fragment> mFragmentInjector;
+    DispatchingAndroidInjector<Object> mAndroidInjector;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -117,8 +117,8 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return mFragmentInjector;
+    public AndroidInjector<Object> androidInjector() {
+        return mAndroidInjector;
     }
 
     @Override
