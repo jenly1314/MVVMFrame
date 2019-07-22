@@ -23,17 +23,21 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.0.2</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
+//AndroidX 版本
+implementation 'com.king.frame:mvvmframe:1.1.0'
+
+//Android 版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.0.2'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.1.0'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -131,6 +135,10 @@ public class App extends BaseApplication {
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
 
 ## 版本记录
+
+#### v1.1.0：2019-7-22
+*  更新Dagger至v2.23.2
+*  完全迁移至AndroidX版本
 
 #### v1.0.2：2019-7-22
 *  更新Dagger至v2.19

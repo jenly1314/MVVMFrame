@@ -37,11 +37,6 @@ android {
 
 }
 
-configurations.all() {
-    resolutionStrategy.force "org.antlr:antlr4-runtime:4.5.3"
-    resolutionStrategy.force "org.antlr:antlr4-tool:4.5.3"
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation deps.test.junit
@@ -53,9 +48,11 @@ dependencies {
     implementation deps.support.recyclerview
     implementation deps.support.constraintlayout
 
+    //dagger
     annotationProcessor deps.dagger.android_processor
     annotationProcessor deps.dagger.compiler
 
+    //room
     implementation deps.room.rxjava2
     annotationProcessor deps.room.compiler
 
