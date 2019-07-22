@@ -16,6 +16,8 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 ## 架构
 ![Image](image/mvvm_architecture.jpg)
 
+## [Android version](https://github.com/jenly1314/MVVMFrame/tree/android)
+
 ## 引入
 
 ### Maven：
@@ -169,6 +171,7 @@ public class App extends BaseApplication {
 
 #### v1.1.0：2019-7-22
 *  更新Dagger至v2.23.2
+*  更新Gradle至v5.1.1
 *  完全迁移至AndroidX版本
 
 #### v1.0.2：2019-7-22
