@@ -3,7 +3,6 @@ package com.king.mvvmframe.app.likepoetry;
 
 import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.bean.Resource;
-import com.king.frame.mvvmframe.config.Constants;
 import com.king.frame.mvvmframe.data.IDataRepository;
 import com.king.frame.mvvmframe.http.callback.ApiCallback;
 import com.king.mvvmframe.api.ApiService;
@@ -13,8 +12,6 @@ import com.king.mvvmframe.bean.SearchHistory;
 import com.king.mvvmframe.dao.AppDatabase;
 import com.king.mvvmframe.dao.SearchHistoryDao;
 
-import java.lang.Class;
-import java.lang.String;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -108,7 +105,6 @@ public class LikePoetryModel extends BaseModel {
      * @return {@link SearchHistoryDao}
      */
     public SearchHistoryDao getSearchHistoryDao(){
-        return null;
-//        return getRoomDatabase(AppDatabase.class).searchHistoryDao();
+        return getRoomDatabase(AppDatabase.class).searchHistoryDao();
     }
 }
