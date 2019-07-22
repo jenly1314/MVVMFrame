@@ -16,14 +16,14 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityModule {
 
     @ContributesAndroidInjector
-    abstract MainActivity contributesMainActivity();
+    abstract MainActivity contributeMainActivity();
 
     @ContributesAndroidInjector
-    abstract PoetryActivity contributesPoetryActivity();
+    abstract PoetryActivity contributePoetryActivity();
 
     @ContributesAndroidInjector
-    abstract PoetryLiteActivity contributesPoetryLiteActivity();
+    abstract PoetryLiteActivity contributePoetryLiteActivity();
 
     @ContributesAndroidInjector
-    abstract LikePoetryActivity contributesLikePoetryActivity();
+    abstract LikePoetryActivity contributeLikePoetryActivity();
 }

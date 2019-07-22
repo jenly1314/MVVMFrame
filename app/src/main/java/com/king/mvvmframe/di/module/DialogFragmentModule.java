@@ -13,5 +13,5 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class DialogFragmentModule {
 
     @ContributesAndroidInjector
-    abstract PoetryInfoDialogFragment contributesPoetryInfoDialogFragment();
+    abstract PoetryInfoDialogFragment contributePoetryInfoDialogFragment();
 }

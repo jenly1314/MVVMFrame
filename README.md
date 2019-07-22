@@ -23,17 +23,17 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
-implementation 'com.king.frame:mvvmframe:1.0.1'
+implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.0.1'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.0.2'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -103,6 +103,12 @@ Step.3 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义
 Step.4 用你项目的Application继承MVVMFrame中的BaseApplication
 ```Java
 /**
+ *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
+ *  1.你的项目中的Application中需初始化MVVMFrame框架相关信息，有两种方式处理：
+ *      a.直接继承本类{@link BaseApplication}即可；
+ *      b.如你的项目中的Application本身继承了其它第三方的Application，因为Java是单继承原因，导致没法继承本类，可参照本类，
+ *      将{@link #mApplicationDelegate}相关代码复制到你项目的Application中，在相应的生命周期中调用即可。
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class App extends BaseApplication {
@@ -126,9 +132,12 @@ public class App extends BaseApplication {
 
 ## 版本记录
 
+#### v1.0.2：2019-7-22
+*  更新Dagger至v2.19
+*  为迁移至AndroidX做准备（下一版本将直接发布AndroidX版）
+
 #### v1.0.1：2019-7-9
 *  Retrofit更新至v2.6.0
-*  为迁移AndroidX做准备(下一版本将直接迁移至AndroidX)
 
 #### v1.0.0：2018-12-12
 *  MVVMFrame初始版本
@@ -149,6 +158,8 @@ public class App extends BaseApplication {
    Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
 
    CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
+
+   博客园: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
 
    Github: <a title="Github开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 
