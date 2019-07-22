@@ -42,6 +42,37 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
+## 引入的库 （具体对应版本请查看[Versions](versions.gradle)）
+```gradle
+    //support
+    compileOnly deps.support.appcompat
+
+    //retrofit
+    api deps.retrofit.retrofit
+    api deps.retrofit.gson
+    api deps.retrofit.converter_gson
+
+    //lifecycle
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    annotationProcessor deps.lifecycle.compiler
+
+    //room
+    api deps.room.runtime
+    annotationProcessor deps.room.compiler
+
+    //dagger
+    api deps.dagger.dagger
+    api deps.dagger.android
+    api deps.dagger.android_support
+    annotationProcessor deps.dagger.android_processor
+    annotationProcessor deps.dagger.compiler
+
+    //log
+    api deps.timber
+
+```
+
 ###### 如果Gradle出现compile失败的情况，可以在Project的build.gradle里面添加如下：（也可以使用上面的GitPack来complie）
 ```gradle
 allprojects {
