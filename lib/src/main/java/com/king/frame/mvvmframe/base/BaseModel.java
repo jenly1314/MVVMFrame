@@ -2,6 +2,7 @@ package com.king.frame.mvvmframe.base;
 
 
 
+import com.king.frame.mvvmframe.config.Constants;
 import com.king.frame.mvvmframe.data.IDataRepository;
 
 import java.lang.Class;
@@ -38,6 +39,17 @@ public class BaseModel implements IModel {
      */
     public <T> T getRetrofitService(Class<T> service){
         return mDataRepository.getRetrofitService(service);
+    }
+
+
+    /**
+     * 传入Class 通过{@link Room#databaseBuilder},{@link RoomDatabase.Builder<T>#build()}获得对应的Class
+     * @param database
+     * @param <T>
+     * @return {@link RoomDatabase.Builder<T>#build()}
+     */
+    public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database){
+        return getRoomDatabase(database,Constants.DEFAULT_DATABASE_NAME);
     }
 
     /**
