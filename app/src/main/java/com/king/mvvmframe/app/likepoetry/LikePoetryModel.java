@@ -12,6 +12,8 @@ import com.king.mvvmframe.bean.SearchHistory;
 import com.king.mvvmframe.dao.AppDatabase;
 import com.king.mvvmframe.dao.SearchHistoryDao;
 
+import java.lang.Class;
+import java.lang.String;
 import java.util.List;
 
 import javax.inject.Inject;
