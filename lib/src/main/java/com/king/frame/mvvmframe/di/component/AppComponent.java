@@ -7,12 +7,8 @@ import com.king.frame.mvvmframe.data.IDataRepository;
 import com.king.frame.mvvmframe.di.module.AppModule;
 import com.king.frame.mvvmframe.di.module.ConfigModule;
 
-import java.util.Map;
-
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
-import androidx.lifecycle.ViewModel;
 import dagger.BindsInstance;
 import dagger.Component;
 
