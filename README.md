@@ -164,6 +164,7 @@ public class App extends BaseApplication {
 
 }
 ```
+[Kotlin Demo](https://github.com/jenly1314/KingWeather)
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
 
