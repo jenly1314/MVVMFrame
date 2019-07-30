@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 
 /**
  * 为框架提供一些配置参数入口
- * 参见：<a href="https://github.com/bumptech/glide/blob/f7d860412f061e059aa84a42f2563a01ac8c303b/library/src/main/java/com/bumptech/glide/module/AppliesOptions.java">Glide</a>
+ * @see <a href="https://github.com/bumptech/glide/blob/f7d860412f061e059aa84a42f2563a01ac8c303b/library/src/main/java/com/bumptech/glide/module/AppliesOptions.java">Glide</a>
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface AppliesOptions {

@@ -9,7 +9,7 @@ import java.lang.NullPointerException;
 import androidx.annotation.Nullable;
 
 /**
- * 参见：<a href="https://github.com/google/guava/blob/b86fe4fc7ec511d78507c3ba32c789d1f250f827/guava/src/com/google/common/base/Preconditions.java">guava</a>
+ * @see <a href="https://github.com/google/guava/blob/b86fe4fc7ec511d78507c3ba32c789d1f250f827/guava/src/com/google/common/base/Preconditions.java">guava</a>
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public final class Preconditions {

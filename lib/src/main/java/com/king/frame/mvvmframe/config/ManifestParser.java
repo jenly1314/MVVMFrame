@@ -10,7 +10,7 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * 参见：<a href="https://github.com/bumptech/glide/blob/f7d860412f061e059aa84a42f2563a01ac8c303b/library/src/main/java/com/bumptech/glide/module/ManifestParser.java">Glide</a>
+ * @see <a href="https://github.com/bumptech/glide/blob/f7d860412f061e059aa84a42f2563a01ac8c303b/library/src/main/java/com/bumptech/glide/module/ManifestParser.java">Glide</a>
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public final class ManifestParser {
