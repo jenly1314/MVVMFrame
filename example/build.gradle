@@ -43,10 +43,9 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
-    implementation deps.support.design
-    implementation deps.support.appcompat
-    implementation deps.support.recyclerview
-    implementation deps.support.constraintlayout
+    implementation deps.appcompat
+    implementation deps.recyclerview
+    implementation deps.constraintlayout
 
     //dagger
     annotationProcessor deps.dagger.android_processor

@@ -1,15 +1,15 @@
 //App
 def app_version = [:]
-app_version.versionCode = 4
-app_version.versionName = "1.1.0"
+app_version.versionCode = 5
+app_version.versionName = "1.1.1"
 ext.app_version = app_version
 
 //build version
 def build_versions = [:]
 build_versions.minSdk = 16
-build_versions.targetSdk = 28
-build_versions.compileSdk = 28
-build_versions.buildTools = "28.0.3"
+build_versions.targetSdk = 29
+build_versions.compileSdk = 29
+build_versions.buildTools = "29.0.2"
 ext.build_versions = build_versions
 
 ext.deps = [:]
@@ -17,29 +17,32 @@ ext.deps = [:]
 // App dependencies
 def versions = [:]
 //support
-versions.supportLibrary = "1.0.0+"
-versions.constraintLayout = "1.1.3"
+versions.material = "1.2.0-alpha01"
+versions.appcompat = "1.0.0+"
+versions.swiperefreshlayout = "1.1.0-alpha03"
+versions.recyclerview = "1.1.0-rc01"
+versions.constraintLayout = "2.0.0-beta3"
 
 //test
-versions.junit = "1.1.0"
+versions.junit = "1.1.1"
 versions.test = "1.2.0"
 versions.runner = "1.2.0"
 versions.espresso = "3.2.0"
 
 
 // Architecture Components dependencies
-versions.archLifecycle = "2.2.0-alpha02"
-versions.room = "2.2.0-alpha01"
+versions.archLifecycle = "2.2.0-rc01"
+versions.room = "2.2.1"
 
 //dagger
-versions.dagger = "2.23.2"
+versions.dagger = "2.25.2"
 
-versions.retrofit = "2.6.0"
-versions.gson = "2.8.5"
+versions.retrofit = "2.6.2"
+versions.gson = "2.8.6"
 
 //jenly
 versions.base = "3.2.1-androidx"
-versions.appupdater = "1.0.4-androidx"
+versions.appupdater = "1.0.5-androidx"
 versions.neverCrash= "1.0.0"
 
 versions.timber = "4.7.1"
@@ -49,17 +52,22 @@ versions.leakcanary = "1.6.3"
 
 versions.flowlayout = "1.1.2"
 
-versions.multidex = "1.0.3"
+versions.multidex = "2.0.1"
 
 ext.deps = [:]
 
-//support
-def support = [:]
-support.design = "com.google.android.material:material:$versions.supportLibrary"
-support.appcompat = "androidx.appcompat:appcompat:$versions.supportLibrary"
-support.recyclerview = "androidx.recyclerview:recyclerview:$versions.supportLibrary"
-support.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
-deps.support = support
+deps.material = "com.google.android.material:material:$versions.material"
+
+deps.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+
+deps.swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
+
+deps.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+
+deps.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+
+deps.multidex = "androidx.multidex:multidex:$versions.multidex"
+
 
 //test
 def test = [:]
@@ -124,8 +132,6 @@ deps.leakcanary = leakcanary
 //flowlayout
 deps.flowlayout = "com.hyman:flowlayout-lib:$versions.flowlayout"
 
-//多dex
-deps.multidex = "com.android.support:multidex:$versions.multidex"
 
 ext.deps = deps
 

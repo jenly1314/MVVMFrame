@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.king.frame.mvvmframe.base.BaseActivity;
-import com.king.frame.mvvmframe.base.BaseModel;
-import com.king.frame.mvvmframe.base.BaseViewModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
 import com.king.mvvmframe.app.likepoetry.LikePoetryActivity;
 import com.king.mvvmframe.app.poetry.PoetryActivity;

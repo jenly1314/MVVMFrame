@@ -1,6 +1,7 @@
 package com.king.frame.mvvmframe.di.module;
 
 
+import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.base.BaseViewModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
 import com.king.frame.mvvmframe.data.DataRepository;
@@ -24,7 +25,7 @@ public abstract class AppModule {
     @Binds
     @IntoMap
     @ViewModelKey(BaseViewModel.class)
-    abstract ViewModel bindBaseViewModel(BaseViewModel viewModel);
+    abstract ViewModel bindBaseViewModel(BaseViewModel<? extends BaseModel> viewModel);
 
     @Binds
     @IntoMap

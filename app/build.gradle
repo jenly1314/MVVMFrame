@@ -43,18 +43,20 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
-    implementation deps.support.design
-    implementation deps.support.appcompat
-    implementation deps.support.recyclerview
-    implementation deps.support.constraintlayout
+    implementation deps.material
+//    implementation deps.appcompat
+    implementation deps.swiperefreshlayout
+    implementation deps.recyclerview
+    implementation deps.constraintlayout
 
-    //dagger
+    //dagger - 主项目需引入dagger相关注解编译程处理序
     annotationProcessor deps.dagger.android_processor
     annotationProcessor deps.dagger.compiler
 
-    //room
-    implementation deps.room.rxjava2
+    //room - Room Orm
     annotationProcessor deps.room.compiler
+    //room.rxjava - Room配合RxJava线程调度使用
+    implementation deps.room.rxjava2
 
     implementation deps.jenly.base_util
     implementation deps.jenly.base_adapter

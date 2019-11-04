@@ -25,29 +25,29 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
 //AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.0'
+implementation 'com.king.frame:mvvmframe:1.1.1'
 
 //Android 版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.1.0'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.1.1'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
 
 ## 引入的库 （具体对应版本请查看[Versions](versions.gradle)）
 ```gradle
-    //support
-    compileOnly deps.support.appcompat
+    //appcompat
+    compileOnly deps.appcompat
 
     //retrofit
     api deps.retrofit.retrofit
@@ -168,7 +168,22 @@ public class App extends BaseApplication {
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
 
+### 相关开源项目
+##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
+##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
+
+
 ## 版本记录
+
+#### v1.1.1：2019-11-4
+*  优化部分细节
+*  更新编译SDK至29
+*  更新Gradle至v5.4.1
+*  更新Lifecycle至v2.2.0-rc01
+*  更新Room至v2.2.1
+*  更新Dagger至v2.25.2
+*  更新Retrofit至v2.6.2
+*  更新Gson至v2.8.6
 
 #### v1.1.0：2019-7-22
 *  更新Dagger至v2.23.2

@@ -46,8 +46,8 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
-    //support
-    compileOnly deps.support.appcompat
+    //appcompat
+    compileOnly deps.appcompat
 
     //retrofit
     api deps.retrofit.retrofit

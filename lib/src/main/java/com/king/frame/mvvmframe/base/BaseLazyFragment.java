@@ -31,6 +31,11 @@ public abstract class BaseLazyFragment<VM extends BaseViewModel,VDB extends View
         isFirstLoad = true;
         super.onViewCreated(view, savedInstanceState);
         isPrepared = true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         lazyLoad();
     }
 

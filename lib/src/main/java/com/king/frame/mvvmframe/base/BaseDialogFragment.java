@@ -34,7 +34,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStore;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
@@ -115,10 +115,13 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
             if (type instanceof ParameterizedType) {
                 Class<VM> modelClass = (Class<VM>) ((ParameterizedType) type).getActualTypeArguments()[0];
                 mViewModel = getViewModel(modelClass);
-                getLifecycle().addObserver(mViewModel);
-                registerLoadingEvent();
             }
         }
+
+        if(mViewModel != null){
+            getLifecycle().addObserver(mViewModel);
+        }
+        registerLoadingEvent();
     }
 
     @Override
@@ -214,7 +217,19 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
      * @return
      */
     public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
-        return ViewModelProviders.of(this,mViewModelFactory).get(modelClass);
+        return getViewModel(getViewModelStore(),modelClass);
+    }
+
+    public <T extends ViewModel> T getViewModel(@NonNull ViewModelStore store, @NonNull Class<T> modelClass){
+        return createViewModelProvider(store).get(modelClass);
+    }
+
+    private ViewModelProvider createViewModelProvider(@NonNull ViewModelStore store){
+        return new ViewModelProvider(store,mViewModelFactory);
+    }
+
+    protected ViewModelProvider.Factory getViewModelFactory(){
+        return mViewModelFactory;
     }
 
     //---------------------------------------
