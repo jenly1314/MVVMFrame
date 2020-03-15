@@ -19,7 +19,7 @@
         </activity>
 
         <!-- MVVMFrame 全局配置 -->
-        <!--<meta-data android:name="com.king.mvvmframe.example.app.config.ConfigModule"-->
+        <!--<meta-data android:name="com.king.mvvmframe.example.app.config.AppConfigModule"-->
                    <!--android:value="FrameConfigModule"/>-->
 
     </application>
