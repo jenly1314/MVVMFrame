@@ -65,9 +65,9 @@ Step.2 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
  * 自定义全局配置
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class ConfigModule extends FrameConfigModule {
+public class AppConfigModule extends FrameConfigModule {
     @Override
-    public void applyOptions(Context context, com.king.frame.mvvmframe.di.module.ConfigModule.Builder builder) {
+    public void applyOptions(Context context, ConfigModule.Builder builder) {
         builder.baseUrl(Constants.BASE_URL)//TODO 配置Retrofit中的baseUrl
                 .retrofitOptions(new RetrofitOptions() {
             @Override
@@ -96,7 +96,7 @@ public class ConfigModule extends FrameConfigModule {
 Step.3 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
 ```Xml
 <!-- MVVMFrame 全局配置 -->
-<meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
+<meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
            android:value="FrameConfigModule"/>
 ```
 
@@ -159,7 +159,7 @@ public class App extends BaseApplication {
 
    CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
 
-   博客园: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
+   CNBlogs: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
 
    Github: <a title="Github开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 

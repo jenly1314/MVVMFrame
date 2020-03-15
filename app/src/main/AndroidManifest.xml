@@ -34,7 +34,7 @@
         <activity android:name=".app.likepoetry.LikePoetryActivity"/>
 
         <!-- MVVMFrame 全局配置 -->
-        <meta-data android:name="com.king.mvvmframe.app.config.ConfigModule"
+        <meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
                    android:value="FrameConfigModule"/>
 
     </application>
