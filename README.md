@@ -45,7 +45,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
-### **dagger**和 **room** 的注解处理器
+### **Dagger**和 **Room** 的注解处理器
 
    您需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
@@ -67,7 +67,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
 ```
 
-### MVVMFrame引入的库（具体对应版本请查看[Versions](versions.gradle)）
+### MVVMFrame引入的库（具体对应版本请查看 [Versions](versions.gradle)）
 ```gradle
     //appcompat
     compileOnly deps.appcompat

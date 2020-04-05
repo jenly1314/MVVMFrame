@@ -51,6 +51,8 @@ public class App extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //开始构建项目时，DaggerApplicationComponent类可能不存在，您需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
         ApplicationComponent appComponent = DaggerApplicationComponent.builder()
                 .appComponent(getAppComponent())
                 .build();
