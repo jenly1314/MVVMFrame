@@ -45,34 +45,23 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
-## 引入的库 （具体对应版本请查看[Versions](versions.gradle)）
+###### 主项目需要引入库相关的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看[Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
-    //appcompat
-    compileOnly deps.appcompat
-
-    //retrofit
-    api deps.retrofit.retrofit
-    api deps.retrofit.gson
-    api deps.retrofit.converter_gson
-
-    //lifecycle
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
-
-    //room
-    api deps.room.runtime
-    annotationProcessor deps.room.compiler
-
+    //AndroidX ------------------ MVVMFrame v1.1.2
     //dagger
-    api deps.dagger.dagger
-    api deps.dagger.android
-    api deps.dagger.android_support
-    annotationProcessor deps.dagger.android_processor
-    annotationProcessor deps.dagger.compiler
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+    //room
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
 
-    //log
-    api deps.timber
+```
+```gradle
+    // Android ------------------ MVVMFrame v1.0.2
+    //dagger
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
+    //room
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
 ```
 
@@ -84,7 +73,6 @@ allprojects {
     }
 }
 ```
-
 
 ## 示例
 
@@ -165,6 +153,7 @@ public class App extends BaseApplication {
 
 }
 ```
+
 [Kotlin Demo](https://github.com/jenly1314/KingWeather)
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
@@ -172,7 +161,7 @@ public class App extends BaseApplication {
 ### 相关开源项目
 ##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 ##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
-##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一个基于**MVVMFrame**构建的App模板
+##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
 
 
 ## 版本记录
