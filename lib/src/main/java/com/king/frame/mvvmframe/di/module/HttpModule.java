@@ -43,7 +43,7 @@ public class HttpModule {
     @Provides
     OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder,@Nullable AppliesOptions.OkHttpClientOptions options){
 
-        builder.addNetworkInterceptor(new LogInterceptor());
+        builder.addInterceptor(new LogInterceptor());
         if(options!=null) {
             options.applyOptions(builder);
         }

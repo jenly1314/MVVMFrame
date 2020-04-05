@@ -15,15 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-import com.king.frame.mvvmframe.R;
-import com.king.frame.mvvmframe.base.livedata.MessageEvent;
-import com.king.frame.mvvmframe.base.livedata.StatusEvent;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
-import javax.inject.Inject;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,10 +28,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
+
+import com.king.frame.mvvmframe.R;
+import com.king.frame.mvvmframe.base.livedata.MessageEvent;
+import com.king.frame.mvvmframe.base.livedata.StatusEvent;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
+import javax.inject.Inject;
+
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
-import dagger.android.DaggerActivity;
-import dagger.android.DaggerIntentService;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 
@@ -55,8 +54,13 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
 
+    /**
+     *  @deprecated 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
+     */
     protected VM mViewModel;
-
+    /**
+     * @deprecated 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
+     */
     protected VDB mBinding;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
@@ -81,7 +85,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * 初始化{@link #mViewModel}
+     * 初始化 {@link #mViewModel}
      */
     private void initViewModel(){
         mViewModel = createViewModel();
@@ -89,7 +93,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
             Type type = getClass().getGenericSuperclass();
             if (type instanceof ParameterizedType) {
                 Class<VM> modelClass = (Class<VM>) ((ParameterizedType) type).getActualTypeArguments()[0];
-                mViewModel = getViewModel(modelClass);
+                mViewModel = obtainViewModel(modelClass);
             }
         }
 
@@ -108,12 +112,12 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     protected void onDestroy() {
         super.onDestroy();
 
-        if(mViewModel!=null){
+        if(mViewModel != null){
             getLifecycle().removeObserver(mViewModel);
+            mViewModel = null;
         }
-        mViewModel = null;
 
-        if(mBinding!=null){
+        if(mBinding != null){
             mBinding.unbind();
         }
     }
@@ -122,7 +126,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      * 注册状态加载事件
      */
     protected void registerLoadingEvent(){
-        mViewModel.mLoadingEvent.observe(this, new Observer<Boolean>() {
+        mViewModel.getLoadingEvent().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isLoading) {
                 if(isLoading){
@@ -173,7 +177,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
     /**
      * 是否使用DataBinding
-     * @return  默认为true 表示使用。如果为false，则不会初始化{@link #mBinding}。
+     * @return  默认为true 表示使用。如果为false，则不会初始化 {@link #mBinding}。
      */
     @Override
     public boolean isBinding(){
@@ -182,7 +186,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
     /**
      * 创建ViewModel
-     * @return 默认为null，为null时，{@link #mViewModel}会默认根据当前Activity泛型{@link VM }获得ViewModel
+     * @return 默认为null，为null时，{@link #mViewModel}会默认根据当前Activity泛型 {@link VM}获得ViewModel
      */
     @Override
     public VM createViewModel(){
@@ -190,15 +194,70 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * 通过{@link ViewModelProvider.Factory}获得ViewModel
+     * 获取 ViewModel
+     * @return {@link #mViewModel}
+     */
+    public VM getViewModel(){
+        return mViewModel;
+    }
+
+    /**
+     * 获取 ViewDataBinding
+     * @return {@link #mBinding}
+     */
+    public VDB getViewDataBinding(){
+        return mBinding;
+    }
+
+    /**
+     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
      * @param modelClass
      * @param <T>
      * @return
      */
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
-        return createViewModelProvider(getViewModelStore()).get(modelClass);
+    public <T extends ViewModel> T obtainViewModel(@NonNull Class<T> modelClass){
+        return obtainViewModel(getViewModelStore(),modelClass);
     }
 
+    /**
+     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
+     * @param store
+     * @param modelClass
+     * @param <T>
+     * @return
+     */
+    public <T extends ViewModel> T obtainViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
+        return createViewModelProvider(store).get(modelClass);
+    }
+
+    /**
+     * @deprecated 请使用 {@link #obtainViewModel(Class)}
+     * @param modelClass
+     * @param <T>
+     * @return
+     */
+    @Deprecated
+    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
+        return obtainViewModel(modelClass);
+    }
+
+    /**
+     * @deprecated 请使用 {@link #obtainViewModel(ViewModelStore, Class)}
+     * @param store
+     * @param modelClass
+     * @param <T>
+     * @return
+     */
+    @Deprecated
+    public <T extends ViewModel> T getViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
+        return obtainViewModel(store,modelClass);
+    }
+
+    /**
+     * 创建 {@link ViewModelProvider}
+     * @param store
+     * @return
+     */
     private ViewModelProvider createViewModelProvider(@NonNull ViewModelStore store){
         return new ViewModelProvider(store,mViewModelFactory);
     }
@@ -386,7 +445,10 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void setDialogWindow(Dialog dialog, float widthRatio){
-        Window window = dialog.getWindow();
+        setWindow(dialog.getWindow(),widthRatio);
+    }
+
+    protected void setWindow(Window window, float widthRatio){
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = (int)(getWidthPixels() * widthRatio);
         window.setAttributes(lp);

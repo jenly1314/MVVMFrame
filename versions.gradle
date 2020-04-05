@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 5
-app_version.versionName = "1.1.1"
+app_version.versionCode = 6
+app_version.versionName = "1.1.2"
 ext.app_version = app_version
 
 //build version
@@ -9,7 +9,7 @@ def build_versions = [:]
 build_versions.minSdk = 16
 build_versions.targetSdk = 29
 build_versions.compileSdk = 29
-build_versions.buildTools = "29.0.2"
+build_versions.buildTools = "29.0.3"
 ext.build_versions = build_versions
 
 ext.deps = [:]
@@ -17,11 +17,11 @@ ext.deps = [:]
 // App dependencies
 def versions = [:]
 //support
-versions.material = "1.2.0-alpha01"
-versions.appcompat = "1.0.0+"
+versions.material = "1.2.0-alpha05"
+versions.appcompat = "1.1.0"
 versions.swiperefreshlayout = "1.1.0-alpha03"
-versions.recyclerview = "1.1.0-rc01"
-versions.constraintLayout = "2.0.0-beta3"
+versions.recyclerview = "1.1.0"
+versions.constraintLayout = "2.0.0-beta4"
 
 //test
 versions.junit = "1.1.1"
@@ -31,24 +31,26 @@ versions.espresso = "3.2.0"
 
 
 // Architecture Components dependencies
-versions.archLifecycle = "2.2.0-rc01"
-versions.room = "2.2.1"
+versions.archLifecycle = "2.2.0"
+versions.room = "2.2.5"
 
 //dagger
-versions.dagger = "2.25.2"
+versions.dagger = "2.27"
 
-versions.retrofit = "2.6.2"
+versions.retrofit = "2.8.1"
 versions.gson = "2.8.6"
 
 //jenly
 versions.base = "3.2.1-androidx"
-versions.appupdater = "1.0.5-androidx"
+versions.appupdater = "1.0.8-androidx"
 versions.neverCrash= "1.0.0"
 
 versions.timber = "4.7.1"
 versions.logger = "2.2.0"
 
-versions.leakcanary = "1.6.3"
+versions.leakcanary = "2.2"
+
+versions.leakcanaryNoOp = "1.6.3"
 
 versions.flowlayout = "1.1.2"
 
@@ -126,7 +128,7 @@ ext.deps = deps
 //leakcanary
 def leakcanary = [:]
 leakcanary.debug = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
-leakcanary.release = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary"
+leakcanary.release = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanaryNoOp"
 deps.leakcanary = leakcanary
 
 //flowlayout

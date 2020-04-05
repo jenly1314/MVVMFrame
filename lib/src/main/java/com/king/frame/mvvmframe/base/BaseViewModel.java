@@ -23,6 +23,9 @@ import androidx.lifecycle.Observer;
  */
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel,ILoading{
 
+    /**
+     *  @deprecated 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
+     */
     protected M mModel;
 
     /**
@@ -37,7 +40,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     /**
      * 加载状态
      */
-    SingleLiveEvent<Boolean> mLoadingEvent = new SingleLiveEvent<>();
+    private SingleLiveEvent<Boolean> mLoadingEvent = new SingleLiveEvent<>();
 
     /**
      * 提供自定义单一消息事件
@@ -82,6 +85,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
             mModel = null;
         }
 
+        mLoadingEvent.call();
         mMessageEvent.call();
         mStatusEvent.call();
         mSingleLiveEvent.call();
@@ -98,6 +102,16 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
      */
     public M getModel(){
         return this.mModel;
+    }
+
+    /**
+     *  暴露给观察者提供加载事件，{@link BaseActivity} 或 {@link BaseFragment} 已默认注册加载事件，
+     *  只需调用{@link #showLoading()} 或 {@link #hideLoading()}即可在{@link BaseActivity}
+     *  或 {@link BaseFragment} 中收到订阅事件
+     * @return {@link #mLoadingEvent}
+     */
+    public SingleLiveEvent<Boolean> getLoadingEvent(){
+        return mLoadingEvent;
     }
 
     /**

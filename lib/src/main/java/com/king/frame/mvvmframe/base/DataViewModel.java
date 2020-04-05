@@ -29,7 +29,7 @@ public class DataViewModel extends BaseViewModel<BaseModel> {
      * @return {@link retrofit2.Retrofit#create(Class)}
      */
     public <T> T getRetrofitService(Class<T> service){
-        return mModel.getRetrofitService(service);
+        return getModel().getRetrofitService(service);
     }
 
     /**
@@ -40,6 +40,6 @@ public class DataViewModel extends BaseViewModel<BaseModel> {
      * @return {@link RoomDatabase.Builder<T>#build()}
      */
     public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database, @Nullable String dbName){
-        return mModel.getRoomDatabase(database,dbName);
+        return getModel().getRoomDatabase(database,dbName);
     }
 }

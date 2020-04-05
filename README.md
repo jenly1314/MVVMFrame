@@ -3,7 +3,7 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
-[![JCenter](https://img.shields.io/badge/JCenter-1.1.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
+[![JCenter](https://img.shields.io/badge/JCenter-1.1.2-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
@@ -26,21 +26,21 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
 //AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.1'
+implementation 'com.king.frame:mvvmframe:1.1.2'
 
 //Android 版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.1.1'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.1.2'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -172,9 +172,18 @@ public class App extends BaseApplication {
 ### 相关开源项目
 ##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 ##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
+##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一个基于**MVVMFrame**构建的App模板
 
 
 ## 版本记录
+
+#### v1.1.2：2020-4-5 
+*  优化细节
+*  更新Gradle至v5.6.4
+*  更新Lifecycle至v2.2.0
+*  更新Room至v2.2.5
+*  更新Dagger至v2.27
+*  更新Retrofit至v2.8.1
 
 #### v1.1.1：2019-11-4
 *  优化部分细节
