@@ -45,7 +45,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
-###### 主项目需要引入库相关的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看[Versions](https://github.com/jenly1314/MVVMFrame/releases)
+## 您的项目需要引入库相关的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看[Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
     //AndroidX ------------------ MVVMFrame v1.1.2
     //dagger
@@ -62,6 +62,37 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
     //room
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+
+```
+
+## MVVMFrame引入的库（具体对应版本请查看[Versions](versions.gradle)）
+```gradle
+    //appcompat
+    compileOnly deps.appcompat
+
+    //retrofit
+    api deps.retrofit.retrofit
+    api deps.retrofit.gson
+    api deps.retrofit.converter_gson
+
+    //lifecycle
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    annotationProcessor deps.lifecycle.compiler
+
+    //room
+    api deps.room.runtime
+    annotationProcessor deps.room.compiler
+
+    //dagger
+    api deps.dagger.dagger
+    api deps.dagger.android
+    api deps.dagger.android_support
+    annotationProcessor deps.dagger.android_processor
+    annotationProcessor deps.dagger.compiler
+
+    //log
+    api deps.timber
 
 ```
 
