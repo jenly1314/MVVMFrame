@@ -56,6 +56,8 @@ public class PoetryViewModel extends BaseViewModel<PoetryModel> {
                 }else{
                     sendMessage(R.string.result_failure);
                 }
+            }else if(resource.isError()){//错误
+                sendMessage(resource.error.getMessage());
             }
         });
 
