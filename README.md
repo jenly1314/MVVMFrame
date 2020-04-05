@@ -45,9 +45,9 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
-### **dagger**和 **room** 相关的注解处理器 （需要依赖到您的项目中）
+### **dagger**和 **room** 的注解处理器
 
-   编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看[Versions](https://github.com/jenly1314/MVVMFrame/releases)
+   您需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
     //AndroidX ------------------ MVVMFrame v1.1.2
     //dagger
@@ -68,7 +68,6 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 
 ### MVVMFrame引入的库（具体对应版本请查看[Versions](versions.gradle)）
-
 ```gradle
     //appcompat
     compileOnly deps.appcompat
@@ -176,6 +175,7 @@ public class App extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //开始构建项目时，DaggerApplicationComponent类可能不存在，您需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
         ApplicationComponent appComponent = DaggerApplicationComponent.builder()
                 .appComponent(getAppComponent())
                 .build();
