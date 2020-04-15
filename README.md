@@ -116,9 +116,19 @@ Step.1 启用DataBinding，在你项目中的build.gradle的android{}中添加�
 dataBinding {
     enabled true
 }
+
 ```
 
-Step.2 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
+Step.2 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
+```gradle
+compileOptions {
+    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_1_8
+}
+
+```
+
+Step.3 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
 ```Java
 /**
  * 自定义全局配置
@@ -152,7 +162,7 @@ public class AppConfigModule extends FrameConfigModule {
 }
 ```
 
-Step.3 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
+Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
 ```Xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
