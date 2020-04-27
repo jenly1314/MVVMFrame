@@ -12,13 +12,13 @@ import timber.log.Timber;
 public abstract class ApiCallback<T> implements Callback<T> {
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-//        if(response.isSuccessful()){
+        if(response.isSuccessful()){
             T result = response.body();
             Timber.d("Response:" + result);
             onResponse(call,result);
-//        }else{
-//            onError(call,new HttpException(response));
-//        }
+        }else{
+            onError(call,new HttpException(response));
+        }
     }
 
     @Override

@@ -90,17 +90,51 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     private void initViewModel(){
         mViewModel = createViewModel();
         if (mViewModel == null) {
-            Type type = getClass().getGenericSuperclass();
-            if (type instanceof ParameterizedType) {
-                Class<VM> modelClass = (Class<VM>) ((ParameterizedType) type).getActualTypeArguments()[0];
-                mViewModel = obtainViewModel(modelClass);
-            }
+            mViewModel = obtainViewModel(getVMClass());
         }
 
         if(mViewModel != null){
             getLifecycle().addObserver(mViewModel);
         }
         registerLoadingEvent();
+    }
+
+    private Class<VM> getVMClass(){
+        Class cls = getClass();
+        Class<VM> vmClass = null;
+        while (vmClass == null && cls!= null){
+            vmClass = getVMClass(cls);
+            cls = cls.getSuperclass();
+        }
+        if(vmClass == null){
+            vmClass = (Class<VM>) BaseViewModel.class;
+        }
+        return vmClass;
+    }
+
+    private Class getVMClass(Class cls){
+        Type type = cls.getGenericSuperclass();
+        if(type instanceof ParameterizedType){
+            Type[] types = ((ParameterizedType)type).getActualTypeArguments();
+            for(Type t : types){
+                if(t instanceof Class){
+                    Class vmClass = (Class)t;
+                    if(BaseViewModel.class.isAssignableFrom(vmClass)){
+                        return vmClass;
+                    }
+                }else if(t instanceof ParameterizedType){
+                    Type rawType = ((ParameterizedType)t).getRawType();
+                    if(rawType instanceof Class){
+                        Class vmClass = (Class)rawType;
+                        if(BaseViewModel.class.isAssignableFrom(vmClass)){
+                            return vmClass;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     @Override
