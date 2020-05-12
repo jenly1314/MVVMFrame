@@ -7,6 +7,7 @@ import com.king.frame.mvvmframe.util.Preconditions;
 import javax.inject.Singleton;
 
 import androidx.annotation.Nullable;
+import androidx.room.RoomDatabase;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
@@ -26,11 +27,14 @@ public class ConfigModule {
 
     private AppliesOptions.GsonOptions mGsonOptions;
 
+    private AppliesOptions.RoomDatabaseOptions mRoomDatabaseOptions;
+
     private ConfigModule(Builder builder){
         this.mBaseUrl = builder.baseUrl;
         this.mRetrofitOptions = builder.retrofitOptions;
         this.mOkHttpClientOptions = builder.okHttpClientOptions;
         this.mGsonOptions = builder.gsonOptions;
+        this.mRoomDatabaseOptions = builder.roomDatabaseOptions;
     }
 
     @Singleton
@@ -60,6 +64,20 @@ public class ConfigModule {
         return mGsonOptions;
     }
 
+    @Singleton
+    @Provides
+    AppliesOptions.RoomDatabaseOptions provideRoomDatabaseOptions(){
+        if(mRoomDatabaseOptions == null){
+            mRoomDatabaseOptions = new AppliesOptions.RoomDatabaseOptions() {
+                @Override
+                public void applyOptions(RoomDatabase.Builder builder) {
+
+                }
+            };
+        }
+        return mRoomDatabaseOptions;
+    }
+
     public static final class Builder {
 
         private HttpUrl baseUrl;
@@ -69,6 +87,8 @@ public class ConfigModule {
         private AppliesOptions.OkHttpClientOptions okHttpClientOptions;
 
         private AppliesOptions.GsonOptions gsonOptions;
+
+        private AppliesOptions.RoomDatabaseOptions roomDatabaseOptions;
 
         public Builder(){
 
@@ -98,6 +118,11 @@ public class ConfigModule {
 
         public Builder gsonOptions(AppliesOptions.GsonOptions gsonOptions){
             this.gsonOptions = gsonOptions;
+            return this;
+        }
+
+        public Builder roomDatabaseOptions(AppliesOptions.RoomDatabaseOptions<? extends RoomDatabase> roomDatabaseOptions){
+            this.roomDatabaseOptions = roomDatabaseOptions;
             return this;
         }
 

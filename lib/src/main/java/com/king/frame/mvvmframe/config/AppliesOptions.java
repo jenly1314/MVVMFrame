@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.king.frame.mvvmframe.di.module.ConfigModule;
 
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
@@ -41,6 +43,10 @@ public interface AppliesOptions {
      */
     interface GsonOptions{
         void applyOptions(GsonBuilder builder);
+    }
+
+    interface RoomDatabaseOptions<T extends RoomDatabase>{
+        void applyOptions(RoomDatabase.Builder<T> builder);
     }
 
 }

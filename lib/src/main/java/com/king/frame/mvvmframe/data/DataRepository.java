@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.king.frame.mvvmframe.config.AppliesOptions;
 import com.king.frame.mvvmframe.config.Constants;
 import com.king.frame.mvvmframe.util.Preconditions;
 
@@ -32,12 +33,20 @@ public class DataRepository implements IDataRepository {
     @Inject
     Application mApplication;
 
+    @Inject
+    AppliesOptions.RoomDatabaseOptions mRoomDatabaseOptions;
+
+    /**
+     * 缓存 Retrofit Service
+     */
     private LruCache<String,Object> mRetrofitServiceCache;
+    /**
+     * 缓存 RoomDatabase
+     */
     private LruCache<String,Object> mRoomDatabaseCache;
 
     @Inject
     public DataRepository(){
-
     }
 
     /**
@@ -96,6 +105,9 @@ public class DataRepository implements IDataRepository {
             synchronized (mRoomDatabaseCache) {
                 if (roomDatabase == null) {
                     RoomDatabase.Builder<T> builder = Room.databaseBuilder(getContext().getApplicationContext(), database, TextUtils.isEmpty(dbName) ? Constants.DEFAULT_DATABASE_NAME : dbName);
+                    if(mRoomDatabaseOptions != null){
+                        mRoomDatabaseOptions.applyOptions(builder);
+                    }
                     roomDatabase = builder.build();
                     //缓存
                     mRoomDatabaseCache.put(database.getCanonicalName(), roomDatabase);
