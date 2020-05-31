@@ -12,7 +12,7 @@
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
-MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{Lifecycle，LiveData，ViewModel，Room}构建的快速开发框架。现在应该叫JetPack。有了MVVMFrame的加持，从此构建一个MVVM模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{ Lifecycle，LiveData，ViewModel，Room } 构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
 
 ## 架构
 ![Image](image/mvvm_architecture.jpg)
@@ -119,7 +119,7 @@ dataBinding {
 
 ```
 
-Step.2 使用JDK8编译（v1.1.3新增），在你项目中的build.gradle的android{}中添加配置：
+Step.2 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
 ```gradle
 compileOptions {
     targetCompatibility JavaVersion.VERSION_1_8
