@@ -258,3 +258,8 @@
 -keep class com.king.frame.** { *; }
 -keep interface com.king.frame.** { *; }
 -dontwarn com.king.frame.**
+
+# RetrofitHelper
+-keep class com.king.retrofit.** { *; }
+-keep interface com.king.retrofit.** { *; }
+-dontwarn com.king.retrofit.**
