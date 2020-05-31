@@ -15,14 +15,17 @@ import timber.log.Timber;
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class LogInterceptor implements Interceptor {
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Timber.i(String.format("%1$s->%2$s",request.method(),request.url()));
-        if(request.headers()!=null){
+        Timber.i(String.format("%1$s -> %2$s",request.method(),request.url()));
+
+        if(request.headers() != null){
             Timber.i("Headers:" + request.headers());
         }
-        if(request.body()!=null){
+
+        if(request.body() != null){
             Timber.i("RequestBody:" + bodyToString(request.body()));
         }
 
@@ -37,7 +40,7 @@ public class LogInterceptor implements Interceptor {
     }
 
     private String bodyToString(final RequestBody request) {
-        if(request!=null){
+        if(request != null){
             try {
                 final RequestBody copy = request;
                 final Buffer buffer = new Buffer();

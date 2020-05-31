@@ -53,13 +53,15 @@ public class LikePoetryViewModel extends BaseViewModel<LikePoetryModel> {
         poetryLiveData.addSource(poetrySource, resource -> {
             updateStatus(resource.status);
             if(resource.isSuccess()){//成功
-                poetryLiveData.setValue(resource.data);
+                poetryLiveData.postValue(resource.data);
             }else if(resource.isFailure()){//失败
                 if(!TextUtils.isEmpty(resource.message)){
-                    sendMessage(resource.message);
+                    postMessage(resource.message);
                 }else{
-                    sendMessage(R.string.result_failure);
+                    postMessage(R.string.result_failure);
                 }
+            }else if(resource.isError()){
+                postMessage(resource.error.getMessage());
             }
         });
     }

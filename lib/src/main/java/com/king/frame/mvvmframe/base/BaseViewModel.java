@@ -145,7 +145,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * 同步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
      * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
      * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
      * 也可通过观察{@link #getMessageEvent()}接收消息事件
@@ -156,7 +156,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * 同步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
      * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
      * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
      * 也可通过观察{@link #getMessageEvent()}接收消息事件
@@ -167,7 +167,29 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * 异步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
+     * @param message 消息内容
+     */
+    public void postMessage(String message){
+        mMessageEvent.postValue(message);
+    }
+
+    /**
+     * 同步异步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
+     * @param msgId 资源文件id
+     */
+    public void postMessage(@StringRes int msgId) {
+        mMessageEvent.postValue(getApplication().getString(msgId));
+    }
+
+    /**
+     * 同步更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
      * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
      * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件，
      * 也可通过观察{@link #getStatusEvent()}接收消息事件
@@ -178,7 +200,18 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 异步更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
+     * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件，
+     * 也可通过观察{@link #getStatusEvent()}接收消息事件
+     * @param status
+     */
+    public void postUpdateStatus(@StatusEvent.Status int status){
+        mStatusEvent.postValue(status);
+    }
+
+    /**
+     * 同步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
      * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
      * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
      * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
@@ -190,7 +223,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 同步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
      * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
      * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
      * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
@@ -204,7 +237,33 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 调用此类会通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
+     * 异步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
+     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
+     * @param message
+     */
+    public void postSingleLiveEvent(Message message){
+        mSingleLiveEvent.postValue(message);
+    }
+
+    /**
+     * 异步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
+     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
+     * @param what
+     */
+    public void postSingleLiveEvent(int what){
+        Message message = Message.obtain();
+        message.what = what;
+        mSingleLiveEvent.postValue(message);
+    }
+
+    /**
+     * 调用此类会同步通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
      * {@link BaseDialogFragment#showLoading()}
      */
     @Override
@@ -213,11 +272,27 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 调用此类会通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
+     * 调用此类会同步通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
      * {@link BaseDialogFragment#hideLoading()}
      */
     @Override
     public void hideLoading() {
         mLoadingEvent.setValue(false);
+    }
+
+    /**
+     * 调用此类会异步通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
+     * {@link BaseDialogFragment#showLoading()}
+     */
+    public void postShowLoading() {
+        mLoadingEvent.postValue(true);
+    }
+
+    /**
+     * 调用此类会异步通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
+     * {@link BaseDialogFragment#hideLoading()}
+     */
+    public void postHideLoading() {
+        mLoadingEvent.postValue(false);
     }
 }

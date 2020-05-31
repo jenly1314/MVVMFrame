@@ -3,7 +3,7 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
-[![JCenter](https://img.shields.io/badge/JCenter-1.1.2-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
+[![JCenter](https://img.shields.io/badge/JCenter-1.1.3-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
@@ -12,7 +12,7 @@
 [![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
-MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies （Lifecycle，LiveData，ViewModel，Room）构建的快速开发框架。有了MVVMFrame的加持，从此构建一个MVVM模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{Lifecycle，LiveData，ViewModel，Room}构建的快速开发框架。现在应该叫JetPack。有了MVVMFrame的加持，从此构建一个MVVM模式的项目变得快捷简单。
 
 ## 架构
 ![Image](image/mvvm_architecture.jpg)
@@ -26,30 +26,30 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
 //AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.2'
+implementation 'com.king.frame:mvvmframe:1.1.3'
 
 //Android 版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.1.2'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.1.3'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
 
 ### **Dagger**和 **Room** 的注解处理器
 
-   您需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
+   你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
-    //AndroidX ------------------ MVVMFrame v1.1.2
+    //AndroidX ------------------ MVVMFrame v1.1.3
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.27'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
@@ -119,7 +119,7 @@ dataBinding {
 
 ```
 
-Step.2 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
+Step.2 使用JDK8编译（v1.1.3新增），在你项目中的build.gradle的android{}中添加配置：
 ```gradle
 compileOptions {
     targetCompatibility JavaVersion.VERSION_1_8
@@ -128,8 +128,8 @@ compileOptions {
 
 ```
 
-Step.3 自定义全局配置(继承MVVMFrame中的FrameConfigModule)
-```Java
+Step.3 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+```java
 /**
  * 自定义全局配置
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -168,15 +168,15 @@ public class AppConfigModule extends FrameConfigModule {
 }
 ```
 
-Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置
-```Xml
+Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+```xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
            android:value="FrameConfigModule"/>
 ```
 
-Step.4 用你项目的Application继承MVVMFrame中的BaseApplication
-```Java
+Step.5 用你项目的Application继承MVVMFrame中的BaseApplication
+```java
 /**
  *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
  *  1.你的项目中的Application中需初始化MVVMFrame框架相关信息，有两种方式处理：
@@ -190,8 +190,10 @@ public class App extends BaseApplication {
 
     @Override
     public void onCreate() {
+          //TODO 如果默认配置已经能满足你的需求，你不需要自定义配置，可以通过下面注释掉的方式设置 BaseUrl，从而可以省略掉 step3 , setp4 两个步骤。
+//        RetrofitHelper.getInstance().setBaseUrl(baseUrl);
         super.onCreate();
-        //开始构建项目时，DaggerApplicationComponent类可能不存在，您需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
+        //开始构建项目时，DaggerApplicationComponent类可能不存在，你需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
         ApplicationComponent appComponent = DaggerApplicationComponent.builder()
                 .appComponent(getAppComponent())
                 .build();
@@ -204,6 +206,30 @@ public class App extends BaseApplication {
 }
 ```
 
+> 目前通过设置 BaseUrl 的入口主要有两种：
+>> 1.一种是通过在 Manifest 中配置 meta-data 的来自定义 FrameConfigModule,在里面 通过 {@link ConfigModule.Builder#baseUrl(String)}来配置 BaseUrl。（一次设置，全局配置）
+>
+>> 2.一种就是通过RetrofitHelper {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来配置 BaseUrl。（可多次设置，动态全局配置，有前提条件）
+>
+> 以上两种配置 BaseUrl 的方式都可以达到目的。但是你可以根据不同的场景选择不同的配置方式。
+>
+> 主要场景与选择如下：
+>
+>> 一般场景：对于只使用单个不变的 BaseUrl的
+>>>     场景1:如果本库的默认已满足你的需求，无需额外自定义配置的。
+>          选择：建议你直接使用 {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来初始化 BaseUrl，切记在框架配置初始化之前，即你的 {@link Application#onCreate()}的父类onCreate之前设置。
+>
+>>>     场景2:如果本库的默认配置不满足你的需求，你需要自定义一些配置的。（比如需要使用 RxJava相关）
+>          选择：建议你在自定义配置中通过 {@link ConfigModule.Builder#baseUrl(String)} 来初始化 BaseUrl。
+>
+>> 二般场景：对于只使用单个 BaseUrl 但是，BaseUrl中途会变动的。
+>>>     场景3：和一般场景一样，也能分两种，所以选择也和一般场景也可以是一样的。
+>          选择：两种选择都行，但当 BaseUrl需要中途变动时，还需将 {@link RetrofitHelper#setDynamicDomain(boolean)} 设置为 {@code true} 才能支持动态改变 BaseUrl。
+>
+>> 特殊场景：对于支持多个 BaseUrl 且支持动态可变的。
+>>>        选择：这个场景的选择，主要涉及到另外的方法，请查看 {@link RetrofitHelper#putDomain(String, String)} 和 {@link RetrofitHelper#putDomain(String, HttpUrl)}相关详情
+>
+
 [Kotlin Demo](https://github.com/jenly1314/KingWeather)
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
@@ -213,8 +239,20 @@ public class App extends BaseApplication {
 ##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
 ##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
 
+## 压缩与混淆
+
+ 从**Android Studio 3.3+**之后，AS新增特性代码压缩工具**R8**，**R8**旨在集成**ProGuard**和**D8**的功能。
+ 目前推荐第三方库都自己配置混淆规则，这样在混淆时，如果使用**R8**，则可以直接包含第三方依赖库的混淆规则，就不用繁琐的去配置每个依赖库的混淆规则。
+ 
+ 目前**MVVFrame**所有依赖混淆规则详情：[ProGuard rules](lib/proguard-rules.pro)
 
 ## 版本记录
+
+#### v1.1.3：2020-6-1
+*  支持配置多个BaseUrl，且支持动态改变（详情查看 [RetrofitHelper](https://github.com/jenly1314/RetrofitHelper)） 
+*  对外暴露更多配置，（详情查看 FrameConfigModule）
+*  优化细节
+*  更新Retrofit至v2.9.0
 
 #### v1.1.2：2020-4-5 
 *  优化细节
@@ -250,8 +288,8 @@ public class App extends BaseApplication {
 *  MVVMFrame初始版本
 
 ## 赞赏
-如果您喜欢MVVMFrame，或感觉MVVMFrame帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢 :smiley:<p>
-您也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
+如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:<p>
+你也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
     <div>
         <img src="https://jenly1314.github.io/image/pay/wxpay.png" width="280" heght="350">
         <img src="https://jenly1314.github.io/image/pay/alipay.png" width="280" heght="350">

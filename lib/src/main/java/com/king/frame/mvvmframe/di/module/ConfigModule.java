@@ -3,9 +3,11 @@ package com.king.frame.mvvmframe.di.module;
 
 import com.king.frame.mvvmframe.config.AppliesOptions;
 import com.king.frame.mvvmframe.util.Preconditions;
+import com.king.retrofit.retrofithelper.RetrofitHelper;
 
 import javax.inject.Singleton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.RoomDatabase;
 import dagger.Module;
@@ -27,6 +29,8 @@ public class ConfigModule {
 
     private AppliesOptions.GsonOptions mGsonOptions;
 
+    private AppliesOptions.InterceptorConfigOptions mInterceptorConfigOptions;
+
     private AppliesOptions.RoomDatabaseOptions mRoomDatabaseOptions;
 
     private ConfigModule(Builder builder){
@@ -34,12 +38,19 @@ public class ConfigModule {
         this.mRetrofitOptions = builder.retrofitOptions;
         this.mOkHttpClientOptions = builder.okHttpClientOptions;
         this.mGsonOptions = builder.gsonOptions;
+        this.mInterceptorConfigOptions = builder.interceptorConfigOptions;
         this.mRoomDatabaseOptions = builder.roomDatabaseOptions;
     }
 
     @Singleton
     @Provides
     HttpUrl provideBaseUrl(){
+        if(mBaseUrl == null){//如果 mBaseUrl 为空表示没有在自定义配置 FrameConfigModule 中配过 BaseUrl
+            //尝试去 RetrofitHelper 中取一次 BaseUrl，这里相当于多支持一种配置 BaseUrl 的方式
+            mBaseUrl = RetrofitHelper.getInstance().getBaseUrl();
+        }
+        //再次检测 mBaseUrl 是否为空，如果依旧为空，表示两种配置方式都没有配置过，则直接抛出异常
+        Preconditions.checkNotNull(mBaseUrl,"Base URL required.");
         return mBaseUrl;
     }
 
@@ -66,6 +77,13 @@ public class ConfigModule {
 
     @Singleton
     @Provides
+    @Nullable
+    AppliesOptions.InterceptorConfigOptions provideInterceptorConfigOptions(){
+        return mInterceptorConfigOptions;
+    }
+
+    @Singleton
+    @Provides
     AppliesOptions.RoomDatabaseOptions provideRoomDatabaseOptions(){
         if(mRoomDatabaseOptions == null){
             mRoomDatabaseOptions = new AppliesOptions.RoomDatabaseOptions() {
@@ -78,6 +96,7 @@ public class ConfigModule {
         return mRoomDatabaseOptions;
     }
 
+
     public static final class Builder {
 
         private HttpUrl baseUrl;
@@ -88,20 +107,20 @@ public class ConfigModule {
 
         private AppliesOptions.GsonOptions gsonOptions;
 
+        private AppliesOptions.InterceptorConfigOptions interceptorConfigOptions;
+
         private AppliesOptions.RoomDatabaseOptions roomDatabaseOptions;
 
         public Builder(){
 
         }
 
-        public Builder baseUrl(String baseUrl) {
-            Preconditions.checkNotNull(baseUrl, "baseUrl == null");
+        public Builder baseUrl(@NonNull String baseUrl) {
             this.baseUrl = HttpUrl.parse(baseUrl);
             return this;
         }
 
-        public Builder baseUrl(HttpUrl baseUrl){
-            Preconditions.checkNotNull(baseUrl, "baseUrl == null");
+        public Builder baseUrl(@NonNull HttpUrl baseUrl){
             this.baseUrl = baseUrl;
             return this;
         }
@@ -118,6 +137,11 @@ public class ConfigModule {
 
         public Builder gsonOptions(AppliesOptions.GsonOptions gsonOptions){
             this.gsonOptions = gsonOptions;
+            return this;
+        }
+
+        public Builder interceptorConfigOptions(AppliesOptions.InterceptorConfigOptions interceptorConfigOptions){
+            this.interceptorConfigOptions = interceptorConfigOptions;
             return this;
         }
 

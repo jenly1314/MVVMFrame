@@ -43,17 +43,17 @@ public class PoetryModel extends BaseModel {
                     public void onResponse(Call<Result<List<PoetryInfo>>> call, Result<List<PoetryInfo>> result) {
                         if (result != null) {
                             if(result.isSuccess()){
-                                poetryLiveData.setValue(Resource.success(result.getData()));
+                                poetryLiveData.postValue(Resource.success(result.getData()));
                                 return;
                             }
-                            poetryLiveData.setValue(Resource.failure(result.getMessage()));
+                            poetryLiveData.postValue(Resource.failure(result.getMessage()));
                         }
-                        poetryLiveData.setValue(Resource.failure(null));
+                        poetryLiveData.postValue(Resource.failure(null));
                     }
 
                     @Override
                     public void onError(Call<Result<List<PoetryInfo>>> call, Throwable t) {
-                        poetryLiveData.setValue(Resource.error(t));
+                        poetryLiveData.postValue(Resource.error(t));
                     }
                 });
 

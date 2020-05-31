@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.king.frame.mvvmframe.di.module.ConfigModule;
+import com.king.frame.mvvmframe.http.InterceptorConfig;
 
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -45,6 +46,15 @@ public interface AppliesOptions {
         void applyOptions(GsonBuilder builder);
     }
 
+    /**
+     * 为框架中的{@link InterceptorConfig}提供配置参数入口
+     */
+    interface InterceptorConfigOptions{
+        void applyOptions(InterceptorConfig.Builder builder);
+    }
+    /**
+     * 为框架中的{@link Gson}提供配置参数入口
+     */
     interface RoomDatabaseOptions<T extends RoomDatabase>{
         void applyOptions(RoomDatabase.Builder<T> builder);
     }

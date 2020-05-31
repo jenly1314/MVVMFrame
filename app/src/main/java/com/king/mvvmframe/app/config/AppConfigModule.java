@@ -20,8 +20,8 @@ import retrofit2.Retrofit;
 public class AppConfigModule extends FrameConfigModule {
     @Override
     public void applyOptions(Context context, ConfigModule.Builder builder) {
-        builder.baseUrl(Constants.BASE_URL)//TODO 配置Retrofit中的baseUrl
-                .retrofitOptions(new RetrofitOptions() {
+        builder.baseUrl(Constants.BASE_URL);//TODO 配置Retrofit中的baseUrl
+        builder.retrofitOptions(new RetrofitOptions() {
                     @Override
                     public void applyOptions(Retrofit.Builder builder) {
                         //TODO 配置Retrofit

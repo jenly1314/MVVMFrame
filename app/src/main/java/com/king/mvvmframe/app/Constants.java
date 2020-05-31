@@ -18,4 +18,7 @@ public final class Constants {
 
     public static final int COLOR_RGB_MIN = 20;
     public static final int COLOR_RGB_MAX = 230;
+
+
+    public static final String DOMAIN_JENLY = "jenly1314";
 }

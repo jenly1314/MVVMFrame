@@ -2,6 +2,7 @@ package com.king.mvvmframe.di.module;
 
 
 import com.king.frame.mvvmframe.di.scope.ViewModelKey;
+import com.king.mvvmframe.MainViewModel;
 import com.king.mvvmframe.app.likepoetry.LikePoetryViewModel;
 import com.king.mvvmframe.app.poetry.PoetryViewModel;
 import com.king.mvvmframe.app.poetrylite.PoetryLiteViewModel;
@@ -32,5 +33,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LikePoetryViewModel.class)
     abstract ViewModel bindLikePoetryViewModel(LikePoetryViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel.class)
+    abstract ViewModel bindMainViewModel(MainViewModel viewModel);
 
 }

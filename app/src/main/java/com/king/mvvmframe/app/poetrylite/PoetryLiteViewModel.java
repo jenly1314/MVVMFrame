@@ -10,6 +10,7 @@ import com.king.mvvmframe.R;
 import com.king.mvvmframe.api.ApiService;
 import com.king.mvvmframe.bean.PoetryInfo;
 import com.king.mvvmframe.bean.Result;
+import com.king.retrofit.retrofithelper.RetrofitHelper;
 
 import java.util.List;
 
@@ -51,21 +52,21 @@ public class PoetryLiteViewModel extends DataViewModel {
                     public void onResponse(Call<Result<List<PoetryInfo>>> call, Result<List<PoetryInfo>> result) {
                         if (result != null) {
                             if(result.isSuccess()){//成功
-                                updateStatus(StatusEvent.Status.SUCCESS);
-                                poetryLiveData.setValue(result.getData());
+                                postUpdateStatus(StatusEvent.Status.SUCCESS);
+                                poetryLiveData.postValue(result.getData());
                                 return;
                             }
-                            sendMessage(result.getMessage());
+                            postMessage(result.getMessage());
                         }else{
-                            sendMessage(R.string.result_failure);
+                            postMessage(R.string.result_failure);
                         }
-                        updateStatus(StatusEvent.Status.FAILURE);
+                        postUpdateStatus(StatusEvent.Status.FAILURE);
                     }
 
                     @Override
                     public void onError(Call<Result<List<PoetryInfo>>> call, Throwable t) {
-                        updateStatus(StatusEvent.Status.ERROR);
-                        sendMessage(t.getMessage());
+                        postUpdateStatus(StatusEvent.Status.ERROR);
+                        postMessage(t.getMessage());
                     }
                 });
     }

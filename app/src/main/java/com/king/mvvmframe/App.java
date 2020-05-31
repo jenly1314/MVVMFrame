@@ -6,6 +6,7 @@ import com.king.frame.mvvmframe.base.BaseApplication;
 import com.king.mvvmframe.app.Constants;
 import com.king.mvvmframe.di.component.ApplicationComponent;
 import com.king.mvvmframe.di.component.DaggerApplicationComponent;
+import com.king.retrofit.retrofithelper.RetrofitHelper;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
@@ -52,6 +53,7 @@ public class App extends BaseApplication {
 
     @Override
     public void onCreate() {
+//        RetrofitHelper.getInstance().setBaseUrl("https://google.com");
         super.onCreate();
 
         //开始构建项目时，DaggerApplicationComponent类可能不存在，您需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
@@ -60,6 +62,11 @@ public class App extends BaseApplication {
                 .build();
         //注入
         appComponent.inject(this);
+
+        //TODO 动态新增多个 BaseUrl 示例
+        //支持多个并且动态切换 BaseUrl
+        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.github.io");
+//        RetrofitHelper.getInstance().putDomain("Google","https://google.com");
 
     }
 
