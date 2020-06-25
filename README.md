@@ -207,6 +207,111 @@ public class App extends BaseApplication {
 }
 ```
 
+## 其他
+
+### 关于使用 **Dagger**
+
+之所以特意说 **Dagger** 是因为**Dagger**的学习曲线相对陡峭一点，没那么容易理解。
+
+1. 如果你对 **Dagger** 很了解，那么你将会更加轻松的去使用一些注入相关的骚操作。
+> 因为 **MVVMFrame** 中使用到了很多 **Dagger** 注入相关的一些操作。所以会涉及**Dagger**相关技术知识。
+
+但是并不意味着你一定要会使用 **Dagger**，才能使用**MVVMFrameComponent**。
+> 如果你对 **Dagger** 并不熟悉，其实也是可以用的，因为使用 **Dagger** 全局注入主要都已经封装好了。你只需参照**Demo** 中的示例，照葫芦画瓢。
+> 主要关注一些继承了**BaseActivity**，**BaseFragment**，**BaseViewModel**等相关类即可。
+
+这里列一些主要的通用注入参照示例：
+
+直接或间接继承了 **BaseActivity** 的配置示例：
+```java
+/**
+ * Activity模块统一管理：通过{@link ContributesAndroidInjector}方式注入，自动生成模块组件关联代码，减少手动编码
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+@Module(subcomponents = BaseActivitySubcomponent.class)
+public abstract class ActivityModule {
+
+    @ContributesAndroidInjector
+    abstract MainActivity contributeMainActivity();
+
+}
+```
+
+直接或间接继承了 **BaseFragment** 的配置示例：
+```java
+/**
+ * Fragment模块统一管理：通过{@link ContributesAndroidInjector}方式注入，自动生成模块组件关联代码，减少手动编码
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+@Module(subcomponents = BaseFragmentSubcomponent.class)
+public abstract class FragmentModule {
+
+    @ContributesAndroidInjector
+    abstract MainFragment contributeMainFragment();
+
+}
+```
+
+直接或间接继承了 **BaseViewModel** 的配置示例：
+```java
+/**
+ * ViewModel模块统一管理：通过{@link Binds}和{@link ViewModelKey}绑定关联对应的ViewModel
+ * ViewModelModule 例子
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+@Module
+public abstract class ViewModelModule {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel.class)
+    abstract ViewModel bindMainViewModel(MainViewModel viewModel);
+}
+```
+
+**ApplicationModule** 的配置示例
+```java
+/**
+ * Application模块：为{@link ApplicationComponent}提供注入的各个模块
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+@Module(includes = {ViewModelFactoryModule.class,ViewModelModule.class,ActivityModule.class,FragmentModule.class})
+public class ApplicationModule {
+
+}
+```
+
+**ApplicationComponent** 的配置示例
+```java
+/**
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ */
+@ApplicationScope
+@Component(dependencies = AppComponent.class,modules = {ApplicationModule.class})
+public interface ApplicationComponent {
+    //指定你的 Application 继承类
+    void inject(App app);
+}
+```
+
+通过上面的通用配置注入你所需要的相关类之后，如果配置没什么问题，你只需 **执行Make Project** 一下，或通过 **Make Project** 快捷键 **Ctrl + F9** ，就可以自动生产相关代码。
+比如通过 **ApplicationComponent** 生成的 **DaggerApplicationComponent** 类。
+
+然后在你的 **Application** 集成类 **App** 中通过 **DaggerApplicationComponent** 构建 **ApplicationComponent**，然后注入即可。
+```java
+    //开始构建项目时，DaggerApplicationComponent类可能不存在，你需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
+    ApplicationComponent appComponent = DaggerApplicationComponent.builder()
+            .appComponent(getAppComponent())
+            .build();
+    //注入
+    appComponent.inject(this);
+```
+
+你也可以直接查看[app](app)中的源码示例
+
+
+### 关于设置 **BaseUrl**
+
 > 目前通过设置 BaseUrl 的入口主要有两种：
 >> 1.一种是通过在 Manifest 中配置 meta-data 的来自定义 FrameConfigModule,在里面 通过 {@link ConfigModule.Builder#baseUrl(String)}来配置 BaseUrl。（一次设置，全局配置）
 >
@@ -231,6 +336,8 @@ public class App extends BaseApplication {
 >>>        选择：这个场景的选择，主要涉及到另外的方法，请查看 {@link RetrofitHelper#putDomain(String, String)} 和 {@link RetrofitHelper#putDomain(String, HttpUrl)}相关详情
 >
 
+
+
 [Kotlin Demo](https://github.com/jenly1314/KingWeather)
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
@@ -239,6 +346,7 @@ public class App extends BaseApplication {
 ##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 ##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
 ##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
+##### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
 
 ## 压缩与混淆
 
