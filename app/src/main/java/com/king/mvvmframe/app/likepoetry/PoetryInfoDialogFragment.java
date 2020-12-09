@@ -33,8 +33,8 @@ public class PoetryInfoDialogFragment extends BaseDialogFragment<DataViewModel,P
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         PoetryInfo data = getArguments().getParcelable(Constants.KEY_POETRY_INFO);
-        mBinding.setData(data);
+        getViewDataBinding().setData(data);
 
-        mBinding.btnClose.setOnClickListener(view -> getDialog().dismiss());
+        getViewDataBinding().btnClose.setOnClickListener(view -> getDialog().dismiss());
     }
 }

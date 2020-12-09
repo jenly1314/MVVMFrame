@@ -45,7 +45,7 @@ public class PoetryViewModel extends BaseViewModel<PoetryModel> {
         if(source!=null){
             poetryLiveData.removeSource(source);
         }
-        source = mModel.getPoetryInfo();
+        source = getModel().getPoetryInfo();
         poetryLiveData.addSource(source, resource -> {
             updateStatus(resource.status);
             if(resource.isSuccess()){//成功

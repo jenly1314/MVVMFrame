@@ -17,18 +17,18 @@ ext.deps = [:]
 // App dependencies
 def versions = [:]
 //support
-versions.material = "1.2.0-alpha06"
+versions.material = "1.2.1"
 versions.appcompat = "1.1.0"
-versions.swiperefreshlayout = "1.1.0-rc01"
+versions.swiperefreshlayout = "1.1.0"
 versions.recyclerview = "1.1.0"
-versions.constraintLayout = "2.0.0-beta6"
+versions.constraintLayout = "2.0.4"
 
 //test
 versions.junit = "4.13"
-versions.androidExtJunit = "1.1.1"
-versions.test = "1.2.0"
-versions.runner = "1.2.0"
-versions.espresso = "3.2.0"
+versions.androidExtJunit = "1.1.2"
+versions.test = "1.3.0"
+versions.runner = "1.3.0"
+versions.espresso = "3.3.0"
 
 
 // Architecture Components dependencies
@@ -36,7 +36,7 @@ versions.archLifecycle = "2.2.0"
 versions.room = "2.2.5"
 
 //dagger
-versions.dagger = "2.27"
+versions.dagger = "2.30.1"
 
 versions.retrofit = "2.9.0"
 versions.gson = "2.8.6"

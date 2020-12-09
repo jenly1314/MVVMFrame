@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity<MainViewModel, MainActivityBindin
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        mBinding.setBean(new Bean("1","MVVMFrame"));
+        getViewDataBinding().setBean(new Bean("1","MVVMFrame"));
 
     }
 }

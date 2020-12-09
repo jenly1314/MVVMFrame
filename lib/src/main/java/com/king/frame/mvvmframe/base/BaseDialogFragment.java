@@ -53,17 +53,17 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     ViewModelProvider.Factory mViewModelFactory;
 
     /**
-     *  @deprecated 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
+     * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
      */
-    protected VM mViewModel;
+    private VM mViewModel;
     /**
-     * @deprecated 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
+     * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
      */
-    protected VDB mBinding;
+    private VDB mBinding;
     /**
-     * @deprecated 请通过 {@link #getRootView()} ()}获取，后续版本 {@link #mRootView}可能会私有化
+     * 请通过 {@link #getRootView()} ()}获取，后续版本 {@link #mRootView}可能会私有化
      */
-    protected View mRootView;
+    private View mRootView;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 

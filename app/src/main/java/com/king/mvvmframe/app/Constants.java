@@ -10,7 +10,8 @@ public final class Constants {
      * 虽然数据展示相关的暂时没法体现，不过目前的demo整体代码结构与流程还是很清晰的，具有参考意义。
      * 也可以参考<a href="https://github.com/jenly1314/KingWeather">Kotlin Demo</a>
      */
-    public static final String BASE_URL = "http://502tech.com:8090";
+//    public static final String BASE_URL = "http://502tech.com:8090";
+    public static final String BASE_URL = "https://v2.jinrishici.com";
 
     public static final String TAG = "Jenly";
 

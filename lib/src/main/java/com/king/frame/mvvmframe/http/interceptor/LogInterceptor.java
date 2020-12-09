@@ -16,6 +16,8 @@ import timber.log.Timber;
  */
 public class LogInterceptor implements Interceptor {
 
+    private static String multipartType = "multipart";
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
@@ -26,7 +28,13 @@ public class LogInterceptor implements Interceptor {
         }
 
         if(request.body() != null){
-            Timber.i("RequestBody:" + bodyToString(request.body()));
+            MediaType mediaType = request.body().contentType();
+            if(mediaType != null){
+                Timber.i("RequestContentType:" + mediaType);
+            }
+            if(mediaType == null || !multipartType.equalsIgnoreCase(mediaType.type())){
+                Timber.i("RequestBody:" + bodyToString(request.body()));
+            }
         }
 
         Response response = chain.proceed(chain.request());
@@ -46,7 +54,7 @@ public class LogInterceptor implements Interceptor {
                 final Buffer buffer = new Buffer();
                 copy.writeTo(buffer);
                 return buffer.readUtf8();
-            } catch (final IOException e) {
+            } catch (final Exception e) {
                 Timber.e(e,"Did not work.");
             }
         }

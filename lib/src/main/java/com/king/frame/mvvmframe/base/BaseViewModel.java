@@ -24,9 +24,9 @@ import androidx.lifecycle.Observer;
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel,ILoading{
 
     /**
-     *  @deprecated 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
+     * 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
      */
-    protected M mModel;
+    private M mModel;
 
     /**
      * 消息事件
@@ -84,11 +84,6 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
             mModel.onDestroy();
             mModel = null;
         }
-
-        mLoadingEvent.call();
-        mMessageEvent.call();
-        mStatusEvent.call();
-        mSingleLiveEvent.call();
     }
 
     @Override

@@ -34,26 +34,26 @@ public class PoetryLiteActivity extends BaseActivity<PoetryLiteViewModel,PoetryL
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        mBinding.setViewModel(mViewModel);
+        getViewDataBinding().setViewModel(getViewModel());
 
-        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
+        getViewDataBinding().recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getViewDataBinding().recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
 
         mAdapter = new BindingAdapter<>(getContext(),R.layout.rv_poetry_item);
 
-        mBinding.recyclerView.setAdapter(mAdapter);
+        getViewDataBinding().recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener((v, position) -> {
             PoetryInfo data = mAdapter.getItem(position);
             showDialogFragment(PoetryInfoDialogFragment.newInstance(data));
         });
 
-        mViewModel.getPoetryLiveData().observe(this, list -> mAdapter.refreshData(list));
+        getViewModel().getPoetryLiveData().observe(this, list -> mAdapter.refreshData(list));
         //原始使用方式
-        mViewModel.getStatusEvent().observe(this, (StatusEvent.StatusObserver) status -> {
+        getViewModel().getStatusEvent().observe(this, (StatusEvent.StatusObserver) status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
-                    if(!mBinding.srl.isRefreshing()){
+                    if(!getViewDataBinding().srl.isRefreshing()){
                         showLoading();
                     }
                     break;
@@ -61,16 +61,16 @@ public class PoetryLiteActivity extends BaseActivity<PoetryLiteViewModel,PoetryL
                 case StatusEvent.Status.FAILURE:
                 case StatusEvent.Status.ERROR:
                     hideLoading();
-                    mBinding.srl.setRefreshing(false);
+                    getViewDataBinding().srl.setRefreshing(false);
                     break;
             }
         });
         //原始使用方式
-        mViewModel.getMessageEvent().observe(this, (MessageEvent.MessageObserver) message -> {
+        getViewModel().getMessageEvent().observe(this, (MessageEvent.MessageObserver) message -> {
             Timber.d("message:%s" , message);
             ToastUtils.showToast(getContext(), message);
 
         });
-        mBinding.srl.setOnRefreshListener(()-> mViewModel.getPoetryInfo());
+        getViewDataBinding().srl.setOnRefreshListener(()-> getViewModel().getPoetryInfo());
     }
 }

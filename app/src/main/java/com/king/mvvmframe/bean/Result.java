@@ -5,6 +5,7 @@ package com.king.mvvmframe.bean;
  */
 public class Result<T> {
 
+
     private int code;
 
     private String message;

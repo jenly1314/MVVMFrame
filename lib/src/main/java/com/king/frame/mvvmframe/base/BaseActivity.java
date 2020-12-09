@@ -55,13 +55,13 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     ViewModelProvider.Factory mViewModelFactory;
 
     /**
-     *  @deprecated 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
+     * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
      */
-    protected VM mViewModel;
+    private VM mViewModel;
     /**
-     * @deprecated 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
+     * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
      */
-    protected VDB mBinding;
+    private VDB mBinding;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 

@@ -33,26 +33,26 @@ public class PoetryActivity extends BaseActivity<PoetryViewModel,PoetryActivityB
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        mBinding.setViewModel(mViewModel);
+        getViewDataBinding().setViewModel(getViewModel());
 
-        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
+        getViewDataBinding().recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getViewDataBinding().recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
 
         mAdapter = new BindingAdapter<>(getContext(),R.layout.rv_poetry_item);
 
-        mBinding.recyclerView.setAdapter(mAdapter);
+        getViewDataBinding().recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener((v, position) -> {
             PoetryInfo data = mAdapter.getItem(position);
             showDialogFragment(PoetryInfoDialogFragment.newInstance(data));
         });
 
-        mViewModel.getPoetryLiveData().observe(this, list -> mAdapter.refreshData(list));
+        getViewModel().getPoetryLiveData().observe(this, list -> mAdapter.refreshData(list));
         //添加registerStatusEvent后使用方式，推荐
         registerStatusEvent(status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
-                    if(!mBinding.srl.isRefreshing()){
+                    if(!getViewDataBinding().srl.isRefreshing()){
                         showLoading();
                     }
                     break;
@@ -60,7 +60,7 @@ public class PoetryActivity extends BaseActivity<PoetryViewModel,PoetryActivityB
                 case StatusEvent.Status.FAILURE:
                 case StatusEvent.Status.ERROR:
                     hideLoading();
-                    mBinding.srl.setRefreshing(false);
+                    getViewDataBinding().srl.setRefreshing(false);
                     break;
             }
         });
@@ -70,6 +70,6 @@ public class PoetryActivity extends BaseActivity<PoetryViewModel,PoetryActivityB
             ToastUtils.showToast(getContext(), message);
         });
 
-        mBinding.srl.setOnRefreshListener(()-> mViewModel.getPoetryInfo());
+        getViewDataBinding().srl.setOnRefreshListener(()-> getViewModel().getPoetryInfo());
     }
 }

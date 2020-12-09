@@ -357,6 +357,10 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
+#### 待发布...
+*  细化作用域范围
+*  更新Dagger至v2.30.1
+
 #### v1.1.3：2020-6-1
 *  支持配置多个BaseUrl，且支持动态改变（详情查看 [RetrofitHelper](https://github.com/jenly1314/RetrofitHelper)） 
 *  对外暴露更多配置，（详情查看 FrameConfigModule）

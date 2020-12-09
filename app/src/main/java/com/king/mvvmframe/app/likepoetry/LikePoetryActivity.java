@@ -50,12 +50,12 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
 
-        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
+        getViewDataBinding().recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getViewDataBinding().recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL,R.drawable.list_divider_8));
 
         mAdapter = new BindingAdapter<>(getContext(),R.layout.rv_poetry_item);
 
-        mBinding.recyclerView.setAdapter(mAdapter);
+        getViewDataBinding().recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener((v, position) -> {
             PoetryInfo data = mAdapter.getItem(position);
@@ -64,16 +64,16 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
 
         listHistory = new ArrayList<>();
         mSearchHistoryAdapter = new SearchHistoryAdapter(getContext(),listHistory);
-        mBinding.tflHistory.setAdapter(mSearchHistoryAdapter);
+        getViewDataBinding().tflHistory.setAdapter(mSearchHistoryAdapter);
 
-        mBinding.tflHistory.setOnTagClickListener((view, position, parent) -> {
+        getViewDataBinding().tflHistory.setOnTagClickListener((view, position, parent) -> {
             search(mSearchHistoryAdapter.getItem(position).getName());
             return true;
         });
 
-        mBinding.setViewModel(mViewModel);
+        getViewDataBinding().setViewModel(getViewModel());
 
-        mViewModel.getPoetryLiveData().observe(this, list -> {
+        getViewModel().getPoetryLiveData().observe(this, list -> {
             mAdapter.refreshData(list);
             if(list.size()==0){
                 ToastUtils.showToast(getContext(),"没有相关结果");
@@ -85,7 +85,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
         registerStatusEvent(status -> {
             switch (status){
                 case StatusEvent.Status.LOADING:
-                    if(!mBinding.srl.isRefreshing()){
+                    if(!getViewDataBinding().srl.isRefreshing()){
                         showLoading();
                     }
                     break;
@@ -93,7 +93,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
                 case StatusEvent.Status.FAILURE:
                 case StatusEvent.Status.ERROR:
                     hideLoading();
-                    mBinding.srl.setRefreshing(false);
+                    getViewDataBinding().srl.setRefreshing(false);
                     break;
             }
         });
@@ -103,10 +103,10 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
             ToastUtils.showToast(getContext(), message);
         });
 
-        mViewModel.getSearchHistoryLiveData().observe(this,list ->{
+        getViewModel().getSearchHistoryLiveData().observe(this,list ->{
             refreshSearchHistory(list);
         });
-        mBinding.srl.setOnRefreshListener(()-> {
+        getViewDataBinding().srl.setOnRefreshListener(()-> {
             search(name);
         });
 
@@ -116,7 +116,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
         if(StringUtils.isNotBlank(key)){
             searchView.setQuery(key,true);
         }else{
-            mBinding.srl.setRefreshing(false);
+            getViewDataBinding().srl.setRefreshing(false);
         }
 
     }
@@ -125,9 +125,9 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
         listHistory.clear();
         if(data!=null && data.size() > 0){
             listHistory.addAll(data);
-            mBinding.ivDeleteHistory.setVisibility(View.VISIBLE);
+            getViewDataBinding().ivDeleteHistory.setVisibility(View.VISIBLE);
         }else{
-            mBinding.ivDeleteHistory.setVisibility(View.INVISIBLE);
+            getViewDataBinding().ivDeleteHistory.setVisibility(View.INVISIBLE);
         }
         mSearchHistoryAdapter.notifyDataChanged();
     }
@@ -145,7 +145,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
 
                 if(StringUtils.isNotBlank(s)){
                     name = s;
-                    mViewModel.getLikePoetry(s);
+                    getViewModel().getLikePoetry(s);
                 }else{
                     ToastUtils.showToast(getContext(),R.string.tips_search_poetry_);
                 }
@@ -162,7 +162,7 @@ public class LikePoetryActivity extends BaseActivity<LikePoetryViewModel, LikePo
 
     private void clickDelete(){
         ToastUtils.showToast(getContext(),"点击清空");
-        mViewModel.deleteAllHistory();
+        getViewModel().deleteAllHistory();
 
     }
 

@@ -49,7 +49,7 @@ public class LikePoetryViewModel extends BaseViewModel<LikePoetryModel> {
         if(poetrySource!=null){
             poetryLiveData.removeSource(poetrySource);
         }
-        poetrySource = mModel.getLikePoetry(name);
+        poetrySource = getModel().getLikePoetry(name);
         poetryLiveData.addSource(poetrySource, resource -> {
             updateStatus(resource.status);
             if(resource.isSuccess()){//成功
@@ -74,7 +74,7 @@ public class LikePoetryViewModel extends BaseViewModel<LikePoetryModel> {
         if(searchHistorySource!=null){
             searchHistoryLiveData.removeSource(searchHistorySource);
         }
-        searchHistorySource = mModel.getSearchHistory(count);
+        searchHistorySource = getModel().getSearchHistory(count);
         searchHistoryLiveData.addSource(searchHistorySource,searchHistoryList ->
                 searchHistoryLiveData.setValue(searchHistoryList)
         );
@@ -84,7 +84,7 @@ public class LikePoetryViewModel extends BaseViewModel<LikePoetryModel> {
      * 清空历史
      */
     public void deleteAllHistory(){
-        mModel.deleteAllHistory();
+        getModel().deleteAllHistory();
     }
 
     public LiveData<List<PoetryInfo>> getPoetryLiveData(){
