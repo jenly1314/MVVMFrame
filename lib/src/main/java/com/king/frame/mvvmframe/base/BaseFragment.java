@@ -58,15 +58,18 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
     /**
      * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
      */
-    private VM mViewModel;
+    @Deprecated
+    protected VM mViewModel;
     /**
      * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
      */
-    private VDB mBinding;
+    @Deprecated
+    protected VDB mBinding;
     /**
      * 请通过 {@link #getRootView()} ()}获取，后续版本 {@link #mRootView}可能会私有化
      */
-    private View mRootView;
+    @Deprecated
+    protected View mRootView;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 

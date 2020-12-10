@@ -26,7 +26,8 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     /**
      * 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
      */
-    private M mModel;
+    @Deprecated
+    protected M mModel;
 
     /**
      * 消息事件

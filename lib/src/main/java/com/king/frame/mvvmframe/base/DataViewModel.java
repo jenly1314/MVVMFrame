@@ -2,8 +2,6 @@ package com.king.frame.mvvmframe.base;
 
 import android.app.Application;
 
-import com.king.frame.mvvmframe.config.Constants;
-
 import java.lang.Class;
 import javax.inject.Inject;
 
