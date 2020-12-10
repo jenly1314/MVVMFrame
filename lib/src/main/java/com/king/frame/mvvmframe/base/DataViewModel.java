@@ -2,6 +2,8 @@ package com.king.frame.mvvmframe.base;
 
 import android.app.Application;
 
+import com.king.frame.mvvmframe.config.Constants;
+
 import java.lang.Class;
 import javax.inject.Inject;
 
@@ -32,6 +34,15 @@ public class DataViewModel extends BaseViewModel<BaseModel> {
         return getModel().getRetrofitService(service);
     }
 
+    /**
+     * 传入Class 通过{@link Room#databaseBuilder},{@link RoomDatabase.Builder<T>#build()}获得对应的Class
+     * @param database
+     * @param <T>
+     * @return {@link RoomDatabase.Builder<T>#build()}
+     */
+    public <T extends RoomDatabase> T getRoomDatabase(@NonNull Class<T> database){
+        return getRoomDatabase(database, null);
+    }
     /**
      * 传入Class 通过{@link Room#databaseBuilder},{@link RoomDatabase.Builder<T>#build()}获得对应的Class
      * @param database

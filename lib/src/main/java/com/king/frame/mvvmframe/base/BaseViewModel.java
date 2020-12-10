@@ -158,7 +158,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
      * @param msgId 资源文件id
      */
     public void sendMessage(@StringRes int msgId) {
-        mMessageEvent.setValue(getApplication().getString(msgId));
+        sendMessage(getApplication().getString(msgId));
     }
 
     /**
@@ -180,7 +180,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
      * @param msgId 资源文件id
      */
     public void postMessage(@StringRes int msgId) {
-        mMessageEvent.postValue(getApplication().getString(msgId));
+        postMessage(getApplication().getString(msgId));
     }
 
     /**
