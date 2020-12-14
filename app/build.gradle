@@ -70,7 +70,6 @@ dependencies {
 
     //leakCanary
     debugImplementation deps.leakcanary.debug
-    releaseImplementation deps.leakcanary.release
 
     implementation project(':lib')
 }

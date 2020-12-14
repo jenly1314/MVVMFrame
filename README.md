@@ -51,8 +51,8 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 ```gradle
     //AndroidX ------------------ MVVMFrame v1.1.3
     //dagger
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.27'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
     //room
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
 
@@ -357,8 +357,8 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
-#### 待发布...
-*  细化作用域范围
+#### v1.1.4：2020-12-14
+*  优化细节
 *  更新Dagger至v2.30.1
 
 #### v1.1.3：2020-6-1

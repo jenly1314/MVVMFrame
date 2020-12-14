@@ -18,7 +18,7 @@ ext.deps = [:]
 def versions = [:]
 //support
 versions.material = "1.2.1"
-versions.appcompat = "1.1.0"
+versions.appcompat = "1.2.0"
 versions.swiperefreshlayout = "1.1.0"
 versions.recyclerview = "1.1.0"
 versions.constraintLayout = "2.0.4"
@@ -50,7 +50,7 @@ versions.retrofitHelper = "1.0.0"
 versions.timber = "4.7.1"
 versions.logger = "2.2.0"
 
-versions.leakcanary = "2.2"
+versions.leakcanary = "2.5"
 
 versions.leakcanaryNoOp = "1.6.3"
 
