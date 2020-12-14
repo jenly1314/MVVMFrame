@@ -58,7 +58,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
 ```
 ```gradle
-    // Android ------------------ MVVMFrame v1.0.2
+    // Android Support ------------------ MVVMFrame v1.0.2
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
