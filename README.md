@@ -3,7 +3,7 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
-[![JCenter](https://img.shields.io/badge/JCenter-1.1.3-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
+[![JCenter](https://img.shields.io/badge/JCenter-1.1.4-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
@@ -26,21 +26,21 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.1.3</version>
+  <version>1.1.4</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
 //AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.3'
+implementation 'com.king.frame:mvvmframe:1.1.4'
 
 //Android 版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.1.3'>
+<dependency org='com.king.frame' name='mvvmframe' rev='1.1.4'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -49,7 +49,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 ```gradle
-    //AndroidX ------------------ MVVMFrame v1.1.3
+    //AndroidX ------------------ MVVMFrame v1.1.4
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'

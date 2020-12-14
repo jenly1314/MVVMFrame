@@ -65,7 +65,8 @@ public class App extends BaseApplication {
 
         //TODO 动态新增多个 BaseUrl 示例
         //支持多个并且动态切换 BaseUrl
-        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.github.io");
+//        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.github.io");
+        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.gitlab.io");
 //        RetrofitHelper.getInstance().putDomain("Google","https://google.com");
 
     }
