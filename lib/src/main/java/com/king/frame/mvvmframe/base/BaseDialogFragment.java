@@ -27,6 +27,7 @@ import javax.inject.Inject;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.DialogFragment;
@@ -357,7 +358,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     protected Intent newIntent(Class<?> cls,int flags){
         Intent intent = newIntent(cls);
-        intent.setFlags(flags);
+        intent.addFlags(flags);
         return intent;
     }
 
@@ -367,6 +368,22 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     protected void startActivity(Class<?> cls,int flags){
         startActivity(newIntent(cls,flags));
+    }
+
+    protected void startActivity(Class<?> cls,@Nullable ActivityOptionsCompat optionsCompat){
+        startActivity(newIntent(cls),optionsCompat);
+    }
+
+    protected void startActivity(Class<?> cls,int flags,@Nullable ActivityOptionsCompat optionsCompat){
+        startActivity(newIntent(cls,flags),optionsCompat);
+    }
+
+    protected void startActivity(Intent intent,@Nullable ActivityOptionsCompat optionsCompat){
+        if(optionsCompat != null){
+            startActivity(intent,optionsCompat.toBundle());
+        }else{
+            startActivity(intent);
+        }
     }
 
     protected void startActivityFinish(Class<?> cls){
@@ -379,8 +396,30 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         finish();
     }
 
+    protected void startActivityFinish(Class<?> cls,@Nullable ActivityOptionsCompat optionsCompat){
+        startActivity(cls,optionsCompat);
+        finish();
+    }
+
+    protected void startActivityFinish(Class<?> cls,int flags,@Nullable ActivityOptionsCompat optionsCompat){
+        startActivity(newIntent(cls,flags),optionsCompat);
+    }
+
+    protected void startActivityFinish(Intent intent,@Nullable ActivityOptionsCompat optionsCompat){
+        startActivity(intent,optionsCompat);
+    }
+
     protected void startActivityForResult(Class<?> cls,int requestCode){
         startActivityForResult(newIntent(cls),requestCode);
+    }
+
+    protected void startActivityForResult(Class<?> cls,int requestCode,@Nullable ActivityOptionsCompat optionsCompat){
+        Intent intent = newIntent(cls);
+        if(optionsCompat != null){
+            startActivityForResult(intent,requestCode,optionsCompat.toBundle());
+        }else{
+            startActivityForResult(intent,requestCode);
+        }
     }
 
     //---------------------------------------
