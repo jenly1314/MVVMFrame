@@ -35,7 +35,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 //AndroidX 版本
 implementation 'com.king.frame:mvvmframe:1.1.4'
 
-//Android 版本
+//Android Support版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
