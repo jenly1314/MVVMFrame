@@ -21,7 +21,10 @@ import dagger.hilt.android.AndroidEntryPoint
  * View
  * Service
  * BroadcastReceiver
- * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的，其他的所有入口点，都是用@AndroidEntryPoint注解来声明
+ *
+ * //========================================================//
+ *
+ * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的
  *
  * @example Application
  * //-------------------------
@@ -30,6 +33,10 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  *    }
  * //-------------------------
+ *
+ * //--------------------------------------------------------//
+ *
+ * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明
  *
  * @example Activity
  * //-------------------------
@@ -47,6 +54,24 @@ import dagger.hilt.android.AndroidEntryPoint
  *    }
  * //-------------------------
  *
+ * @example Service
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourService extends BaseService {
+ *
+ *    }
+ * //-------------------------
+ *
+ * @example BroadcastReceiver
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
+ *
+ *    }
+ * //-------------------------
+ *
+ * //========================================================//
+ *
  *
  * Kotlin 示例
  *
@@ -60,7 +85,6 @@ class MainActivity : BaseActivity<BaseViewModel<BaseModel>,ViewDataBinding>() {
     override fun getLayoutId(): Int {
         return R.layout.main_activity
     }
-
 
     override fun isBinding(): Boolean {
         //不覆写此方法时，默认返回true，这里返回false表示不使用DataBinding，因为当前界面比较简单，完全没有必要用

@@ -22,7 +22,10 @@ import dagger.hilt.android.AndroidEntryPoint;
  * View
  * Service
  * BroadcastReceiver
- * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的，其他的所有入口点，都是用@AndroidEntryPoint注解来声明
+ *
+ * //========================================================//
+ *
+ * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的
  *
  * @example Application
  * //-------------------------
@@ -31,6 +34,10 @@ import dagger.hilt.android.AndroidEntryPoint;
  *
  *    }
  * //-------------------------
+ *
+ * //--------------------------------------------------------//
+ *
+ * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明
  *
  * @example Activity
  * //-------------------------
@@ -47,6 +54,24 @@ import dagger.hilt.android.AndroidEntryPoint;
  *
  *    }
  * //-------------------------
+ *
+ * @example Service
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourService extends BaseService {
+ *
+ *    }
+ * //-------------------------
+ *
+ * @example BroadcastReceiver
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
+ *
+ *    }
+ * //-------------------------
+ *
+ * //========================================================//
  *
  * example只是一个简单的MVVM分层的例子，为了演示通过MVVMFrame快速构建一个项目，如需查看带有逻辑的MVVM示例，请查看app中的演示demo
  * 简单示例，为了展示例子，写了个空的{@link MainViewModel}，如果没什么逻辑你也可以直接使用{@link BaseViewModel}

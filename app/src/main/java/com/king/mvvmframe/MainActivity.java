@@ -28,7 +28,10 @@ import timber.log.Timber;
  * View
  * Service
  * BroadcastReceiver
- * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的，其他的所有入口点，都是用@AndroidEntryPoint注解来声明
+ *
+ * //========================================================//
+ *
+ * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的
  *
  * @example Application
  * //-------------------------
@@ -37,6 +40,10 @@ import timber.log.Timber;
  *
  *    }
  * //-------------------------
+ *
+ * //--------------------------------------------------------//
+ *
+ * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明
  *
  * @example Activity
  * //-------------------------
@@ -53,6 +60,24 @@ import timber.log.Timber;
  *
  *    }
  * //-------------------------
+ *
+ * @example Service
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourService extends BaseService {
+ *
+ *    }
+ * //-------------------------
+ *
+ * @example BroadcastReceiver
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
+ *
+ *    }
+ * //-------------------------
+ *
+ * //========================================================//
  *
  * Java 示例
  *
