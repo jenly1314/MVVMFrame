@@ -1,7 +1,5 @@
 package com.king.frame.mvvmframe.base;
 
-
-
 import com.king.frame.mvvmframe.config.Constants;
 import com.king.frame.mvvmframe.data.IDataRepository;
 
