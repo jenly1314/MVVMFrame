@@ -4,10 +4,15 @@
 
     <string name="result_failure">获取失败</string>
 
-    <string name="label_search_history">历史搜索</string>
-    <string name="label_search_result">搜索结果</string>
+    <string name="label_search_history">历史查询</string>
+    <string name="label_search_result">查询结果</string>
 
-    <string name="tips_search_poetry_">搜索内容不能为空</string>
+    <string name="tips_search_content">输入的内容不能为空</string>
 
     <string name="btn_close">关闭</string>
+
+    <string name="oil_92h_">92号：</string>
+    <string name="oil_95h_">95号：</string>
+    <string name="oil_98h_">98号：</string>
+    <string name="oil_0h_">0号：</string>
 </resources>

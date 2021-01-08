@@ -48,7 +48,6 @@ public final class ManifestParser {
         return modules;
     }
 
-    @SuppressWarnings("deprecation")
     private static FrameConfigModule parseModule(String className) {
         Class<?> clazz;
         try {

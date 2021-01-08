@@ -13,6 +13,8 @@ import javax.inject.Singleton;
 import androidx.annotation.Nullable;
 import dagger.Module;
 import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.components.SingletonComponent;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -21,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@InstallIn(SingletonComponent.class)
 @Module
 public class HttpModule {
 
@@ -28,7 +31,7 @@ public class HttpModule {
     @Singleton
     @Provides
     Retrofit provideRetrofit(Retrofit.Builder builder,@Nullable AppliesOptions.RetrofitOptions options){
-        if(options!=null){
+        if(options != null){
             options.applyOptions(builder);
         }
         return builder.build();
@@ -37,7 +40,7 @@ public class HttpModule {
     @Singleton
     @Provides
     OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder,@Nullable AppliesOptions.OkHttpClientOptions options){
-        if(options!=null) {
+        if(options != null) {
             options.applyOptions(builder);
         }
         return builder.build();
@@ -46,7 +49,7 @@ public class HttpModule {
     @Singleton
     @Provides
     Gson provideGson(GsonBuilder builder,@Nullable AppliesOptions.GsonOptions options){
-        if(options!=null){
+        if(options != null){
             options.applyOptions(builder);
         }
         return builder.create();

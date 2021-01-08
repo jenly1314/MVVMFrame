@@ -28,7 +28,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.king.frame.mvvmframe.R;
 import com.king.frame.mvvmframe.base.livedata.MessageEvent;
@@ -37,34 +37,32 @@ import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasAndroidInjector;
 
 /**
+ * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ *
+ * 如果您继承使用了BaseActivity或其子类，你需要参照如下方式添加@AndroidEntryPoint注解
+ *
+ * @example Activity
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourActivity extends BaseActivity {
+ *
+ *    }
+ * //-------------------------
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewDataBinding> extends AppCompatActivity implements IView<VM>, BaseNavigator, HasAndroidInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Object> mAndroidInjector;
-
-    @Inject
-    ViewModelProvider.Factory mViewModelFactory;
+public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewDataBinding> extends AppCompatActivity implements IView<VM>, BaseNavigator {
 
     /**
      * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
      */
-    @Deprecated
-    protected VM mViewModel;
+    private VM mViewModel;
     /**
      * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
      */
-    @Deprecated
-    protected VDB mBinding;
+    private VDB mBinding;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
@@ -74,9 +72,6 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //Dagger.Android Activity 注入
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
         if(isBinding()){
             mBinding = DataBindingUtil.setContentView(this,getLayoutId());
@@ -92,14 +87,10 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      */
     private void initViewModel(){
         mViewModel = createViewModel();
-        if (mViewModel == null) {
-            mViewModel = obtainViewModel(getVMClass());
-        }
-
         if(mViewModel != null){
             getLifecycle().addObserver(mViewModel);
+            registerLoadingEvent();
         }
-        registerLoadingEvent();
     }
 
     private Class<VM> getVMClass(){
@@ -138,11 +129,6 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         }
 
         return null;
-    }
-
-    @Override
-    public AndroidInjector<Object> androidInjector() {
-        return mAndroidInjector;
     }
 
     @Override
@@ -189,7 +175,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      * 注册消息事件
      */
     protected void registerMessageEvent(@NonNull MessageEvent.MessageObserver observer){
-        mViewModel.getMessageEvent().observe(this,observer);
+        getViewModel().getMessageEvent().observe(this,observer);
     }
 
     /**
@@ -197,7 +183,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      * @param observer
      */
     protected void registerSingleLiveEvent(@NonNull Observer<Message> observer){
-        mViewModel.getSingleLiveEvent().observe(this,observer);
+        getViewModel().getSingleLiveEvent().observe(this,observer);
     }
 
     /**
@@ -205,7 +191,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      * @param observer
      */
     protected void registerStatusEvent(@NonNull StatusEvent.StatusObserver observer){
-        mViewModel.getStatusEvent().observe(this,observer);
+        getViewModel().getStatusEvent().observe(this,observer);
     }
 
     public Context getContext(){
@@ -223,11 +209,11 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
     /**
      * 创建ViewModel
-     * @return 默认为null，为null时，{@link #mViewModel}会默认根据当前Activity泛型 {@link VM}获得ViewModel
+     * @return {@link #mViewModel}会默认根据当前Activity泛型 {@link VM}获得ViewModel
      */
     @Override
     public VM createViewModel(){
-        return null;
+        return obtainViewModel(getVMClass());
     }
 
     /**
@@ -247,24 +233,13 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
+     * 通过 {@link #createViewModelProvider(ViewModelStoreOwner)}获得 ViewModel
      * @param modelClass
      * @param <T>
      * @return
      */
     public <T extends ViewModel> T obtainViewModel(@NonNull Class<T> modelClass){
-        return obtainViewModel(getViewModelStore(),modelClass);
-    }
-
-    /**
-     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
-     * @param store
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    public <T extends ViewModel> T obtainViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
-        return createViewModelProvider(store).get(modelClass);
+        return createViewModelProvider(this).get(modelClass);
     }
 
     /**
@@ -279,28 +254,12 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * @deprecated 请使用 {@link #obtainViewModel(ViewModelStore, Class)}
-     * @param store
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    @Deprecated
-    public <T extends ViewModel> T getViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
-        return obtainViewModel(store,modelClass);
-    }
-
-    /**
      * 创建 {@link ViewModelProvider}
-     * @param store
+     * @param owner
      * @return
      */
-    private ViewModelProvider createViewModelProvider(@NonNull ViewModelStore store){
-        return new ViewModelProvider(store,mViewModelFactory);
-    }
-
-    protected ViewModelProvider.Factory getViewModelFactory(){
-        return mViewModelFactory;
+    private ViewModelProvider createViewModelProvider(@NonNull ViewModelStoreOwner owner){
+        return new ViewModelProvider(owner);
     }
 
     //---------------------------------------

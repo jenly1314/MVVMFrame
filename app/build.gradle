@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion build_versions.compileSdk
@@ -21,8 +22,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures{
+        dataBinding = true
     }
 
     compileOptions {
@@ -43,33 +44,34 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.android_junit
     androidTestImplementation deps.test.test
-    androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
     implementation deps.material
-//    implementation deps.appcompat
+    implementation deps.appcompat
     implementation deps.swiperefreshlayout
     implementation deps.recyclerview
     implementation deps.constraintlayout
 
-    //dagger - 主项目需引入dagger相关注解编译程处理序
-    annotationProcessor deps.dagger.android_processor
-    annotationProcessor deps.dagger.compiler
+    implementation deps.flowlayout
+
+    implementation deps.logger
+
+    //leakCanary
+    debugImplementation deps.leakcanary.debug
+
+    implementation deps.jenly.base_util
+    implementation deps.jenly.base_adapter
 
     //room - Room Orm
     annotationProcessor deps.room.compiler
     //room.rxjava - Room配合RxJava线程调度使用
     implementation deps.room.rxjava2
 
-    implementation deps.jenly.base_util
-    implementation deps.jenly.base_adapter
+    implementation deps.hilt.hilt_android
+    annotationProcessor  deps.hilt.hilt_android_compiler
 
-    implementation deps.logger
-
-    implementation deps.flowlayout
-
-    //leakCanary
-    debugImplementation deps.leakcanary.debug
+    implementation deps.hilt.hilt_viewmodel
+    annotationProcessor  deps.hilt.hilt_compiler
 
     implementation project(':lib')
 }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: 'bintray.gradle'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
 
@@ -13,7 +14,6 @@ android {
         versionName app_version.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
     }
 
     buildTypes {
@@ -23,8 +23,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures{
+        dataBinding = true
     }
 
     compileOptions {
@@ -58,7 +58,6 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.android_junit
     androidTestImplementation deps.test.test
-    androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
     //appcompat
     compileOnly deps.appcompat
@@ -81,11 +80,17 @@ dependencies {
     annotationProcessor deps.room.compiler
 
     //dagger
-    api deps.dagger.dagger
-    api deps.dagger.android
-    api deps.dagger.android_support
-    annotationProcessor deps.dagger.android_processor
-    annotationProcessor deps.dagger.compiler
+//    api deps.dagger.dagger
+//    api deps.dagger.android
+//    api deps.dagger.android_support
+//    annotationProcessor deps.dagger.android_processor
+//    annotationProcessor deps.dagger.compiler
+
+    compileOnly deps.hilt.hilt_android
+    annotationProcessor  deps.hilt.hilt_android_compiler
+
+    compileOnly deps.hilt.hilt_viewmodel
+    annotationProcessor  deps.hilt.hilt_compiler
 
     //log
     api deps.timber

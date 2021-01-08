@@ -1,1 +1,2 @@
+include ':sample-kotlin'
 include ':app', ':lib', ':sample'

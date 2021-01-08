@@ -1,39 +1,56 @@
 package com.king.mvvmframe;
 
+import android.app.Application;
 import android.content.Context;
 
-import com.king.frame.mvvmframe.base.BaseApplication;
+//import com.king.frame.mvvmframe.base.BaseApplication;
 import com.king.mvvmframe.app.Constants;
-import com.king.mvvmframe.di.component.ApplicationComponent;
-import com.king.mvvmframe.di.component.DaggerApplicationComponent;
+//import com.king.mvvmframe.di.component.ApplicationComponent;
+//import com.king.mvvmframe.di.component.DaggerApplicationComponent;
 import com.king.retrofit.retrofithelper.RetrofitHelper;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import dagger.hilt.android.HiltAndroidApp;
 import timber.log.Timber;
 
 
 /**
- *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
- *  1.你的项目中的Application中需初始化MVVMFrame框架相关信息，有两种方式处理：
- *      a.直接继承本类{@link BaseApplication}即可；
- *      b.如你的项目中的Application本身继承了其它第三方的Application，因为Java是单继承原因，导致没法继承本类，可参照{@link BaseApplication}类，
- *      将{@link BaseApplication}中相关代码复制到你项目的Application中，在相应的生命周期中调用即可。
+ * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ *
+ * 你需要参照如下方式添加@AndroidEntryPoint注解
+ *
+ * @example Application
+ * //-------------------------
+ *    @HiltAndroidApp
+ *    public class YourApplication extends Application {
+ *
+ *    }
+ * //-------------------------
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class App extends BaseApplication {
+@HiltAndroidApp
+public class App extends Application {
 
 
     @Override
-    protected void attachBaseContext(Context base) {
-        //---------------------------
-        /**
-         * 初始化日志打印，在此处初始化是因为MVVMFrame中的ApplicationDelegate是在BaseApplication中的attachBaseContext方法中初始化的，
-         * 提前配置可方便查看打印框架中相关的配置信息
-         */
+    public void onCreate() {
+        super.onCreate();
+        initLogger();
+        //------------------------------
+        //设置BaseUrl
+//        RetrofitHelper.getInstance().setBaseUrl(Constants.BASE_URL);
+        //设置动态BaseUrl
+        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_DICTIONARY,Constants.DICTIONARY_BASE_URL);
+        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.gitlab.io");
+    }
+
+
+    private void initLogger(){
+        //初始化日志打印
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .methodOffset(5)
                 .tag(Constants.TAG)
@@ -47,29 +64,6 @@ public class App extends BaseApplication {
                 }
             }
         });
-
-        super.attachBaseContext(base);
     }
-
-    @Override
-    public void onCreate() {
-//        RetrofitHelper.getInstance().setBaseUrl("https://google.com");
-        super.onCreate();
-
-        //开始构建项目时，DaggerApplicationComponent类可能不存在，您需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
-        ApplicationComponent appComponent = DaggerApplicationComponent.builder()
-                .appComponent(getAppComponent())
-                .build();
-        //注入
-        appComponent.inject(this);
-
-        //TODO 动态新增多个 BaseUrl 示例
-        //支持多个并且动态切换 BaseUrl
-//        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.github.io");
-        RetrofitHelper.getInstance().putDomain(Constants.DOMAIN_JENLY,"https://jenly1314.gitlab.io");
-//        RetrofitHelper.getInstance().putDomain("Google","https://google.com");
-
-    }
-
 
 }

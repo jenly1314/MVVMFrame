@@ -27,14 +27,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.poetry.PoetryActivity"/>
+        <activity android:name=".app.oil.OilPriceActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".app.poetrylite.PoetryLiteActivity"/>
+        <activity android:name=".app.oil.lite.OilPriceLiteActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".app.likepoetry.LikePoetryActivity"/>
+        <activity android:name=".app.dictionary.DictionaryActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- MVVMFrame 全局配置 -->
-        <meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
+        <meta-data android:name="com.king.mvvmframe.config.AppConfigModule"
                    android:value="FrameConfigModule"/>
 
     </application>

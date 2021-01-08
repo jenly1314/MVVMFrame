@@ -113,12 +113,22 @@ allprojects {
 集成步骤代码示例 （示例出自于[app](app)中）
 
 Step.1 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
+
+Android Studio 4.x 以后版本
+```gradle
+buildFeatures{
+    dataBinding = true
+}
+```
+
+Android Studio 4.x 以前版本
 ```gradle
 dataBinding {
     enabled true
 }
 
 ```
+
 
 Step.2 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
 ```gradle
@@ -172,7 +182,7 @@ public class AppConfigModule extends FrameConfigModule {
 Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 ```xml
 <!-- MVVMFrame 全局配置 -->
-<meta-data android:name="com.king.mvvmframe.app.config.AppConfigModule"
+<meta-data android:name="com.king.mvvmframe.config.AppConfigModule"
            android:value="FrameConfigModule"/>
 ```
 

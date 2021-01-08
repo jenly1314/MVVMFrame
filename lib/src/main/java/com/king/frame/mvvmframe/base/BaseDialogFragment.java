@@ -22,8 +22,7 @@ import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import javax.inject.Inject;
-
+import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,39 +34,38 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasAndroidInjector;
-import dagger.android.support.AndroidSupportInjection;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 
 /**
+ * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ *
+ * 如果您继承使用了BaseDialogFragment或其子类，你需要参照如下方式添加@AndroidEntryPoint注解
+ *
+ * @example Fragment
+ * //-------------------------
+ *    @AndroidEntryPoint
+ *    public class YourFragment extends BaseDialogFragment {
+ *
+ *    }
+ * //-------------------------
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends DialogFragment implements IView<VM>, BaseNavigator, HasAndroidInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Object> mAndroidInjector;
-
-    @Inject
-    ViewModelProvider.Factory mViewModelFactory;
+public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends DialogFragment implements IView<VM>, BaseNavigator {
 
     /**
      * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
      */
-    @Deprecated
-    protected VM mViewModel;
+    private VM mViewModel;
     /**
      * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
      */
-    @Deprecated
-    protected VDB mBinding;
+    private VDB mBinding;
     /**
      * 请通过 {@link #getRootView()} ()}获取，后续版本 {@link #mRootView}可能会私有化
      */
-    @Deprecated
-    protected View mRootView;
+    private View mRootView;
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
@@ -75,8 +73,6 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     @Override
     public void onAttach(Context context) {
-        //Dagger.Android Fragment 注入
-        AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
 
@@ -135,19 +131,19 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         return mRootView;
     }
 
+    public <T extends View> T findViewById(@IdRes int id) {
+        return getRootView().findViewById(id);
+    }
+
     /**
      * 初始化 {@link #mViewModel}
      */
     private void initViewModel(){
         mViewModel = createViewModel();
-        if (mViewModel == null) {
-            mViewModel = obtainViewModel(getVMClass());
-        }
-
         if(mViewModel != null){
             getLifecycle().addObserver(mViewModel);
+            registerLoadingEvent();
         }
-        registerLoadingEvent();
     }
 
     private Class<VM> getVMClass(){
@@ -186,11 +182,6 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         }
 
         return null;
-    }
-
-    @Override
-    public AndroidInjector<Object> androidInjector() {
-        return mAndroidInjector;
     }
 
     @Override
@@ -271,7 +262,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
      */
     @Override
     public VM createViewModel(){
-        return null;
+        return obtainViewModel(getVMClass());
     }
 
     /**
@@ -291,24 +282,13 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     /**
-     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
+     * 通过 {@link #createViewModelProvider(ViewModelStoreOwner)}获得 ViewModel
      * @param modelClass
      * @param <T>
      * @return
      */
     public <T extends ViewModel> T obtainViewModel(@NonNull Class<T> modelClass){
-        return obtainViewModel(getViewModelStore(),modelClass);
-    }
-
-    /**
-     * 通过 {@link ViewModelProvider.Factory}获得 ViewModel
-     * @param store
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    public <T extends ViewModel> T obtainViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
-        return createViewModelProvider(store).get(modelClass);
+        return createViewModelProvider(this).get(modelClass);
     }
 
     /**
@@ -323,28 +303,12 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     /**
-     * @deprecated 请使用 {@link #obtainViewModel(ViewModelStore, Class)}
-     * @param store
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    @Deprecated
-    public <T extends ViewModel> T getViewModel(@NonNull ViewModelStore store,@NonNull Class<T> modelClass){
-        return obtainViewModel(store,modelClass);
-    }
-
-    /**
      * 创建 {@link ViewModelProvider}
-     * @param store
+     * @param owner
      * @return
      */
-    private ViewModelProvider createViewModelProvider(@NonNull ViewModelStore store){
-        return new ViewModelProvider(store,mViewModelFactory);
-    }
-
-    protected ViewModelProvider.Factory getViewModelFactory(){
-        return mViewModelFactory;
+    private ViewModelProvider createViewModelProvider(@NonNull ViewModelStoreOwner owner){
+        return new ViewModelProvider(owner);
     }
 
     //---------------------------------------

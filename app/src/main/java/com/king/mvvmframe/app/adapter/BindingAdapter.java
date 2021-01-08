@@ -14,7 +14,7 @@ import androidx.databinding.ViewDataBinding;
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class BindingAdapter<T,VDB extends ViewDataBinding> extends BaseRecyclerAdapter<T,BindingHolder<VDB>> {
+public class BindingAdapter<T> extends BaseRecyclerAdapter<T,BindingHolder<ViewDataBinding>> {
 
     public BindingAdapter(Context context, int layoutId) {
         super(context, layoutId);
@@ -25,10 +25,11 @@ public class BindingAdapter<T,VDB extends ViewDataBinding> extends BaseRecyclerA
     }
 
     @Override
-    public void bindViewDatas(BindingHolder<VDB> holder, T item, int position) {
-
-        holder.mBinding.setVariable(BR.data,item);
-        holder.mBinding.executePendingBindings();
+    public void bindViewDatas(BindingHolder<ViewDataBinding> holder, T item, int position) {
+        if(holder.mBinding != null){
+            holder.mBinding.setVariable(BR.data,item);
+            holder.mBinding.executePendingBindings();
+        }
     }
 
     public T getItem(int position) {

@@ -1,15 +1,18 @@
 package com.king.mvvmframe.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class Result<T> {
 
-
+    @SerializedName("error_code")
     private int code;
 
     private String message;
 
+    @SerializedName("result")
     private T data;
 
     public int getCode() {

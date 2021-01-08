@@ -7,10 +7,9 @@ import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.SingleLiveEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
-import javax.inject.Inject;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
@@ -26,8 +25,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     /**
      * 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
      */
-    @Deprecated
-    protected M mModel;
+    private M mModel;
 
     /**
      * 消息事件
@@ -48,10 +46,24 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
      */
     private SingleLiveEvent<Message> mSingleLiveEvent  = new SingleLiveEvent<>();
 
-    @Inject
+    /**
+     * 继承者都将使用此构造
+     * @param application
+     * @param model
+     */
     public BaseViewModel(@NonNull Application application, M model) {
         super(application);
         this.mModel = model;
+    }
+
+    /**
+     * 特殊构造，仅供内部使用
+     * 为了满足@ViewModelInject注解
+     * @param application
+     */
+    @ViewModelInject
+    BaseViewModel(@NonNull Application application) {
+        super(application);
     }
 
     @Override

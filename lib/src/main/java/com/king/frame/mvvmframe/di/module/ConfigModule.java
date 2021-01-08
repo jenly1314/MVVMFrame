@@ -1,9 +1,16 @@
 package com.king.frame.mvvmframe.di.module;
 
 
+import android.content.Context;
+import android.util.Log;
+
 import com.king.frame.mvvmframe.config.AppliesOptions;
+import com.king.frame.mvvmframe.config.FrameConfigModule;
+import com.king.frame.mvvmframe.config.ManifestParser;
 import com.king.frame.mvvmframe.util.Preconditions;
 import com.king.retrofit.retrofithelper.RetrofitHelper;
+
+import java.util.List;
 
 import javax.inject.Singleton;
 
@@ -12,90 +19,95 @@ import androidx.annotation.Nullable;
 import androidx.room.RoomDatabase;
 import dagger.Module;
 import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 import okhttp3.HttpUrl;
+import timber.log.Timber;
 
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@InstallIn(SingletonComponent.class)
 @Module
 public class ConfigModule {
 
-    private HttpUrl mBaseUrl;
 
-    private AppliesOptions.RetrofitOptions mRetrofitOptions;
-
-    private AppliesOptions.OkHttpClientOptions mOkHttpClientOptions;
-
-    private AppliesOptions.GsonOptions mGsonOptions;
-
-    private AppliesOptions.InterceptorConfigOptions mInterceptorConfigOptions;
-
-    private AppliesOptions.RoomDatabaseOptions mRoomDatabaseOptions;
-
-    private ConfigModule(Builder builder){
-        this.mBaseUrl = builder.baseUrl;
-        this.mRetrofitOptions = builder.retrofitOptions;
-        this.mOkHttpClientOptions = builder.okHttpClientOptions;
-        this.mGsonOptions = builder.gsonOptions;
-        this.mInterceptorConfigOptions = builder.interceptorConfigOptions;
-        this.mRoomDatabaseOptions = builder.roomDatabaseOptions;
-    }
+//    private ConfigModule(Builder builder){
+//        this.mBaseUrl = builder.baseUrl;
+//        this.mRetrofitOptions = builder.retrofitOptions;
+//        this.mOkHttpClientOptions = builder.okHttpClientOptions;
+//        this.mGsonOptions = builder.gsonOptions;
+//        this.mInterceptorConfigOptions = builder.interceptorConfigOptions;
+//        this.mRoomDatabaseOptions = builder.roomDatabaseOptions;
+//    }
 
     @Singleton
     @Provides
-    HttpUrl provideBaseUrl(){
-        if(mBaseUrl == null){//如果 mBaseUrl 为空表示没有在自定义配置 FrameConfigModule 中配过 BaseUrl
+    HttpUrl provideBaseUrl(@NonNull Builder builder){
+        HttpUrl baseUrl = builder.baseUrl;
+        if(baseUrl == null){//如果 mBaseUrl 为空表示没有在自定义配置 FrameConfigModule 中配过 BaseUrl
             //尝试去 RetrofitHelper 中取一次 BaseUrl，这里相当于多支持一种配置 BaseUrl 的方式
-            mBaseUrl = RetrofitHelper.getInstance().getBaseUrl();
+            baseUrl = RetrofitHelper.getInstance().getBaseUrl();
         }
         //再次检测 mBaseUrl 是否为空，如果依旧为空，表示两种配置方式都没有配置过，则直接抛出异常
-        Preconditions.checkNotNull(mBaseUrl,"Base URL required.");
-        return mBaseUrl;
+        Preconditions.checkNotNull(baseUrl,"Base URL required.");
+        return baseUrl;
     }
 
     @Singleton
     @Provides
     @Nullable
-    AppliesOptions.RetrofitOptions provideRetrofitOptions(){
-        return mRetrofitOptions;
+    AppliesOptions.RetrofitOptions provideRetrofitOptions(@NonNull Builder builder){
+        return builder.retrofitOptions;
     }
 
     @Singleton
     @Provides
     @Nullable
-    AppliesOptions.OkHttpClientOptions provideOkHttpClientOptions(){
-        return mOkHttpClientOptions;
+    AppliesOptions.OkHttpClientOptions provideOkHttpClientOptions(@NonNull Builder builder){
+        return builder.okHttpClientOptions;
     }
 
     @Singleton
     @Provides
     @Nullable
-    AppliesOptions.GsonOptions provideGsonOptions(){
-        return mGsonOptions;
+    AppliesOptions.GsonOptions provideGsonOptions(@NonNull Builder builder){
+        return builder.gsonOptions;
     }
 
     @Singleton
     @Provides
     @Nullable
-    AppliesOptions.InterceptorConfigOptions provideInterceptorConfigOptions(){
-        return mInterceptorConfigOptions;
+    AppliesOptions.InterceptorConfigOptions provideInterceptorConfigOptions(@NonNull Builder builder){
+        return builder.interceptorConfigOptions;
     }
 
     @Singleton
     @Provides
-    AppliesOptions.RoomDatabaseOptions provideRoomDatabaseOptions(){
-        if(mRoomDatabaseOptions == null){
-            mRoomDatabaseOptions = new AppliesOptions.RoomDatabaseOptions() {
-                @Override
-                public void applyOptions(RoomDatabase.Builder builder) {
-
-                }
-            };
+    AppliesOptions.RoomDatabaseOptions provideRoomDatabaseOptions(@NonNull Builder builder){
+        if(builder.roomDatabaseOptions != null){
+            return builder.roomDatabaseOptions;
         }
-        return mRoomDatabaseOptions;
+        return it -> {};
     }
 
+    @Singleton
+    @Provides
+    Builder provideConfigModuleBuilder(@ApplicationContext Context context){
+        ConfigModule.Builder builder = new ConfigModule.Builder();
+        //解析配置
+        List<FrameConfigModule> modules = new ManifestParser(context).parse();
+        //遍历配置
+        for (FrameConfigModule configModule: modules){
+            //如果启用则申请配置参数
+            if(configModule.isManifestParsingEnabled()){
+                configModule.applyOptions(context,builder);
+            }
+        }
+        return builder;
+    }
 
     public static final class Builder {
 
@@ -150,9 +162,6 @@ public class ConfigModule {
             return this;
         }
 
-        public ConfigModule build(){
-            return new ConfigModule(this);
-        }
     }
 
 

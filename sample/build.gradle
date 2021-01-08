@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion build_versions.compileSdk
@@ -21,8 +22,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures{
+        dataBinding = true
     }
 
     compileOptions {
@@ -43,30 +44,29 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.android_junit
     androidTestImplementation deps.test.test
-    androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
     implementation deps.appcompat
     implementation deps.recyclerview
     implementation deps.constraintlayout
 
-    //dagger
-    annotationProcessor deps.dagger.android_processor
-    annotationProcessor deps.dagger.compiler
-
-    //room
-    implementation deps.room.rxjava2
-    annotationProcessor deps.room.compiler
-
-    implementation deps.jenly.base_util
-    implementation deps.jenly.base_adapter
-
     implementation deps.logger
-
-    implementation deps.flowlayout
 
     //leakCanary
     debugImplementation deps.leakcanary.debug
 
+
+    //room
+    annotationProcessor deps.room.compiler
+    //hilt
+    implementation deps.hilt.hilt_android
+    annotationProcessor  deps.hilt.hilt_android_compiler
+
+    implementation deps.hilt.hilt_viewmodel
+    annotationProcessor  deps.hilt.hilt_compiler
+
     implementation project(':lib')
+
+
+
 }

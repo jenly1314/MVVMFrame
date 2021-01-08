@@ -6,6 +6,5 @@
         android:orderInCategory="100"
         android:title="搜索"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 </menu>

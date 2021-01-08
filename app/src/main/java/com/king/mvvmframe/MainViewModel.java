@@ -1,20 +1,19 @@
 package com.king.mvvmframe;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
-import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import com.king.frame.mvvmframe.http.callback.ApiCallback;
 import com.king.mvvmframe.api.ApiService;
-import com.king.mvvmframe.bean.PoetryInfo;
 
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 
@@ -25,13 +24,14 @@ public class MainViewModel extends DataViewModel {
 
     private MutableLiveData<List<Map<String,Object>>> liveDataCities = new MutableLiveData<>();
 
-    @Inject
+    @ViewModelInject
     public MainViewModel(@NonNull Application application, BaseModel model) {
         super(application, model);
     }
 
 
     public void getHotCities(){
+        Log.d("JENLY","getHotCities");
         showLoading();
         getRetrofitService(ApiService.class).getHotCities().enqueue(new ApiCallback<List<Map<String, Object>>>() {
             @Override

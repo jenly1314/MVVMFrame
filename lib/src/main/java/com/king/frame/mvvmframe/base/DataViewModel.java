@@ -7,8 +7,10 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import dagger.hilt.android.scopes.ActivityRetainedScoped;
 
 /**
  * 默认提供{@link BaseModel#getRetrofitService}的功能，当ViewModel和Model数据比较简单时可使用本类，弱化Model层。
@@ -17,7 +19,7 @@ import androidx.room.RoomDatabase;
  */
 public class DataViewModel extends BaseViewModel<BaseModel> {
 
-    @Inject
+    @ViewModelInject
     public DataViewModel(@NonNull Application application, BaseModel model) {
         super(application, model);
     }
