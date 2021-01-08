@@ -2,7 +2,6 @@ package com.king.frame.mvvmframe.di.module;
 
 
 import android.content.Context;
-import android.util.Log;
 
 import com.king.frame.mvvmframe.config.AppliesOptions;
 import com.king.frame.mvvmframe.config.FrameConfigModule;
@@ -23,7 +22,6 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import okhttp3.HttpUrl;
-import timber.log.Timber;
 
 
 /**
@@ -33,15 +31,6 @@ import timber.log.Timber;
 @Module
 public class ConfigModule {
 
-
-//    private ConfigModule(Builder builder){
-//        this.mBaseUrl = builder.baseUrl;
-//        this.mRetrofitOptions = builder.retrofitOptions;
-//        this.mOkHttpClientOptions = builder.okHttpClientOptions;
-//        this.mGsonOptions = builder.gsonOptions;
-//        this.mInterceptorConfigOptions = builder.interceptorConfigOptions;
-//        this.mRoomDatabaseOptions = builder.roomDatabaseOptions;
-//    }
 
     @Singleton
     @Provides
