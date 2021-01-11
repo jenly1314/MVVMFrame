@@ -69,7 +69,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
 ### MVVMFrame引入的库（具体对应版本请查看 [Versions](versions.gradle)）
 ```gradle
- //appcompat
+    //appcompat
     compileOnly deps.appcompat
 
     //retrofit
@@ -191,7 +191,7 @@ Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义
 
 Step.5 关于Application
 
-[**2.x**](app)版本 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上**@HiltAndroidApp**注解，这是使用**Hilt**的一个必备前提。示例如下：
+[**2.x版本**](app) 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上**@HiltAndroidApp**注解，这是使用**Hilt**的一个必备前提。示例如下：
 ```java
    @HiltAndroidApp
    public class YourApplication extends Application {
@@ -199,7 +199,7 @@ Step.5 关于Application
    }
 ```
 
-[**1.x**](https://github.com/jenly1314/MVVMFrame/tree/androidx)版本 将你项目的Application继承MVVMFrame中的BaseApplication
+[**1.x版本**](https://github.com/jenly1314/MVVMFrame/tree/androidx) 将你项目的 **Application** 继承MVVMFrame中的 **BaseApplication**
 ```java
 /**
  *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
@@ -236,16 +236,22 @@ public class App extends BaseApplication {
 
 **Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
-之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过**@ContributesAndroidInjector**来通过生成简化一部分代码，但是感觉还不够彻底。因为**Component**层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
+之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
 
 **Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始，
 
 **Hilt** 一共支持 **6** 个入口点，分别是：
+
 **Application**
+
 **Activity**
+
 **Fragment**
+
 **View**
+
 **Service**
+
 **BroadcastReceiver**
 
 其中，只有 **Application** 这个入口点是使用 **@HiltAndroidApp** 注解来声明，示例如下
