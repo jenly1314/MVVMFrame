@@ -49,9 +49,27 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
-最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
-    
+**v2.x** 最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
+
+你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件路径：
 ```gradle
+buildscript {
+    ...
+    dependencies {
+        ...
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltAndroid"
+    }
+}
+```
+接下来，在 **app/build.gradle** 文件中，引入 **Hilt** 的插件和相关依赖：
+
+```gradle
+...
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies{
+    ...
+
     //AndroidX ------------------ MVVMFrame v2.0.0
     //room
     annotationProcessor "androidx.room:room-compiler:$versions.room"
@@ -61,27 +79,40 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
     annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
+}
 
 ```
 
-**v1.x**以前版本
+**v1.x** 以前版本，建议[查看分支版本](https://github.com/jenly1314/MVVMFrame/tree/androidx)
 
+在 **app/build.gradle** 文件中引入 **Dagger** 和 **Room** 相关依赖：
 ```gradle
+
+dependencies{
+    ...
+
     //AndroidX ------------------ MVVMFrame v1.1.4
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
     //room
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
+}
 
 ```
+
 ```gradle
+
+dependencies{
+    ...
+
     // Android Support ------------------ MVVMFrame v1.0.2
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
     //room
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+}
 
 ```
 
@@ -133,7 +164,7 @@ allprojects {
 
 集成步骤代码示例 （示例出自于[app](app)中）
 
-Step.1 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
+**Step.1** 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
 
 Android Studio 4.x 以后版本
 ```gradle
@@ -151,7 +182,7 @@ dataBinding {
 ```
 
 
-Step.2 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
+**Step.2** 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
 ```gradle
 compileOptions {
     targetCompatibility JavaVersion.VERSION_1_8
@@ -160,7 +191,7 @@ compileOptions {
 
 ```
 
-Step.3 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+**Step.3** 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 ```java
 /**
  * 自定义全局配置
@@ -200,16 +231,16 @@ public class AppConfigModule extends FrameConfigModule {
 }
 ```
 
-Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+**Step.4** 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 ```xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.config.AppConfigModule"
            android:value="FrameConfigModule"/>
 ```
 
-Step.5 关于Application
+**Step.5** 关于Application
 
-[**2.x版本**](app) 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上**@HiltAndroidApp**注解，这是使用**Hilt**的一个必备前提。示例如下：
+[**2.x版本**](app) 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上 **@HiltAndroidApp** 注解，这是使用**Hilt**的一个必备前提。示例如下：
 ```java
    @HiltAndroidApp
    public class YourApplication extends Application {
