@@ -48,7 +48,9 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 ### **Dagger**和 **Room** 的相关注解处理器
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
-
+   
+   如果你的项目使用的是 **Kotlin**，记得加上 **kotlin-kapt** 插件，并需使用 **kapt** 替代 **annotationProcessor** 
+   
 #### **v2.x** 最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
 
 你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件路径：
