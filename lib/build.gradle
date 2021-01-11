@@ -79,13 +79,7 @@ dependencies {
     api deps.room.runtime
     annotationProcessor deps.room.compiler
 
-    //dagger
-//    api deps.dagger.dagger
-//    api deps.dagger.android
-//    api deps.dagger.android_support
-//    annotationProcessor deps.dagger.android_processor
-//    annotationProcessor deps.dagger.compiler
-
+    //hilt
     compileOnly deps.hilt.hilt_android
     annotationProcessor  deps.hilt.hilt_android_compiler
 

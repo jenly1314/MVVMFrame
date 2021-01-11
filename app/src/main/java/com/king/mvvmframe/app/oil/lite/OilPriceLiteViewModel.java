@@ -51,21 +51,21 @@ public class OilPriceLiteViewModel extends DataViewModel {
                     public void onResponse(Call<Result<List<OilPrice>>> call, Result<List<OilPrice>> result) {
                         if (result != null) {
                             if(result.isSuccess()){//成功
-                                postUpdateStatus(StatusEvent.Status.SUCCESS);
+                                updateStatus(StatusEvent.Status.SUCCESS,true);
                                 oilLiveData.postValue(result.getData());
                                 return;
                             }
-                            postMessage(result.getMessage());
+                            sendMessage(result.getMessage(),true);
                         }else{
-                            postMessage(R.string.result_failure);
+                            sendMessage(R.string.result_failure,true);
                         }
-                        postUpdateStatus(StatusEvent.Status.FAILURE);
+                        sendMessage(StatusEvent.Status.FAILURE, true);
                     }
 
                     @Override
                     public void onError(Call<Result<List<OilPrice>>> call, Throwable t) {
-                        postUpdateStatus(StatusEvent.Status.ERROR);
-                        postMessage(t.getMessage());
+                        updateStatus(StatusEvent.Status.ERROR,true);
+                        sendMessage(t.getMessage(), true);
                     }
                 });
     }

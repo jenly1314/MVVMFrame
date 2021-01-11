@@ -32,7 +32,7 @@ public class AppConfigModule extends FrameConfigModule {
          * >
          * >> 一般场景：对于只使用单个不变的 BaseUrl的
          * >>>     场景1:如果本库的默认已满足你的需求，无需额外自定义配置的。
-         * >          选择：建议你直接使用 {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来初始化 BaseUrl，切记在框架配置初始化之前，即你的 {@link Application#onCreate()}的父类onCreate之前设置。
+         * >          选择：建议你直接使用 {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来初始化 BaseUrl，切记在框架配置初始化 BaseUrl之前，建议在你自定义的 {@link Application#onCreate()}中初始化。
          * >
          * >>>     场景2:如果本库的默认配置不满足你的需求，你需要自定义一些配置的。（比如需要使用 RxJava相关）
          * >          选择：建议你在自定义配置中通过 {@link ConfigModule.Builder#baseUrl(String)} 来初始化 BaseUrl。

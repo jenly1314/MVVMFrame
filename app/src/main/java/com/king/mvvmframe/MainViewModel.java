@@ -39,15 +39,15 @@ public class MainViewModel extends DataViewModel {
                 if (result != null) {
                     liveDataCities.postValue(result);
                 }else{
-                    postMessage(R.string.result_failure);
+                    sendMessage(R.string.result_failure,true);
                 }
-                postHideLoading();
+                hideLoading(true);
             }
 
             @Override
             public void onError(Call<List<Map<String, Object>>> call, Throwable t) {
-                postMessage(t.getMessage());
-                postHideLoading();
+                sendMessage(t.getMessage(),true);
+                hideLoading(true);
             }
         });
     }

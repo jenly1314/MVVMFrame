@@ -15,7 +15,7 @@ import timber.log.Timber;
 /**
  * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
  *
- * 你需要参照如下方式添加@AndroidEntryPoint注解
+ * 你需要参照如下方式添加@HiltAndroidApp注解
  *
  * @example Application
  * //-------------------------

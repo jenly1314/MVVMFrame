@@ -69,13 +69,16 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
 ### MVVMFrame引入的库（具体对应版本请查看 [Versions](versions.gradle)）
 ```gradle
-    //appcompat
+ //appcompat
     compileOnly deps.appcompat
 
     //retrofit
     api deps.retrofit.retrofit
     api deps.retrofit.gson
     api deps.retrofit.converter_gson
+
+    //retrofit-helper
+    api deps.jenly.retrofit_helper
 
     //lifecycle
     api deps.lifecycle.runtime
@@ -86,12 +89,12 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
     api deps.room.runtime
     annotationProcessor deps.room.compiler
 
-    //dagger
-    api deps.dagger.dagger
-    api deps.dagger.android
-    api deps.dagger.android_support
-    annotationProcessor deps.dagger.android_processor
-    annotationProcessor deps.dagger.compiler
+    //hilt
+    compileOnly deps.hilt.hilt_android
+    annotationProcessor  deps.hilt.hilt_android_compiler
+
+    compileOnly deps.hilt.hilt_viewmodel
+    annotationProcessor  deps.hilt.hilt_compiler
 
     //log
     api deps.timber
@@ -186,7 +189,17 @@ Step.4 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义
            android:value="FrameConfigModule"/>
 ```
 
-Step.5 用你项目的Application继承MVVMFrame中的BaseApplication
+Step.5 关于Application
+
+[**2.x**](app)版本 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上**@HiltAndroidApp**注解，这是使用**Hilt**的一个必备前提。示例如下：
+```java
+   @HiltAndroidApp
+   public class YourApplication extends Application {
+
+   }
+```
+
+[**1.x**](https://github.com/jenly1314/MVVMFrame/tree/androidx)版本 将你项目的Application继承MVVMFrame中的BaseApplication
 ```java
 /**
  *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
@@ -219,6 +232,66 @@ public class App extends BaseApplication {
 
 ## 其他
 
+### 关于使用 **Hilt**
+
+**Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
+
+之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过**@ContributesAndroidInjector**来通过生成简化一部分代码，但是感觉还不够彻底。因为**Component**层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
+
+**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始，
+
+**Hilt** 一共支持 **6** 个入口点，分别是：
+**Application**
+**Activity**
+**Fragment**
+**View**
+**Service**
+**BroadcastReceiver**
+
+其中，只有 **Application** 这个入口点是使用 **@HiltAndroidApp** 注解来声明，示例如下
+
+**Application** 示例
+```java
+   @HiltAndroidApp
+   public class YourApplication extends Application {
+
+   }
+```
+
+其他的所有入口点，都是用 **@AndroidEntryPoint** 注解来声明，示例如下
+
+**Activity** 示例
+```java
+   @AndroidEntryPoint
+   public class YourActivity extends BaseActivity {
+
+   }
+```
+
+**Fragment** 示例
+```java
+   @AndroidEntryPoint
+   public class YourFragment extends BaseFragment {
+
+   }
+```
+
+**Service** 示例
+```java
+   @AndroidEntryPoint
+   public class YourService extends BaseService {
+
+   }
+```
+
+**BroadcastReceiver** 示例
+```java
+   @AndroidEntryPoint
+   public class YourBroadcastReceiver extends BaseBroadcastReceiver {
+
+   }
+```
+
 ### 关于使用 **Dagger**
 
 之所以特意说 **Dagger** 是因为**Dagger**的学习曲线相对陡峭一点，没那么容易理解。
@@ -230,7 +303,7 @@ public class App extends BaseApplication {
 > 如果你对 **Dagger** 并不熟悉，其实也是可以用的，因为使用 **Dagger** 全局注入主要都已经封装好了。你只需参照**Demo** 中的示例，照葫芦画瓢。
 > 主要关注一些继承了**BaseActivity**，**BaseFragment**，**BaseViewModel**等相关类即可。
 
-这里列一些主要的通用注入参照示例：
+这里列一些主要的通用注入参照示例：（下面**Dagger**相关的示例仅适用于**v1.x**版本，因为**v2.x**已基于**Hilt**编写，简化了**Dagger**依赖注入桥接层相关逻辑）
 
 直接或间接继承了 **BaseActivity** 的配置示例：
 ```java
@@ -333,7 +406,7 @@ public interface ApplicationComponent {
 >
 >> 一般场景：对于只使用单个不变的 BaseUrl的
 >>>     场景1:如果本库的默认已满足你的需求，无需额外自定义配置的。
->          选择：建议你直接使用 {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来初始化 BaseUrl，切记在框架配置初始化之前，即你的 {@link Application#onCreate()}的父类onCreate之前设置。
+>          选择：建议你直接使用 {@link RetrofitHelper#setBaseUrl(String)} 或 {@link RetrofitHelper#setBaseUrl(HttpUrl)} 来初始化 BaseUrl，切记在框架配置初始化 BaseUrl之前，建议在你自定义的 {@link Application#onCreate()}中初始化。
 >
 >>>     场景2:如果本库的默认配置不满足你的需求，你需要自定义一些配置的。（比如需要使用 RxJava相关）
 >          选择：建议你在自定义配置中通过 {@link ConfigModule.Builder#baseUrl(String)} 来初始化 BaseUrl。
@@ -347,8 +420,6 @@ public interface ApplicationComponent {
 >
 
 
-
-[Kotlin Demo](https://github.com/jenly1314/KingWeather)
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
 
@@ -366,6 +437,9 @@ public interface ApplicationComponent {
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](lib/proguard-rules.pro)
 
 ## 版本记录
+
+#### v2.0.0：待发布...
+*  使用Hilt简化Dagger依赖注入用法
 
 #### v1.1.4：2020-12-14
 *  优化细节

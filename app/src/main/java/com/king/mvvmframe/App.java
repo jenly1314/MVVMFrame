@@ -1,12 +1,8 @@
 package com.king.mvvmframe;
 
 import android.app.Application;
-import android.content.Context;
 
-//import com.king.frame.mvvmframe.base.BaseApplication;
 import com.king.mvvmframe.app.Constants;
-//import com.king.mvvmframe.di.component.ApplicationComponent;
-//import com.king.mvvmframe.di.component.DaggerApplicationComponent;
 import com.king.retrofit.retrofithelper.RetrofitHelper;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -20,7 +16,7 @@ import timber.log.Timber;
 /**
  * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
  *
- * 你需要参照如下方式添加@AndroidEntryPoint注解
+ * 你需要参照如下方式添加@HiltAndroidApp注解
  *
  * @example Application
  * //-------------------------

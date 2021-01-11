@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint;
  *
  * //========================================================//
  *
- * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明的
+ * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明，示例如下
  *
  * @example Application
  * //-------------------------
@@ -37,7 +37,7 @@ import dagger.hilt.android.AndroidEntryPoint;
  *
  * //--------------------------------------------------------//
  *
- * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明
+ * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明，示例如下
  *
  * @example Activity
  * //-------------------------

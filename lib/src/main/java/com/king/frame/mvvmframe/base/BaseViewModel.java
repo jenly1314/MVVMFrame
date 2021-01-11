@@ -7,12 +7,14 @@ import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.SingleLiveEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 
@@ -20,7 +22,8 @@ import androidx.lifecycle.Observer;
  * 标准MVVM模式中的VM (ViewModel)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel,ILoading{
+public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel {
+
 
     /**
      * 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
@@ -153,154 +156,193 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     /**
-     * 同步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
+     * @param msgId 资源文件id
+     */
+    @MainThread
+    public void sendMessage(@StringRes int msgId) {
+        sendMessage(msgId,false);
+    }
+
+    /**
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
+     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
+     * 也可通过观察{@link #getMessageEvent()}接收消息事件
+     * @param msgId 资源文件id
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
+     */
+    public void sendMessage(@StringRes int msgId, boolean post) {
+        sendMessage(getApplication().getString(msgId),post);
+    }
+
+    /**
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
      * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
      * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
      * 也可通过观察{@link #getMessageEvent()}接收消息事件
      * @param message 消息内容
      */
+    @MainThread
     public void sendMessage(String message){
         mMessageEvent.setValue(message);
     }
 
     /**
-     * 同步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
-     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
-     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
-     * 也可通过观察{@link #getMessageEvent()}接收消息事件
-     * @param msgId 资源文件id
-     */
-    public void sendMessage(@StringRes int msgId) {
-        sendMessage(getApplication().getString(msgId));
-    }
-
-    /**
-     * 异步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
+     * 发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
      * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
      * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
      * 也可通过观察{@link #getMessageEvent()}接收消息事件
      * @param message 消息内容
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
      */
-    public void postMessage(String message){
-        mMessageEvent.postValue(message);
+    public void sendMessage(String message,boolean post){
+        if(post){
+            mMessageEvent.postValue(message);
+        }else{
+            mMessageEvent.setValue(message);
+        }
     }
 
-    /**
-     * 同步异步发送消息，通过注册{@link BaseActivity#registerMessageEvent(MessageEvent.MessageObserver)}或
-     * {@link BaseFragment#registerMessageEvent(MessageEvent.MessageObserver)} 或
-     * {@link BaseDialogFragment#registerMessageEvent(MessageEvent.MessageObserver)}接收消息事件，
-     * 也可通过观察{@link #getMessageEvent()}接收消息事件
-     * @param msgId 资源文件id
-     */
-    public void postMessage(@StringRes int msgId) {
-        postMessage(getApplication().getString(msgId));
-    }
 
     /**
-     * 同步更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * 更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
      * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
      * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件，
      * 也可通过观察{@link #getStatusEvent()}接收消息事件
      * @param status
      */
+    @MainThread
     public void updateStatus(@StatusEvent.Status int status){
-        mStatusEvent.setValue(status);
+        updateStatus(status,false);
     }
 
     /**
-     * 异步更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
+     * 更新状态，通过注册{@link BaseActivity#registerStatusEvent(StatusEvent.StatusObserver)}或
      * {@link BaseFragment#registerStatusEvent(StatusEvent.StatusObserver)} 或
      * {@link BaseDialogFragment#registerStatusEvent(StatusEvent.StatusObserver)}接收消息事件，
      * 也可通过观察{@link #getStatusEvent()}接收消息事件
      * @param status
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
      */
-    public void postUpdateStatus(@StatusEvent.Status int status){
-        mStatusEvent.postValue(status);
+    public void updateStatus(@StatusEvent.Status int status, boolean post){
+        if(post){
+            mStatusEvent.postValue(status);
+        }else{
+            mStatusEvent.setValue(status);
+        }
     }
 
     /**
-     * 同步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
-     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
-     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
-     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
-     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
-     * @param message
-     */
-    public void sendSingleLiveEvent(Message message){
-        mSingleLiveEvent.setValue(message);
-    }
-
-    /**
-     * 同步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
      * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
      * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
      * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
      * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
      * @param what
      */
+    @MainThread
     public void sendSingleLiveEvent(int what){
-        Message message = Message.obtain();
-        message.what = what;
-        mSingleLiveEvent.setValue(message);
+        sendSingleLiveEvent(what,false);
     }
 
     /**
-     * 异步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
+     * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
+     * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
+     * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
+     * @param what
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
+     */
+    public void sendSingleLiveEvent(int what, boolean post){
+        Message message = Message.obtain();
+        message.what = what;
+        sendSingleLiveEvent(message,post);
+    }
+
+    /**
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
      * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
      * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
      * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
      * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
      * @param message
      */
-    public void postSingleLiveEvent(Message message){
-        mSingleLiveEvent.postValue(message);
+    @MainThread
+    public void sendSingleLiveEvent(Message message){
+        sendSingleLiveEvent(message,false);
     }
 
     /**
-     * 异步发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
+     * 发送单个消息事件，消息为{@link Message}对象，可通过{@link Message#what}区分消息类型，用法与{@link Message}一致，
      * 通过注册{@link BaseActivity#registerSingleLiveEvent(Observer)}或
      * {@link BaseFragment#registerSingleLiveEvent(Observer)} 或
      * {@link BaseDialogFragment#registerSingleLiveEvent(Observer)}接收消息事件，
      * 也可通过观察{@link #getSingleLiveEvent()}接收消息事件
-     * @param what
+     * @param message
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
      */
-    public void postSingleLiveEvent(int what){
-        Message message = Message.obtain();
-        message.what = what;
-        mSingleLiveEvent.postValue(message);
+    public void sendSingleLiveEvent(Message message, boolean post){
+        if(post){
+            mSingleLiveEvent.postValue(message);
+        }else{
+            mSingleLiveEvent.setValue(message);
+        }
     }
 
     /**
      * 调用此类会同步通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
      * {@link BaseDialogFragment#showLoading()}
      */
-    @Override
+    @MainThread
     public void showLoading() {
-        mLoadingEvent.setValue(true);
+        showLoading(false);
+    }
+
+    /**
+     * 调用此类会同步通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
+     * {@link BaseDialogFragment#showLoading()}
+     */
+    public void showLoading(boolean post) {
+        if(post){
+            mLoadingEvent.postValue(true);
+        }else{
+            mLoadingEvent.setValue(true);
+        }
     }
 
     /**
      * 调用此类会同步通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
      * {@link BaseDialogFragment#hideLoading()}
      */
-    @Override
+    @MainThread
     public void hideLoading() {
-        mLoadingEvent.setValue(false);
+        hideLoading(false);
     }
 
-    /**
-     * 调用此类会异步通知执行{@link BaseActivity#showLoading()}或{@link BaseFragment#showLoading()}或
-     * {@link BaseDialogFragment#showLoading()}
-     */
-    public void postShowLoading() {
-        mLoadingEvent.postValue(true);
-    }
 
     /**
-     * 调用此类会异步通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
+     * 调用此类会同步通知执行{@link BaseActivity#hideLoading()}或{@link BaseFragment#hideLoading()}或
      * {@link BaseDialogFragment#hideLoading()}
+     * @param post 如果为{@code true}则可以在子线程调用，相当于调用{@link MutableLiveData#postValue(Object)}，
+     *             如果为{@code false} 相当于调用{@link MutableLiveData#setValue(Object)}
      */
-    public void postHideLoading() {
-        mLoadingEvent.postValue(false);
+    public void hideLoading(boolean post) {
+        if(post){
+            mLoadingEvent.postValue(false);
+        }else{
+            mLoadingEvent.setValue(false);
+        }
     }
+
+
 }

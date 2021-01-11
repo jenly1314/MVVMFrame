@@ -55,12 +55,12 @@ public class DictionaryViewModel extends BaseViewModel<DictionaryModel> {
                 dictionaryLiveData.postValue(resource.data);
             }else if(resource.isFailure()){//失败
                 if(!TextUtils.isEmpty(resource.message)){
-                    postMessage(resource.message);
+                    sendMessage(resource.message);
                 }else{
-                    postMessage(R.string.result_failure);
+                    sendMessage(R.string.result_failure);
                 }
             }else if(resource.isError()){
-                postMessage(resource.error.getMessage());
+                sendMessage(resource.error.getMessage());
             }
         });
     }
