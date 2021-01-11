@@ -17,8 +17,34 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-
 /**
+ * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ *
+ * 如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加@ViewModelInject注解
+ *
+ * @example BaseViewModel
+ * //-------------------------
+ *    public class YourViewModel extends BaseViewModel<YourModel> {
+ *        @ViewModelInject
+ *        public DataViewModel(@NonNull Application application, YourModel model) {
+ *            super(application, model);
+ *        }
+ *    }
+ * //-------------------------
+ *
+ * 如果您继承使用了BaseModel或其子类，你需要参照如下方式在构造函数上添加@Inject注解
+ *
+ * @example BaseModel
+ * //-------------------------
+ *    public class YourModel extends BaseModel {
+ *        @Inject
+ *        public BaseModel(IDataRepository dataRepository){
+ *            super(dataRepository);
+ *        }
+ *    }
+ * //-------------------------
+ *
+ *
  * 标准MVVM模式中的VM (ViewModel)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */

@@ -309,7 +309,7 @@ public class App extends BaseApplication {
 
 其中，只有 **Application** 这个入口点是使用 **@HiltAndroidApp** 注解来声明，示例如下
 
-**Application** 示例
+ **Application** 示例
 ```java
    @HiltAndroidApp
    public class YourApplication extends Application {
@@ -319,7 +319,7 @@ public class App extends BaseApplication {
 
 其他的所有入口点，都是用 **@AndroidEntryPoint** 注解来声明，示例如下
 
-**Activity** 示例
+ **Activity** 示例
 ```java
    @AndroidEntryPoint
    public class YourActivity extends BaseActivity {
@@ -327,7 +327,7 @@ public class App extends BaseApplication {
    }
 ```
 
-**Fragment** 示例
+ **Fragment** 示例
 ```java
    @AndroidEntryPoint
    public class YourFragment extends BaseFragment {
@@ -335,7 +335,7 @@ public class App extends BaseApplication {
    }
 ```
 
-**Service** 示例
+ **Service** 示例
 ```java
    @AndroidEntryPoint
    public class YourService extends BaseService {
@@ -343,13 +343,46 @@ public class App extends BaseApplication {
    }
 ```
 
-**BroadcastReceiver** 示例
+ **BroadcastReceiver** 示例
 ```java
    @AndroidEntryPoint
    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
 
    }
 ```
+
+### 其它示例
+
+ **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
+```java
+   public class YourViewModel extends BaseViewModel<YourModel> {
+       @ViewModelInject
+       public DataViewModel(@NonNull Application application, YourModel model) {
+           super(application, model);
+       }
+   }
+```
+
+ **DataViewModel** 示例 （如果您继承使用了DataViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
+```java
+   public class YourViewModel extends DataViewModel {
+       @ViewModelInject
+       public DataViewModel(@NonNull Application application, BaseModel model) {
+           super(application, model);
+       }
+   }
+```
+
+ **BaseModel** 示例 （如果您继承使用了BaseModel或其子类，你需要参照如下方式在构造函数上添加 **@Inject** 注解）
+```java
+   public class YourModel extends BaseModel {
+       @Inject
+       public BaseModel(IDataRepository dataRepository){
+           super(dataRepository);
+       }
+   }
+```
+
 
 ### 关于使用 **Dagger**
 
