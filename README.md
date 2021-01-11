@@ -45,9 +45,27 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 </dependency>
 ```
 
-### **Dagger**和 **Room** 的注解处理器
+### **Dagger**和 **Room** 的相关注解处理器
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
+
+最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
+    
+```gradle
+    //AndroidX ------------------ MVVMFrame v2.0.0
+    //room
+    annotationProcessor "androidx.room:room-compiler:$versions.room"
+    //hilt
+    implementation "com.google.dagger:hilt-android:$versions.hiltAndroid"
+    annotationProcessor "com.google.dagger:hilt-android-compiler:$versions.hiltAndroid"
+
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
+    annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
+
+```
+
+**v1.x**以前版本
+
 ```gradle
     //AndroidX ------------------ MVVMFrame v1.1.4
     //dagger
@@ -231,6 +249,10 @@ public class App extends BaseApplication {
 ```
 
 ## 其他
+
+### 关于v2.x
+
+因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看第五步，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
 
 ### 关于使用 **Hilt**
 
