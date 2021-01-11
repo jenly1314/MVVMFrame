@@ -49,7 +49,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
-**v2.x** 最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
+#### **v2.x** 最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
 
 你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件路径：
 ```gradle
@@ -83,7 +83,7 @@ dependencies{
 
 ```
 
-**v1.x** 以前版本，建议[查看分支版本](https://github.com/jenly1314/MVVMFrame/tree/androidx)
+#### **v1.x** 以前版本，建议[查看分支版本](https://github.com/jenly1314/MVVMFrame/tree/androidx)
 
 在 **app/build.gradle** 文件中引入 **Dagger** 和 **Room** 相关依赖：
 ```gradle
