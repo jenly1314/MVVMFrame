@@ -73,13 +73,20 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initContentView();
+        initViewModel();
+        initData(savedInstanceState);
+    }
+
+    /**
+     * 初始化ContentView，{@link #setContentView(int)} }
+     */
+    protected void initContentView(){
         if(isBinding()){
             mBinding = DataBindingUtil.setContentView(this,getLayoutId());
         }else{
             setContentView(getLayoutId());
         }
-        initViewModel();
-        initData(savedInstanceState);
     }
 
     /**
