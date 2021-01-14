@@ -55,7 +55,8 @@ dependencies {
     //leakCanary
     debugImplementation deps.leakcanary.debug
 
-
+    //lifecycle
+    annotationProcessor deps.lifecycle.compiler
     //room
     annotationProcessor deps.room.compiler
     //hilt

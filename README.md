@@ -48,8 +48,7 @@ implementation 'com.king.frame:mvvmframe:1.0.2'
 ### **Dagger**和 **Room** 的相关注解处理器
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
-   
-   如果你的项目使用的是 **Kotlin**，记得加上 **kotlin-kapt** 插件，并需使用 **kapt** 替代 **annotationProcessor** 
+  
    
 #### **v2.x** 最新版本（**$versions** 相关可查看[Versions](versions.gradle)）
 
@@ -73,7 +72,9 @@ dependencies{
     ...
 
     //AndroidX ------------------ MVVMFrame v2.0.0
-    //room
+    //lifecycle (非必须)
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+    //room (非必须)
     annotationProcessor "androidx.room:room-compiler:$versions.room"
     //hilt
     implementation "com.google.dagger:hilt-android:$versions.hiltAndroid"
@@ -97,7 +98,7 @@ dependencies{
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
-    //room
+    //room  (非必须)
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
 }
 
@@ -112,11 +113,12 @@ dependencies{
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
-    //room
+    //room  (非必须)
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 }
 
 ```
+ 如果你的项目使用的是 **Kotlin**，记得加上 **kotlin-kapt** 插件，并需使用 **kapt** 替代 **annotationProcessor** 
 
 ### MVVMFrame引入的库（具体对应版本请查看 [Versions](versions.gradle)）
 ```gradle

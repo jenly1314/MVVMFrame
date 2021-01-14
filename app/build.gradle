@@ -62,6 +62,8 @@ dependencies {
     implementation deps.jenly.base_util
     implementation deps.jenly.base_adapter
 
+    //lifecycle
+    annotationProcessor deps.lifecycle.compiler
     //room - Room Orm
     annotationProcessor deps.room.compiler
     //room.rxjava - Room配合RxJava线程调度使用

@@ -67,6 +67,8 @@ dependencies {
 
     implementation deps.logger
 
+    //lifecycle
+    kapt deps.lifecycle.compiler
     //room
     kapt deps.room.compiler
     //hilt

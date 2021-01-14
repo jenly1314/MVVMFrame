@@ -41,7 +41,7 @@ versions.espresso = "3.3.0"
 
 
 // Architecture Components dependencies
-versions.archLifecycle = "2.2.0"
+versions.lifecycle = "2.2.0"
 versions.room = "2.2.5"
 
 //dagger
@@ -108,9 +108,9 @@ deps.test = test
 
 //lifecycle
 def lifecycle = [:]
-lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.archLifecycle"
-lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.archLifecycle"
-lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.archLifecycle"
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
 //room
