@@ -176,11 +176,11 @@ deps.flowlayout = "com.hyman:flowlayout-lib:$versions.flowlayout"
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
-//    handler.google()
+    handler.google()
     handler.jcenter()
-//    handler.mavenCentral()
-    handler.maven { url "https://maven.aliyun.com/repository/google" }
-    handler.maven { url "https://maven.aliyun.com/repository/central" }
+    handler.mavenCentral()
+//    handler.maven { url "https://maven.aliyun.com/repository/google" }
+//    handler.maven { url "https://maven.aliyun.com/repository/central" }
 //    handler.maven { url "https://maven.aliyun.com/repository/public" }
 //    handler.maven { url "https://dl.bintray.com/jenly/maven" }
     handler.maven { url "https://jitpack.io" }
