@@ -3,7 +3,7 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
-[![JCenter](https://img.shields.io/badge/JCenter-1.1.4-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
+[![JCenter](https://img.shields.io/badge/JCenter-2.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
@@ -26,21 +26,21 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 <dependency>
   <groupId>com.king.frame</groupId>
   <artifactId>mvvmframe</artifactId>
-  <version>1.1.4</version>
+  <version>2.0.0</version>
   <type>pom</type>
 </dependency>
 ```
 ### Gradle:
 ```gradle
 //AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.4'
+implementation 'com.king.frame:mvvmframe:2.0.0'
 
 //Android Support版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
 ```
 ### Lvy:
 ```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='1.1.4'>
+<dependency org='com.king.frame' name='mvvmframe' rev='2.0.0'>
   <artifact name='$AID' ext='pom'></artifact>
 </dependency>
 ```
@@ -72,9 +72,9 @@ dependencies{
     ...
 
     //AndroidX ------------------ MVVMFrame v2.0.0
-    //lifecycle (非必须)
+    //lifecycle
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
-    //room (非必须)
+    //room
     annotationProcessor "androidx.room:room-compiler:$versions.room"
     //hilt
     implementation "com.google.dagger:hilt-android:$versions.hiltAndroid"
@@ -98,7 +98,7 @@ dependencies{
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
-    //room  (非必须)
+    //room 
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
 }
 
@@ -113,7 +113,7 @@ dependencies{
     //dagger
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
-    //room  (非必须)
+    //room
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 }
 
@@ -287,7 +287,7 @@ public class App extends BaseApplication {
 
 ### 关于v2.x
 
-因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看第五步，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
+因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看 **Step.5**，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
 
 ### 关于使用 **Hilt**
 
@@ -534,7 +534,7 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
-#### v2.0.0：待发布...
+#### v2.0.0：2021-1-15
 *  使用Hilt简化Dagger依赖注入用法
 
 #### v1.1.4：2020-12-14
