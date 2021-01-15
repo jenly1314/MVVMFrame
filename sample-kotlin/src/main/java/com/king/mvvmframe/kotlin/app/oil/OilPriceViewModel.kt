@@ -29,7 +29,7 @@ class OilPriceViewModel @ViewModelInject constructor(application: Application, m
                     .await()
 
             if(isSuccess(result)){
-                result?.data.let {
+                result?.data?.let {
                     oilLiveData.value = it
                 }
             }
