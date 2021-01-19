@@ -1,7 +1,6 @@
 package com.king.mvvmframe;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.king.frame.mvvmframe.base.BaseModel;
 import com.king.frame.mvvmframe.base.DataViewModel;
@@ -29,9 +28,7 @@ public class MainViewModel extends DataViewModel {
         super(application, model);
     }
 
-
     public void getHotCities(){
-        Log.d("JENLY","getHotCities");
         showLoading();
         getRetrofitService(ApiService.class).getHotCities().enqueue(new ApiCallback<List<Map<String, Object>>>() {
             @Override
