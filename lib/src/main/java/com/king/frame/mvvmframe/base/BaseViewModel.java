@@ -10,7 +10,6 @@ import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
@@ -20,12 +19,13 @@ import androidx.lifecycle.Observer;
 /**
  * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
  *
- * 如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加@ViewModelInject注解
+ * 如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加@HiltViewModel并在构造函数上添加@Inject注解
  *
  * @example BaseViewModel
  * //-------------------------
+ *    @HiltViewModel
  *    public class YourViewModel extends BaseViewModel<YourModel> {
- *        @ViewModelInject
+ *        @Inject
  *        public DataViewModel(@NonNull Application application, YourModel model) {
  *            super(application, model);
  *        }
@@ -83,16 +83,6 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     public BaseViewModel(@NonNull Application application, M model) {
         super(application);
         this.mModel = model;
-    }
-
-    /**
-     * 特殊构造，仅供内部使用
-     * 为了满足@ViewModelInject注解
-     * @param application
-     */
-    @ViewModelInject
-    BaseViewModel(@NonNull Application application) {
-        super(application);
     }
 
     @Override

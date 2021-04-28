@@ -3,24 +3,25 @@ package com.king.frame.mvvmframe.base;
 import android.app.Application;
 
 import java.lang.Class;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import dagger.hilt.android.scopes.ActivityRetainedScoped;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 
 /**
  * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
  *
- * 如果您继承使用了DataViewModel或其子类，你需要参照如下方式在构造函数上添加@ViewModelInject注解
+ * 如果您继承使用了DataViewModel或其子类，你需要参照如下方式在类上添加@HiltViewModel并在构造函数上添加@Inject注解
  *
  * @example DataViewModel
  * //-------------------------
+ *    @HiltViewModel
  *    public class YourViewModel extends DataViewModel {
- *        @ViewModelInject
+ *        @Inject
  *        public DataViewModel(@NonNull Application application, BaseModel model) {
  *            super(application, model);
  *        }
@@ -32,9 +33,10 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped;
  * 如果ViewModel或Model层里面逻辑比较复杂请尽量使用继承{@link BaseViewModel} 和{@link BaseModel}进行分层。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@HiltViewModel
 public class DataViewModel extends BaseViewModel<BaseModel> {
 
-    @ViewModelInject
+    @Inject
     public DataViewModel(@NonNull Application application, BaseModel model) {
         super(application, model);
     }

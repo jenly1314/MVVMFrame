@@ -69,11 +69,8 @@ dependencies {
     //room.rxjava - Room配合RxJava线程调度使用
     implementation deps.room.rxjava2
 
-    implementation deps.hilt.hilt_android
-    annotationProcessor  deps.hilt.hilt_android_compiler
-
-    implementation deps.hilt.hilt_viewmodel
-    annotationProcessor  deps.hilt.hilt_compiler
+    implementation deps.dagger.hilt_android
+    annotationProcessor  deps.dagger.hilt_android_compiler
 
     implementation project(':lib')
 }

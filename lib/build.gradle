@@ -80,11 +80,8 @@ dependencies {
     annotationProcessor deps.room.compiler
 
     //hilt
-    compileOnly deps.hilt.hilt_android
-    annotationProcessor  deps.hilt.hilt_android_compiler
-
-    compileOnly deps.hilt.hilt_viewmodel
-    annotationProcessor  deps.hilt.hilt_compiler
+    compileOnly deps.dagger.hilt_android
+    annotationProcessor  deps.dagger.hilt_android_compiler
 
     //log
     api deps.timber

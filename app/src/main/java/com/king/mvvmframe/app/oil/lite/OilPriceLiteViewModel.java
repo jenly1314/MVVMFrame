@@ -14,21 +14,24 @@ import com.king.mvvmframe.bean.Result;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import retrofit2.Call;
 
 /**
  * 精简版
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@HiltViewModel
 public class OilPriceLiteViewModel extends DataViewModel {
 
     private MutableLiveData<List<OilPrice>> oilLiveData = new MutableLiveData<>();
 
-    @ViewModelInject
+    @Inject
     public OilPriceLiteViewModel(@NonNull Application application, BaseModel model) {
         super(application, model);
     }

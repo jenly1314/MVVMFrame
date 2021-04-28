@@ -66,7 +66,7 @@ buildscript {
     ...
     dependencies {
         ...
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltAndroid"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHint"
     }
 }
 ```
@@ -79,17 +79,18 @@ apply plugin: 'dagger.hilt.android.plugin'
 dependencies{
     ...
 
-    //AndroidX ------------------ MVVMFrame v2.0.0
+    //AndroidX ------------------ MVVMFrame v2.x.x
     //lifecycle
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
     //room
     annotationProcessor "androidx.room:room-compiler:$versions.room"
     //hilt
-    implementation "com.google.dagger:hilt-android:$versions.hiltAndroid"
-    annotationProcessor "com.google.dagger:hilt-android-compiler:$versions.hiltAndroid"
+    implementation "com.google.dagger:hilt-android:$versions.daggerHint"
+    annotationProcessor "com.google.dagger:hilt-android-compiler:$versions.daggerHint"
 
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
-    annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
+//从2.1.0以后以移除
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
+//    annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
 }
 
 ```
@@ -151,8 +152,8 @@ dependencies{
     annotationProcessor deps.room.compiler
 
     //hilt
-    compileOnly deps.hilt.hilt_android
-    annotationProcessor  deps.hilt.hilt_android_compiler
+    compileOnly deps.dagger.hilt_android
+    annotationProcessor  deps.dagger.hilt_android_compiler
 
     compileOnly deps.hilt.hilt_viewmodel
     annotationProcessor  deps.hilt.hilt_compiler
@@ -301,7 +302,7 @@ public class App extends BaseApplication {
 
 **Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
-之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
+之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
 
 **Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始，
 
@@ -365,21 +366,12 @@ public class App extends BaseApplication {
 
 ### 其它示例
 
- **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
+ **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加**@HiltViewModel**并在构造函数上添加**@Inject**注解）
 ```java
+   @HiltViewModel
    public class YourViewModel extends BaseViewModel<YourModel> {
-       @ViewModelInject
+       @Inject
        public DataViewModel(@NonNull Application application, YourModel model) {
-           super(application, model);
-       }
-   }
-```
-
- **DataViewModel** 示例 （如果您继承使用了DataViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
-```java
-   public class YourViewModel extends DataViewModel {
-       @ViewModelInject
-       public DataViewModel(@NonNull Application application, BaseModel model) {
            super(application, model);
        }
    }
@@ -394,6 +386,19 @@ public class App extends BaseApplication {
        }
    }
 ```
+
+ 如果使用的是 v2.0.0 版本 （使用 **androidx.hilt:hilt-lifecycle-viewmodel** 的方式）
+
+ **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
+```java
+   public class YourViewModel extends BaseViewModel<YourModel> {
+       @ViewModelInject
+       public DataViewModel(@NonNull Application application, YourModel model) {
+           super(application, model);
+       }
+   }
+```
+
 
 
 ### 关于使用 **Dagger**
@@ -541,6 +546,13 @@ public interface ApplicationComponent {
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](lib/proguard-rules.pro)
 
 ## 版本记录
+
+#### v2.1.0：2021-4-28
+*  更新Hilt至v2.35
+*  移除androidx.hilt:hilt-lifecycle-viewmodel [移除原因请查看Dagger v2.34更新说明](https://github.com/google/dagger/releases)
+*  更新Lifecycle至v2.3.1
+*  更新Room至v2.3.0
+*  更新RetrofitHelper至v1.0.1
 
 #### v2.0.0：2021-1-15
 *  使用Hilt简化Dagger依赖注入用法

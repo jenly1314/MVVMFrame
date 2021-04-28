@@ -4,8 +4,9 @@ import com.king.mvvmframe.app.Constants;
 import com.king.mvvmframe.bean.DictionaryInfo;
 import com.king.mvvmframe.bean.OilPrice;
 import com.king.mvvmframe.bean.Result;
-import com.king.retrofit.retrofithelper.DomainName;
-import com.king.retrofit.retrofithelper.Timeout;
+import com.king.retrofit.retrofithelper.annotation.DomainName;
+import com.king.retrofit.retrofithelper.annotation.Timeout;
+
 
 import java.util.List;
 import java.util.Map;

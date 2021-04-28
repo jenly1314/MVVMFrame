@@ -10,22 +10,25 @@ import com.king.mvvmframe.bean.OilPrice;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 
 /**
  * 标准版
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@HiltViewModel
 public class OilPriceViewModel extends BaseViewModel<OilPriceModel> {
 
     private MediatorLiveData<List<OilPrice>> oilLiveData = new MediatorLiveData<>();
 
     private LiveData<Resource<List<OilPrice>>> source;
 
-    @ViewModelInject
+    @Inject
     public OilPriceViewModel(@NonNull Application application, OilPriceModel model) {
         super(application, model);
     }

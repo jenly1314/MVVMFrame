@@ -11,19 +11,22 @@ import java.util.List;
 import java.util.Map;
 
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import retrofit2.Call;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@HiltViewModel
 public class MainViewModel extends DataViewModel {
 
     private MutableLiveData<List<Map<String,Object>>> liveDataCities = new MutableLiveData<>();
 
-    @ViewModelInject
+    @Inject
     public MainViewModel(@NonNull Application application, BaseModel model) {
         super(application, model);
     }

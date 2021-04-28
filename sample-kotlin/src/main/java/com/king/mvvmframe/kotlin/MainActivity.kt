@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.king.frame.mvvmframe.base.BaseActivity
-import com.king.frame.mvvmframe.base.BaseModel
-import com.king.frame.mvvmframe.base.BaseViewModel
+import com.king.mvvmframe.kotlin.app.base.BaseViewModel
 import com.king.mvvmframe.kotlin.app.oil.OilPriceActivity
 import com.king.mvvmframe.kotlin.app.oil.OilPriceViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +79,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @AndroidEntryPoint
-class MainActivity : BaseActivity<BaseViewModel<BaseModel>,ViewDataBinding>() {
+class MainActivity : BaseActivity<BaseViewModel,ViewDataBinding>() {
 
     override fun getLayoutId(): Int {
         return R.layout.main_activity

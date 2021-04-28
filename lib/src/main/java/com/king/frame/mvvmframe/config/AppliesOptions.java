@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import com.king.frame.mvvmframe.di.module.ConfigModule;
 import com.king.frame.mvvmframe.http.InterceptorConfig;
 
-import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

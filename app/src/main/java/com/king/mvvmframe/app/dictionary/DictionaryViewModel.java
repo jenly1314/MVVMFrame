@@ -11,14 +11,17 @@ import com.king.mvvmframe.bean.SearchHistory;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+@HiltViewModel
 public class DictionaryViewModel extends BaseViewModel<DictionaryModel> {
 
     private MediatorLiveData<DictionaryInfo> dictionaryLiveData = new MediatorLiveData<>();
@@ -29,7 +32,7 @@ public class DictionaryViewModel extends BaseViewModel<DictionaryModel> {
 
     private LiveData<List<SearchHistory>> searchHistorySource;
 
-    @ViewModelInject
+    @Inject
     public DictionaryViewModel(@NonNull Application application, DictionaryModel model) {
         super(application, model);
     }

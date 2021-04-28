@@ -1,7 +1,6 @@
 package com.king.mvvmframe.kotlin.app.oil
 
 import android.os.Bundle
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.king.base.adapter.divider.DividerItemDecoration
@@ -10,14 +9,14 @@ import com.king.frame.mvvmframe.base.BaseActivity
 import com.king.mvvmframe.kotlin.R
 import com.king.mvvmframe.kotlin.app.adapter.BindingAdapter
 import com.king.mvvmframe.kotlin.bean.OilPrice
+import com.king.mvvmframe.kotlin.databinding.OilPriceActivityBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.oil_price_activity.*
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @AndroidEntryPoint
-class OilPriceActivity : BaseActivity<OilPriceViewModel,ViewDataBinding>() {
+class OilPriceActivity : BaseActivity<OilPriceViewModel,OilPriceActivityBinding>() {
 
     private val mAdapter by lazy { BindingAdapter<OilPrice>(context,R.layout.rv_oil_price_item) }
 
@@ -30,7 +29,7 @@ class OilPriceActivity : BaseActivity<OilPriceViewModel,ViewDataBinding>() {
             ToastUtils.showToast(this,it)
         }
 
-        with(recyclerView){
+        with(viewDataBinding.recyclerView){
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL,R.drawable.list_divider_8))
             adapter = mAdapter
@@ -45,12 +44,12 @@ class OilPriceActivity : BaseActivity<OilPriceViewModel,ViewDataBinding>() {
 
 
     override fun showLoading() {
-        if(!srl.isRefreshing){
-            srl.isRefreshing = true
+        if(!viewDataBinding.srl.isRefreshing){
+            viewDataBinding.srl.isRefreshing = true
         }
     }
 
     override fun hideLoading() {
-        srl.isRefreshing = false
+        viewDataBinding.srl.isRefreshing = false
     }
 }

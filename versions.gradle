@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 9
-app_version.versionName = "2.0.0"
+app_version.versionCode = 10
+app_version.versionName = "2.1.0"
 ext.app_version = app_version
 
 //build version
@@ -20,17 +20,17 @@ def versions = [:]
 versions.bintrayPublish = '1.0.0'
 
 versions.gralde = '4.1.1'
-versions.kotlin = "1.4.10"
+versions.kotlin = "1.4.32"
 versions.coreKtx = "1.3.2"
 
 versions.material = "1.2.1"
 versions.appcompat = "1.2.0"
 versions.swiperefreshlayout = "1.1.0"
-versions.recyclerview = "1.1.0"
+versions.recyclerview = "1.2.0"
 versions.constraintLayout = "2.0.4"
 
-versions.kotlinxCoroutines = "1.4.2"
-versions.lifecycleKtx="2.2.0"
+versions.kotlinxCoroutines = "1.4.3"
+versions.lifecycleKtx="2.3.1"
 
 //test
 versions.junit = "4.13"
@@ -41,30 +41,29 @@ versions.espresso = "3.3.0"
 
 
 // Architecture Components dependencies
-versions.lifecycle = "2.2.0"
-versions.room = "2.2.5"
+versions.lifecycle = "2.3.1"
+versions.lifecycleExtensions = "2.2.0"
+versions.room = "2.3.0"
 
 //dagger
-versions.dagger = "2.30.1"
+versions.dagger = "2.35"
 //hilt
-versions.hiltAndroid = "2.30.1-alpha"
-versions.hilt = "1.0.0-alpha02"
+versions.daggerHilt = "2.35"
+//versions.hilt = "1.0.0-alpha02"
 
 versions.retrofit = "2.9.0"
 versions.gson = "2.8.6"
 
 //jenly
 versions.base = "3.2.1-androidx"
-versions.appupdater = "1.0.8-androidx"
+versions.appupdater = "1.0.10-androidx"
 versions.neverCrash = "1.0.0"
-versions.retrofitHelper = "1.0.0"
+versions.retrofitHelper = "1.0.1"
 
 versions.timber = "4.7.1"
 versions.logger = "2.2.0"
 
-versions.leakcanary = "2.5"
-
-versions.leakcanaryNoOp = "1.6.3"
+versions.leakcanary = "2.7"
 
 versions.flowlayout = "1.1.2"
 
@@ -109,7 +108,7 @@ deps.test = test
 //lifecycle
 def lifecycle = [:]
 lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
-lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleExtensions"
 lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
@@ -128,16 +127,20 @@ dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dag
 dagger.android_processor = "com.google.dagger:dagger-android-processor:$versions.dagger"
 dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 
+
+dagger.hilt_android = "com.google.dagger:hilt-android:$versions.daggerHilt"
+dagger.hilt_android = "com.google.dagger:hilt-android:$versions.daggerHilt"
+//dagger.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.daggerHilt"
+dagger.hilt_android_compiler = "com.google.dagger:hilt-compiler:$versions.daggerHilt"
 deps.dagger = dagger
 
-def hilt = [:]
-hilt.hilt_android = "com.google.dagger:hilt-android:$versions.hiltAndroid"
-hilt.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.hiltAndroid"
 
-hilt.hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
-hilt.hilt_compiler = "androidx.hilt:hilt-compiler:$versions.hilt"
 
-deps.hilt = hilt
+//def hilt = [:]
+//hilt.hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
+//hilt.hilt_compiler = "androidx.hilt:hilt-compiler:$versions.hilt"
+//
+//deps.hilt = hilt
 
 //retrofit
 def retrofit = [:]
@@ -153,7 +156,7 @@ jenly.base_util = "com.king.base:util:$versions.base"
 jenly.app_updater = "com.king.app:app-updater:$versions.appupdater"
 jenly.app_dialog = "com.king.app:app-dialog:$versions.appupdater"
 jenly.nevercrash = "com.king.thread:nevercrash:$versions.neverCrash"
-jenly.retrofit_helper = "com.king.retrofit:retrofit-helper:$versions.retrofitHelper"
+jenly.retrofit_helper = "com.github.jenly1314:RetrofitHelper:$versions.retrofitHelper"
 deps.jenly = jenly
 
 //log
@@ -166,7 +169,6 @@ ext.deps = deps
 //leakcanary
 def leakcanary = [:]
 leakcanary.debug = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
-leakcanary.release = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanaryNoOp"
 deps.leakcanary = leakcanary
 
 //flowlayout

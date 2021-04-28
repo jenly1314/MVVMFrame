@@ -7,7 +7,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gralde"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltAndroid"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHilt"
 
 //        classpath 'com.novoda:bintray-release:0.9.2'
         classpath "com.github.panpf.bintray-publish:bintray-publish:$versions.bintrayPublish"
