@@ -366,7 +366,7 @@ public class App extends BaseApplication {
 
 ### 其它示例
 
- **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加**@HiltViewModel**并在构造函数上添加**@Inject**注解）
+ **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加 **@HiltViewModel** 并在构造函数上添加 **@Inject** 注解）
 ```java
    @HiltViewModel
    public class YourViewModel extends BaseViewModel<YourModel> {
