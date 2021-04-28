@@ -63,7 +63,7 @@ dependencies {
     implementation deps.dagger.hilt_android
     annotationProcessor  deps.dagger.hilt_android_compiler
 
-    implementation project(':lib')
+    implementation project(':mvvmframe')
 
 
 
