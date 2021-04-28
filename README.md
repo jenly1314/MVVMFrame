@@ -21,23 +21,38 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ## 引入
 
-### Maven：
-```maven
-<dependency>
-  <groupId>com.king.frame</groupId>
-  <artifactId>mvvmframe</artifactId>
-  <version>2.0.0</version>
-  <type>pom</type>
-</dependency>
-```
-### Gradle:
+> 由于2021年2月3日 **JFrog宣布将关闭Bintray和JCenter，计划在2022年2月完全关闭。** 所以后续版本不再发布至 **JCenter**
 
-#### 最新版本（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
+1. 在Project的 **build.gradle** 里面添加远程仓库  
+          
+```gradle
+allprojects {
+    repositories {
+        //...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+2. 在Module的 **build.gradle** 里面添加引入依赖项
+
+#### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
+```gradle
+//AndroidX 版本
+implementation 'com.github.jenly1314.MVVMFrame:mvvmframe:2.1.0'
+
+```
+
+
+以前发布至JCenter的版本
+
+#### **v2.0.0**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
 ```gradle
 //AndroidX 版本
 implementation 'com.king.frame:mvvmframe:2.0.0'
 
 ```
+
 #### **v1.x** 以前版本（使用 **Dagger2**）
 ```gradle
 //AndroidX 版本
@@ -45,12 +60,6 @@ implementation 'com.king.frame:mvvmframe:1.1.4'
 
 //Android Support版本
 implementation 'com.king.frame:mvvmframe:1.0.2'
-```
-### Lvy:
-```lvy
-<dependency org='com.king.frame' name='mvvmframe' rev='2.0.0'>
-  <artifact name='$AID' ext='pom'></artifact>
-</dependency>
 ```
 
 ### **Dagger**和 **Room** 的相关注解处理器
@@ -163,15 +172,6 @@ dependencies{
 
 ```
 
-###### 如果Gradle出现compile失败的情况，可以在Project的build.gradle里面添加如下：（也可以使用上面的JitPack来compile）
-```gradle
-allprojects {
-    repositories {
-        //...
-        maven { url 'https://dl.bintray.com/jenly/maven' }
-    }
-}
-```
 
 ## 示例
 
@@ -547,7 +547,7 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
-#### v2.1.0：2021-4-28
+#### v2.1.0：2021-4-28  (从v2.1.0开始不再发布至JCenter)
 *  更新Hilt至v2.35
 *  移除androidx.hilt:hilt-lifecycle-viewmodel [移除原因请查看Dagger v2.34更新说明](https://github.com/google/dagger/releases)
 *  更新Lifecycle至v2.3.1
