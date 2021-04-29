@@ -29,7 +29,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 allprojects {
     repositories {
         //...
-        maven { url 'https://jitpack.io' }
+        mavenCentral()
     }
 }
 ```
@@ -39,7 +39,7 @@ allprojects {
 #### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
 ```gradle
 //AndroidX 版本
-implementation 'com.github.jenly1314:MVVMFrame:2.1.0'
+implementation 'com.github.jenly1314:mvvmframe:2.1.0'
 
 ```
 

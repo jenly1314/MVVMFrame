@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'
+apply plugin: "com.vanniktech.maven.publish"
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
@@ -80,7 +81,7 @@ dependencies {
     annotationProcessor deps.room.compiler
 
     //hilt
-    compileOnly deps.dagger.hilt_android
+    api deps.dagger.hilt_android
     annotationProcessor  deps.dagger.hilt_android_compiler
 
     //log

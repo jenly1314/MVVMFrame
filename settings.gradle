@@ -1,2 +1,1 @@
-include ':sample-kotlin'
-include ':app', ':mvvmframe', ':sample'
+include ':app', ':mvvmframe', ':sample',':sample-kotlin'
