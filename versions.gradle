@@ -130,9 +130,8 @@ dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 
 
 dagger.hilt_android = "com.google.dagger:hilt-android:$versions.daggerHilt"
-dagger.hilt_android = "com.google.dagger:hilt-android:$versions.daggerHilt"
-//dagger.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.daggerHilt"
-dagger.hilt_android_compiler = "com.google.dagger:hilt-compiler:$versions.daggerHilt"
+dagger.hilt_compiler = "com.google.dagger:hilt-compiler:$versions.daggerHilt"
+dagger.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.daggerHilt"
 deps.dagger = dagger
 
 

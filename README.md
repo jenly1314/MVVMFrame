@@ -98,7 +98,7 @@ dependencies{
     implementation "com.google.dagger:hilt-android:$versions.daggerHint"
     annotationProcessor "com.google.dagger:hilt-android-compiler:$versions.daggerHint"
 
-//从2.1.0以后以移除
+//从2.1.0以后已移除
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
 //    annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
 }

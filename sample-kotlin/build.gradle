@@ -73,7 +73,7 @@ dependencies {
     kapt deps.room.compiler
     //hilt
     implementation deps.dagger.hilt_android
-    kapt  deps.dagger.hilt_android_compiler
+    kapt  deps.dagger.hilt_compiler
 
     implementation project(':mvvmframe')
 

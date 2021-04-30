@@ -82,7 +82,7 @@ dependencies {
 
     //hilt
     api deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_android_compiler
+    annotationProcessor  deps.dagger.hilt_compiler
 
     //log
     api deps.timber

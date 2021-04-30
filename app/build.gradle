@@ -70,7 +70,7 @@ dependencies {
     implementation deps.room.rxjava2
 
     implementation deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_android_compiler
+    annotationProcessor  deps.dagger.hilt_compiler
 
     implementation project(':mvvmframe')
 }
