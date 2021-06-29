@@ -9,6 +9,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.Buffer;
+import retrofit2.Invocation;
+import retrofit2.http.Streaming;
 import timber.log.Timber;
 
 /**
@@ -34,6 +36,16 @@ public class LogInterceptor implements Interceptor {
             }
             if(mediaType == null || !multipartType.equalsIgnoreCase(mediaType.type())){
                 Timber.i("RequestBody:" + bodyToString(request.body()));
+            }
+        }
+
+        Invocation invocation = request.tag(Invocation.class);
+
+        if(invocation != null){
+            Streaming streaming = invocation.method().getAnnotation(Streaming.class);
+            if(streaming != null){
+                Timber.d("streaming...");
+                return chain.proceed(chain.request());
             }
         }
 

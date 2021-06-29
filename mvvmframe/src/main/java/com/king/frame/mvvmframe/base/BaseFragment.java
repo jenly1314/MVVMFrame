@@ -191,7 +191,7 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
         mViewModel.getLoadingEvent().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isLoading) {
-                if(isLoading){
+                if(isLoading != null && isLoading){
                     showLoading();
                 }else{
                     hideLoading();
@@ -264,6 +264,14 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
      * @return {@link #mBinding}
      */
     public VDB getViewDataBinding(){
+        return mBinding;
+    }
+
+    /**
+     * 同 {@link #getViewDataBinding()}
+     * @return {@link #mBinding}
+     */
+    public VDB getBinding(){
         return mBinding;
     }
 
@@ -394,7 +402,7 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void showDialogFragment(DialogFragment dialogFragment,String tag) {
-        dialogFragment.show(getFragmentManager(),tag);
+        dialogFragment.show(getParentFragmentManager(),tag);
     }
 
     protected void showDialogFragment(DialogFragment dialogFragment, FragmentManager fragmentManager, String tag) {

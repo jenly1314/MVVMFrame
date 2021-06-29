@@ -40,7 +40,7 @@ allprojects {
 #### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
 ```gradle
 //AndroidX 版本
-implementation 'com.github.jenly1314:mvvmframe:2.1.0'
+implementation 'com.github.jenly1314:mvvmframe:2.1.1'
 
 ```
 
@@ -547,6 +547,11 @@ public interface ApplicationComponent {
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](lib/proguard-rules.pro)
 
 ## 版本记录
+
+#### v2.1.1：2021-6-29
+*  更新Hilt至v2.37
+*  更新Gson至v2.8.7
+*  优化细节
 
 #### v2.1.0：2021-4-28  (从v2.1.0开始不再发布至JCenter)
 *  更新Hilt至v2.35

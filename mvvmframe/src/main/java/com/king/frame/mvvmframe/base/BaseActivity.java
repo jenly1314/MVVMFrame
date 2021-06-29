@@ -159,7 +159,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         mViewModel.getLoadingEvent().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isLoading) {
-                if(isLoading){
+                if(isLoading != null && isLoading){
                     showLoading();
                 }else{
                     hideLoading();
@@ -238,6 +238,15 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     public VDB getViewDataBinding(){
         return mBinding;
     }
+
+    /**
+     * 同 {@link #getViewDataBinding()}
+     * @return {@link #mBinding}
+     */
+    public VDB getBinding(){
+        return mBinding;
+    }
+
 
     /**
      * 通过 {@link #createViewModelProvider(ViewModelStoreOwner)}获得 ViewModel

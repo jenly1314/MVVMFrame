@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 10
-app_version.versionName = "2.1.0"
+app_version.versionCode = 11
+app_version.versionName = "2.1.1"
 ext.app_version = app_version
 
 //build version
@@ -47,13 +47,13 @@ versions.lifecycleExtensions = "2.2.0"
 versions.room = "2.3.0"
 
 //dagger
-versions.dagger = "2.35"
+versions.dagger = "2.37"
 //hilt
-versions.daggerHilt = "2.35"
+versions.daggerHilt = "2.37"
 //versions.hilt = "1.0.0-alpha02"
 
 versions.retrofit = "2.9.0"
-versions.gson = "2.8.6"
+versions.gson = "2.8.7"
 
 //jenly
 versions.base = "3.2.1-androidx"
@@ -131,7 +131,7 @@ dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 
 dagger.hilt_android = "com.google.dagger:hilt-android:$versions.daggerHilt"
 dagger.hilt_compiler = "com.google.dagger:hilt-compiler:$versions.daggerHilt"
-dagger.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.daggerHilt"
+//dagger.hilt_android_compiler = "com.google.dagger:hilt-android-compiler:$versions.daggerHilt"
 deps.dagger = dagger
 
 
@@ -156,7 +156,7 @@ jenly.base_util = "com.king.base:util:$versions.base"
 jenly.app_updater = "com.king.app:app-updater:$versions.appupdater"
 jenly.app_dialog = "com.king.app:app-dialog:$versions.appupdater"
 jenly.nevercrash = "com.king.thread:nevercrash:$versions.neverCrash"
-jenly.retrofit_helper = "com.github.jenly1314:RetrofitHelper:$versions.retrofitHelper"
+jenly.retrofit_helper = "com.github.jenly1314:retrofit-helper:$versions.retrofitHelper"
 deps.jenly = jenly
 
 //log

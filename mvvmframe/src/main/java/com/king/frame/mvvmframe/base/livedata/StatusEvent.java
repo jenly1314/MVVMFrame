@@ -5,9 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 
 /**
  * 提供观察状态事件
@@ -16,13 +15,10 @@ import androidx.lifecycle.Observer;
 public class StatusEvent extends SingleLiveEvent<Integer> {
 
 
-    public void observe(LifecycleOwner owner, final StatusEvent.StatusObserver observer) {
-        super.observe(owner, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer t) {
+    public void observe(LifecycleOwner owner,@NonNull final StatusEvent.StatusObserver observer) {
+        super.observe(owner, t -> {
             if (t != null) {
                 observer.onStatusChanged(t);
-            }
             }
         });
     }
