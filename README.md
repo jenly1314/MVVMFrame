@@ -96,7 +96,7 @@ dependencies{
     annotationProcessor "androidx.room:room-compiler:$versions.room"
     //hilt
     implementation "com.google.dagger:hilt-android:$versions.daggerHint"
-    annotationProcessor "com.google.dagger:hilt-android-compiler:$versions.daggerHint"
+    annotationProcessor "com.google.dagger:hilt-compiler:$versions.daggerHint"
 
 //从2.1.0以后已移除
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
@@ -162,11 +162,8 @@ dependencies{
     annotationProcessor deps.room.compiler
 
     //hilt
-    compileOnly deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_android_compiler
-
-    compileOnly deps.hilt.hilt_viewmodel
-    annotationProcessor  deps.hilt.hilt_compiler
+    api deps.dagger.hilt_android
+    annotationProcessor  deps.dagger.hilt_compiler
 
     //log
     api deps.timber
