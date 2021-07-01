@@ -69,14 +69,14 @@
 # 保留我们使用的四大组件，自定义的Application等等这些类不被混淆
 # 因为这些子类都有可能被外部调用
 -keep public class * extends android.app.Activity
--keep public class * extends android.app.Appliction
+-keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.view.View
--keep public class com.android.vending.licensing.ILicensingService
+-keep public class  com.google.vending.licensing.ILicensingService
 
 
 # 保留support下的所有类及其内部类
@@ -93,7 +93,6 @@
 -keep public class * extends androidx.**
 -keep interface androidx.** {*;}
 -dontwarn com.google.android.material.**
--dontnote com.google.android.material.**
 -dontwarn androidx.**
 
 # 保留R下面的资源
@@ -151,13 +150,20 @@
 }
 
 # webView处理，项目中没有使用到webView忽略即可
--keepclassmembers class * extends android.webkit.webViewClient {
+-keepclassmembers class * extends android.webkit.WebViewClient {
     public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
     public boolean *(android.webkit.WebView, java.lang.String);
 }
--keepclassmembers class * extends android.webkit.webViewClient {
-    public void *(android.webkit.webView, jav.lang.String);
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String);
 }
+
+-keepattributes JavascriptInterface
+-keep class android.webkit.JavascriptInterface { *; }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
 ##---------------End: proguard configuration for Android  ----------
 
 
@@ -186,7 +192,6 @@
 
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.KotlinExtensions
--dontwarn retrofit2.KotlinExtensions$*
 
 # With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
 # and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
@@ -249,7 +254,19 @@
 -dontwarn com.google.**
 
 # Dagger
+-dontwarn dagger.internal.codegen.**
+-keepclassmembers,allowobfuscation class * {
+    @javax.inject.* *;
+    @dagger.* *;
+    <init>();
+}
+
+-keep class dagger.* { *; }
+-keep class javax.inject.* { *; }
 -keep class com.google.errorprone.annotations.** { *; }
+
+#Hilt
+-keep,allowobfuscation,allowshrinking @dagger.hilt.EntryPoint class *
 
 # Timber
 -dontwarn org.jetbrains.annotations.**
