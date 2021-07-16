@@ -12,6 +12,8 @@ import okhttp3.internal.Util;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.GzipSource;
+import retrofit2.Invocation;
+import retrofit2.http.Streaming;
 import timber.log.Timber;
 
 
@@ -40,6 +42,15 @@ public class LogInterceptor implements Interceptor {
             }else{
                 Timber.d("RequestContentType:" + requestBody.contentType());
                 Timber.d("RequestBody:(binary " + requestBody.contentLength() + "-byte body omitted)");
+            }
+        }
+
+        Invocation invocation = request.tag(Invocation.class);
+        if(invocation != null){
+            Streaming streaming = invocation.method().getAnnotation(Streaming.class);
+            if(streaming != null){
+                Timber.d("streaming...");
+                return chain.proceed(chain.request());
             }
         }
 
@@ -75,7 +86,7 @@ public class LogInterceptor implements Interceptor {
         try {
             return Util.bomAwareCharset(responseBody.source(),charset);
         } catch (Exception e) {
-            e.printStackTrace();
+            Timber.w(e);
         }
         return charset;
     }
@@ -102,6 +113,7 @@ public class LogInterceptor implements Interceptor {
             }
             return true;
         } catch (EOFException e) {
+            Timber.w(e);
             return false; // Truncated UTF-8 sequence.
         }
     }
