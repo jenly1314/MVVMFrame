@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import timber.log.Timber;
 
 
 /**
@@ -70,6 +73,11 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
     private Dialog mProgressDialog;
+
+    private String mJumpTag;
+    private long mJumpTime;
+
+    private static final long IGNORE_INTERVAL_TIME = 500;
 
     @Override
     public void onAttach(Context context) {
@@ -395,6 +403,41 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         }
     }
 
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        if(isIgnoreJump(intent)){
+            return;
+        }
+        super.startActivityForResult(intent, requestCode, options);
+    }
+
+    protected boolean isIgnoreJump(Intent intent){
+        String jumpTag;
+        if(intent.getComponent() != null){
+            jumpTag = intent.getComponent().getClassName();
+        }else if(intent.getAction() != null){
+            jumpTag = intent.getAction();
+        }else{
+            return false;
+        }
+
+        if(TextUtils.isEmpty(jumpTag)){
+            return false;
+        }
+
+        if(jumpTag.equals(mJumpTag) && mJumpTime > SystemClock.elapsedRealtime() - getIgnoreIntervalTime()){
+            Timber.d("Ignore:" + jumpTag);
+            return true;
+        }
+        mJumpTag = jumpTag;
+        mJumpTime = SystemClock.elapsedRealtime();
+
+        return false;
+    }
+
+    protected long getIgnoreIntervalTime(){
+        return IGNORE_INTERVAL_TIME;
+    }
     //---------------------------------------
 
     protected View inflate(@LayoutRes int id){

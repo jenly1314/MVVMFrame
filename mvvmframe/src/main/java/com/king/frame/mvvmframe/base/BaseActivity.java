@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -29,6 +31,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import timber.log.Timber;
 
 import com.king.frame.mvvmframe.R;
 import com.king.frame.mvvmframe.base.livedata.MessageEvent;
@@ -69,6 +72,11 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     private Dialog mDialog;
 
     private Dialog mProgressDialog;
+
+    private String mJumpTag;
+    private long mJumpTime;
+
+    private static final long IGNORE_INTERVAL_TIME = 500;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -348,6 +356,42 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         }else{
             startActivityForResult(intent,requestCode);
         }
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        if(isIgnoreJump(intent)){
+            return;
+        }
+        super.startActivityForResult(intent, requestCode, options);
+    }
+
+    protected boolean isIgnoreJump(Intent intent){
+        String jumpTag;
+        if(intent.getComponent() != null){
+            jumpTag = intent.getComponent().getClassName();
+        }else if(intent.getAction() != null){
+            jumpTag = intent.getAction();
+        }else{
+            return false;
+        }
+
+        if(TextUtils.isEmpty(jumpTag)){
+            return false;
+        }
+
+        if(jumpTag.equals(mJumpTag) && mJumpTime > SystemClock.elapsedRealtime() - getIgnoreIntervalTime()){
+            Timber.d("Ignore:" + jumpTag);
+            return true;
+        }
+        mJumpTag = jumpTag;
+        mJumpTime = SystemClock.elapsedRealtime();
+
+        return false;
+    }
+
+    protected long getIgnoreIntervalTime(){
+        return IGNORE_INTERVAL_TIME;
     }
 
     //---------------------------------------
