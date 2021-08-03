@@ -109,7 +109,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     private Class<VM> getVMClass(){
-        Class cls = getClass();
+        Class<?> cls = getClass();
         Class<VM> vmClass = null;
         while (vmClass == null && cls!= null){
             vmClass = getVMClass(cls);
@@ -121,7 +121,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         return vmClass;
     }
 
-    private Class getVMClass(Class cls){
+    private Class getVMClass(Class<?> cls){
         Type type = cls.getGenericSuperclass();
         if(type instanceof ParameterizedType){
             Type[] types = ((ParameterizedType)type).getActualTypeArguments();
@@ -264,17 +264,6 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
      */
     public <T extends ViewModel> T obtainViewModel(@NonNull Class<T> modelClass){
         return createViewModelProvider(this).get(modelClass);
-    }
-
-    /**
-     * @deprecated 请使用 {@link #obtainViewModel(Class)}
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    @Deprecated
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
-        return obtainViewModel(modelClass);
     }
 
     /**
@@ -423,7 +412,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         dialogFragment.show(fragmentManager,tag);
     }
 
-    private View.OnClickListener mOnDialogCancelClick = new View.OnClickListener() {
+    private final View.OnClickListener mOnDialogCancelClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             dismissDialog();

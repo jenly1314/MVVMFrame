@@ -1,7 +1,6 @@
 package com.king.frame.mvvmframe.base;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -79,10 +78,6 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     private static final long IGNORE_INTERVAL_TIME = 500;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Nullable
     @Override
@@ -110,14 +105,19 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     protected void initDialog(Dialog dialog){
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
+        if(dialog != null){
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCanceledOnTouchOutside(false);
+        }
+
     }
 
     protected void initWindow(Window window){
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        window.getAttributes().windowAnimations = R.style.mvvmframe_dialog_animation;
-        setWindow(window, DEFAULT_WIDTH_RATIO);
+        if(window != null){
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.getAttributes().windowAnimations = R.style.mvvmframe_dialog_animation;
+            setWindow(window, DEFAULT_WIDTH_RATIO);
+        }
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     private Class<VM> getVMClass(){
-        Class cls = getClass();
+        Class<?> cls = getClass();
         Class<VM> vmClass = null;
         while (vmClass == null && cls!= null){
             vmClass = getVMClass(cls);
@@ -167,7 +167,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         return vmClass;
     }
 
-    private Class getVMClass(Class cls){
+    private Class getVMClass(Class<?> cls){
         Type type = cls.getGenericSuperclass();
         if(type instanceof ParameterizedType){
             Type[] types = ((ParameterizedType)type).getActualTypeArguments();
@@ -309,17 +309,6 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     /**
-     * @deprecated 请使用 {@link #obtainViewModel(Class)}
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    @Deprecated
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
-        return obtainViewModel(modelClass);
-    }
-
-    /**
      * 创建 {@link ViewModelProvider}
      * @param owner
      * @return
@@ -330,7 +319,9 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     //---------------------------------------
     protected void finish(){
-        getActivity().finish();
+        if(getActivity() != null){
+            getActivity().finish();
+        }
     }
 
     protected Intent newIntent(Class<?> cls){

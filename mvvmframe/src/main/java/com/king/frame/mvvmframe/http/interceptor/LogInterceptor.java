@@ -3,6 +3,8 @@ package com.king.frame.mvvmframe.http.interceptor;
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
+
+import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -22,7 +24,7 @@ import timber.log.Timber;
  */
 public class LogInterceptor implements Interceptor {
 
-    private static Charset UTF_8 = Charset.forName("UTF-8");
+    private final static Charset UTF_8 = Charset.forName("UTF-8");
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -49,7 +51,7 @@ public class LogInterceptor implements Interceptor {
         if(invocation != null){
             Streaming streaming = invocation.method().getAnnotation(Streaming.class);
             if(streaming != null){
-                Timber.d("streaming...");
+                Timber.d("Streaming...");
                 return chain.proceed(chain.request());
             }
         }
@@ -77,11 +79,11 @@ public class LogInterceptor implements Interceptor {
     }
 
 
-    private Charset getCharset(RequestBody requestBody,Charset defaultCharset){
+    private Charset getCharset(RequestBody requestBody,@NonNull Charset defaultCharset){
         return requestBody.contentType() != null ? requestBody.contentType().charset(defaultCharset) : defaultCharset;
     }
 
-    private Charset getCharset(ResponseBody responseBody,Charset defaultCharset){
+    private Charset getCharset(ResponseBody responseBody,@NonNull Charset defaultCharset){
         Charset charset = responseBody.contentType() != null ? responseBody.contentType().charset(defaultCharset) : defaultCharset;
         try {
             return Util.bomAwareCharset(responseBody.source(),charset);

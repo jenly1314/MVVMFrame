@@ -59,21 +59,21 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     /**
      * 消息事件
      */
-    private MessageEvent mMessageEvent = new MessageEvent();
+    private final MessageEvent mMessageEvent = new MessageEvent();
     /**
      * 状态事件
      */
-    private StatusEvent mStatusEvent = new StatusEvent();
+    private final StatusEvent mStatusEvent = new StatusEvent();
 
     /**
      * 加载状态
      */
-    private SingleLiveEvent<Boolean> mLoadingEvent = new SingleLiveEvent<>();
+    private final SingleLiveEvent<Boolean> mLoadingEvent = new SingleLiveEvent<>();
 
     /**
      * 提供自定义单一消息事件
      */
-    private SingleLiveEvent<Message> mSingleLiveEvent  = new SingleLiveEvent<>();
+    private final SingleLiveEvent<Message> mSingleLiveEvent  = new SingleLiveEvent<>();
 
     /**
      * 继承者都将使用此构造

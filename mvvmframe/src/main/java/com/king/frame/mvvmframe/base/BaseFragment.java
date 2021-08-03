@@ -38,6 +38,7 @@ import com.king.frame.mvvmframe.R;
 import com.king.frame.mvvmframe.base.livedata.MessageEvent;
 import com.king.frame.mvvmframe.base.livedata.StatusEvent;
 
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -83,10 +84,6 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
 
     private static final long IGNORE_INTERVAL_TIME = 500;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Nullable
     @Override
@@ -141,7 +138,7 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
     }
 
     private Class<VM> getVMClass(){
-        Class cls = getClass();
+        Class<?> cls = getClass();
         Class<VM> vmClass = null;
         while (vmClass == null && cls!= null){
             vmClass = getVMClass(cls);
@@ -153,7 +150,7 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
         return vmClass;
     }
 
-    private Class getVMClass(Class cls){
+    private Class getVMClass(Class<?> cls){
         Type type = cls.getGenericSuperclass();
         if(type instanceof ParameterizedType){
             Type[] types = ((ParameterizedType)type).getActualTypeArguments();
@@ -294,17 +291,6 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
     }
 
     /**
-     * @deprecated 请使用 {@link #obtainViewModel(Class)}
-     * @param modelClass
-     * @param <T>
-     * @return
-     */
-    @Deprecated
-    public <T extends ViewModel> T getViewModel(@NonNull Class<T> modelClass){
-        return obtainViewModel(modelClass);
-    }
-
-    /**
      * 创建 {@link ViewModelProvider}
      * @param owner
      * @return
@@ -315,7 +301,9 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
 
     //---------------------------------------
     protected void finish(){
-        getActivity().finish();
+        if(getActivity() != null){
+            getActivity().finish();
+        }
     }
 
     protected Intent newIntent(Class<?> cls){
@@ -452,7 +440,7 @@ public abstract class BaseFragment<VM extends BaseViewModel,VDB extends ViewData
         dialogFragment.show(fragmentManager,tag);
     }
 
-    private View.OnClickListener mOnDialogCancelClick = new View.OnClickListener() {
+    private final View.OnClickListener mOnDialogCancelClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             dismissDialog();
