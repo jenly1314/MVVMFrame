@@ -541,7 +541,7 @@ public interface ApplicationComponent {
  从 **Android Studio 3.3+** 之后，AS新增特性代码压缩工具 **R8** ，**R8** 旨在集成 **ProGuard** 和 **D8** 的功能。
  目前推荐第三方库都自己配置混淆规则，这样在混淆时，如果使用 **R8** ，则可以直接包含第三方依赖库的混淆规则，就不用繁琐的去配置每个依赖库的混淆规则。
  
- 目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](lib/proguard-rules.pro)
+ 目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
 ## 版本记录
 
