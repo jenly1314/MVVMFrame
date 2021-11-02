@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 
 import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -24,26 +25,32 @@ import timber.log.Timber;
  */
 public class LogInterceptor implements Interceptor {
 
+    private static final String multipartType = "multipart";
     private final static Charset UTF_8 = Charset.forName("UTF-8");
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Timber.i(String.format("%1$s -> %2$s",request.method(),request.url()));
+        Timber.i("%1$s -> %2$s",request.method(),request.url());
 
         if(request.headers() != null && request.headers().size() > 0){
             Timber.d("Headers:" + request.headers());
         }
 
-        if(request.body() != null){
-            RequestBody requestBody = request.body();
-            final Buffer buffer = new Buffer();
-            requestBody.writeTo(buffer);
-            if(isPlaintext(buffer)){
-                Timber.d("RequestBody:" + buffer.readString(getCharset(requestBody,UTF_8)));
+        RequestBody requestBody = request.body();
+        if(requestBody != null){
+            MediaType mediaType = requestBody.contentType();
+            Timber.d("RequestContentType:" + mediaType);
+            if(mediaType != null && multipartType.equalsIgnoreCase(mediaType.type())){
+                Timber.d("RequestBody:(form data " + requestBody.contentLength() + "-byte body omitted)");
             }else{
-                Timber.d("RequestContentType:" + requestBody.contentType());
-                Timber.d("RequestBody:(binary " + requestBody.contentLength() + "-byte body omitted)");
+                final Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+                if(isPlaintext(buffer)){
+                    Timber.d("RequestBody:" + buffer.readString(getCharset(requestBody,UTF_8)));
+                }else{
+                    Timber.d("RequestBody:(binary " + requestBody.contentLength() + "-byte body omitted)");
+                }
             }
         }
 
@@ -59,6 +66,8 @@ public class LogInterceptor implements Interceptor {
         Response response = chain.proceed(chain.request());
         ResponseBody responseBody = response.body();
         if(responseBody != null){
+            MediaType mediaType = responseBody.contentType();
+            Timber.d("ResponseContentType:" + mediaType);
             BufferedSource source = responseBody.source();
             source.request(Long.MAX_VALUE); // Buffer the entire body.
             Buffer buffer = source.getBuffer();
@@ -68,11 +77,15 @@ public class LogInterceptor implements Interceptor {
                     buffer.writeAll(gzippedResponseBody);
                 }
             }
-            if(isPlaintext(buffer)){
-                Timber.d("ResponseBody:" + buffer.clone().readString(getCharset(responseBody,UTF_8)));
+
+            if(mediaType != null && multipartType.equalsIgnoreCase(mediaType.type())){
+                Timber.d("ResponseBody:(form data " + buffer.size() + "-byte body omitted)");
             }else{
-                Timber.d("ResponseContentType:" + responseBody.contentType());
-                Timber.d("ResponseBody:(binary " + buffer.size() + "-byte body omitted)");
+                if(isPlaintext(buffer)){
+                    Timber.d("ResponseBody:" + buffer.clone().readString(getCharset(responseBody,UTF_8)));
+                }else{
+                    Timber.d("ResponseBody:(binary " + buffer.size() + "-byte body omitted)");
+                }
             }
         }
         return response;
