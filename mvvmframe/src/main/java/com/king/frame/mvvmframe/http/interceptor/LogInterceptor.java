@@ -11,7 +11,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.internal.Util;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.GzipSource;
@@ -97,13 +96,7 @@ public class LogInterceptor implements Interceptor {
     }
 
     private Charset getCharset(ResponseBody responseBody,@NonNull Charset defaultCharset){
-        Charset charset = responseBody.contentType() != null ? responseBody.contentType().charset(defaultCharset) : defaultCharset;
-        try {
-            return Util.bomAwareCharset(responseBody.source(),charset);
-        } catch (Exception e) {
-            Timber.w(e);
-        }
-        return charset;
+        return responseBody.contentType() != null ? responseBody.contentType().charset(defaultCharset) : defaultCharset;
     }
 
     /**

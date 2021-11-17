@@ -9,6 +9,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -443,7 +444,7 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
     }
 
     protected void dismissPopupWindow(PopupWindow popupWindow){
-        if(popupWindow!=null && popupWindow.isShowing()){
+        if(popupWindow != null && popupWindow.isShowing()){
             popupWindow.dismiss();
         }
     }
@@ -500,13 +501,26 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         showDialog(context,contentView, R.style.mvvmframe_dialog,widthRatio);
     }
 
-    protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio){
-        showDialog(context,contentView,resId,widthRatio,true);
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, float widthRatio){
+        showDialog(context,contentView,styleId,widthRatio,true);
     }
 
-    protected void showDialog(Context context, View contentView, @StyleRes int resId, float widthRatio, final boolean isCancel){
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, float widthRatio, final boolean isCancel){
+        showDialog(context, contentView, styleId, Gravity.NO_GRAVITY, widthRatio, isCancel);
+
+    }
+
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio, final boolean isCancel){
+        showDialog(context, contentView, styleId, gravity, widthRatio, 0, 0, isCancel);
+    }
+
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio,float horizontalMargin, float verticalMargin, final boolean isCancel){
+        showDialog(context, contentView, styleId, gravity, widthRatio, horizontalMargin, verticalMargin, 0, 0, isCancel);
+    }
+
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio,float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight, final boolean isCancel){
         dismissDialog();
-        mDialog = new Dialog(context,resId);
+        mDialog = new Dialog(context, styleId);
         mDialog.setContentView(contentView);
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
@@ -522,18 +536,20 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
             }
         });
-        setDialogWindow(mDialog,widthRatio);
+        setWindow(mDialog.getWindow(),gravity, widthRatio,horizontalMargin, verticalMargin, horizontalWeight, verticalWeight);
         mDialog.show();
 
     }
 
-    protected void setDialogWindow(Dialog dialog, float widthRatio){
-        setWindow(dialog.getWindow(),widthRatio);
-    }
 
-    protected void setWindow(Window window, float widthRatio){
+    protected void setWindow(Window window,int gravity,float widthRatio, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = (int)(getWidthPixels() * widthRatio);
+        lp.gravity = gravity;
+        lp.horizontalMargin = horizontalMargin;
+        lp.verticalMargin = verticalMargin;
+        lp.horizontalWeight = horizontalWeight;
+        lp.verticalWeight = verticalWeight;
         window.setAttributes(lp);
     }
 

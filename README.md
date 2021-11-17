@@ -545,6 +545,16 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
+#### v2.2.0：2021-11-17
+*  minSdk要求从 16+ 改为 21+
+*  更新编译SDK至30
+*  更新Gradle至v6.7.1
+*  更新Appcompat至v1.3.1
+*  更新Okhttp至v4.9.2
+*  更新Hilt至v2.40.1
+*  更新Gson至v2.8.9
+*  更新Timber至v5.0.1
+
 #### v2.1.1：2021-6-29
 *  更新Hilt至v2.37
 *  更新Gson至v2.8.7

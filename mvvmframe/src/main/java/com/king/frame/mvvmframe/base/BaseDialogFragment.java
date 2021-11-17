@@ -9,6 +9,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,7 +117,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         if(window != null){
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.getAttributes().windowAnimations = R.style.mvvmframe_dialog_animation;
-            setWindow(window, DEFAULT_WIDTH_RATIO);
+            setWindow(window, Gravity.NO_GRAVITY, DEFAULT_WIDTH_RATIO, 0, 0, 0, 0);
         }
     }
 
@@ -469,7 +470,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
     }
 
     protected void dismissPopupWindow(PopupWindow popupWindow){
-        if(popupWindow!=null && popupWindow.isShowing()){
+        if(popupWindow != null && popupWindow.isShowing()){
             popupWindow.dismiss();
         }
     }
@@ -506,13 +507,14 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         mProgressDialog.show();
     }
 
-    protected void setDialogWindow(Dialog dialog, float widthRatio){
-        setWindow(dialog.getWindow(),widthRatio);
-    }
-
-    protected void setWindow(Window window, float widthRatio){
+    protected void setWindow(Window window,int gravity,float widthRatio, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = (int)(getWidthPixels() * widthRatio);
+        lp.gravity = gravity;
+        lp.horizontalMargin = horizontalMargin;
+        lp.verticalMargin = verticalMargin;
+        lp.horizontalWeight = horizontalWeight;
+        lp.verticalWeight = verticalWeight;
         window.setAttributes(lp);
     }
 

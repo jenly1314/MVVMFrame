@@ -63,6 +63,8 @@ dependencies {
     //appcompat
     compileOnly deps.appcompat
 
+    //okhttp
+    api deps.okhttp
     //retrofit
     api deps.retrofit.retrofit
     api deps.retrofit.gson
