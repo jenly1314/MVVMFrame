@@ -22,7 +22,6 @@ public final class ManifestParser {
         this.context = context;
     }
 
-    @SuppressWarnings("deprecation")
     public List<FrameConfigModule> parse() {
         Timber.d("Loading MVVMFrame modules");
         List<FrameConfigModule> modules = new ArrayList<>();

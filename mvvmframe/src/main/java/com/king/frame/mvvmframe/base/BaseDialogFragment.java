@@ -117,7 +117,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         if(window != null){
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             window.getAttributes().windowAnimations = R.style.mvvmframe_dialog_animation;
-            setWindow(window, Gravity.NO_GRAVITY, DEFAULT_WIDTH_RATIO, 0, 0, 0, 0);
+            setWindow(window, Gravity.NO_GRAVITY, DEFAULT_WIDTH_RATIO,0, 0, 0, 0, 0, 0);
         }
     }
 
@@ -507,10 +507,24 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         mProgressDialog.show();
     }
 
-    protected void setWindow(Window window,int gravity,float widthRatio, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
+    /**
+     * 设置 Window 布局相关参数
+     * @param window {@link Window}
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param x x轴偏移量，需与 gravity 结合使用
+     * @param y y轴偏移量，需与 gravity 结合使用
+     * @param horizontalMargin 水平方向边距
+     * @param verticalMargin 垂直方向边距
+     * @param horizontalWeight 水平方向权重
+     * @param verticalWeight 垂直方向权重
+     */
+    protected void setWindow(Window window,int gravity,float widthRatio,int x, int y, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = (int)(getWidthPixels() * widthRatio);
         lp.gravity = gravity;
+        lp.x = x;
+        lp.y = y;
         lp.horizontalMargin = horizontalMargin;
         lp.verticalMargin = verticalMargin;
         lp.horizontalWeight = horizontalWeight;

@@ -26,10 +26,7 @@ class OilPriceViewModel @Inject constructor(application: Application, model: Bas
      */
     fun getOilPriceInfo(){
         launch {
-            val result = getRetrofitService(ApiService::class.java)
-                    .getOilPriceInfo(Constants.OIL_PRICE_KEY)
-                    .await()
-
+            val result = apiService.getOilPriceInfo(Constants.OIL_PRICE_KEY).await()
             if(isSuccess(result)){
                 result?.data?.let {
                     oilLiveData.value = it

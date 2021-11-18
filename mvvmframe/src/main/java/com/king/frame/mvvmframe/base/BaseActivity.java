@@ -481,44 +481,135 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         mProgressDialog.show();
     }
 
+    /**
+     * 显示对话框
+     * @param contentView 弹框内容视图
+     */
     protected void showDialog(View contentView){
         showDialog(contentView,DEFAULT_WIDTH_RATIO);
     }
 
+    /**
+     * 显示对话框
+     * @param contentView 弹框内容视图
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
     protected void showDialog(View contentView,boolean isCancel){
         showDialog(getContext(),contentView,R.style.mvvmframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
     }
 
+    /**
+     * 显示对话框
+     * @param contentView 弹框内容视图
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     */
     protected void showDialog(View contentView,float widthRatio){
         showDialog(getContext(),contentView,widthRatio);
     }
 
+    /**
+     * 显示对话框
+     * @param contentView 弹框内容视图
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     */
     protected void showDialog(View contentView,float widthRatio,boolean isCancel){
         showDialog(getContext(),contentView,R.style.mvvmframe_dialog,widthRatio,isCancel);
     }
 
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     */
     protected void showDialog(Context context,View contentView,float widthRatio){
         showDialog(context,contentView, R.style.mvvmframe_dialog,widthRatio);
     }
 
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     */
     protected void showDialog(Context context, View contentView, @StyleRes int styleId, float widthRatio){
         showDialog(context,contentView,styleId,widthRatio,true);
     }
 
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
     protected void showDialog(Context context, View contentView, @StyleRes int styleId, float widthRatio, final boolean isCancel){
         showDialog(context, contentView, styleId, Gravity.NO_GRAVITY, widthRatio, isCancel);
 
     }
 
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
     protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio, final boolean isCancel){
         showDialog(context, contentView, styleId, gravity, widthRatio, 0, 0, isCancel);
     }
-
-    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio,float horizontalMargin, float verticalMargin, final boolean isCancel){
-        showDialog(context, contentView, styleId, gravity, widthRatio, horizontalMargin, verticalMargin, 0, 0, isCancel);
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param x x轴偏移量，需与 gravity 结合使用
+     * @param y y轴偏移量，需与 gravity 结合使用
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio, int x, int y, final boolean isCancel){
+        showDialog(context, contentView, styleId, gravity, widthRatio, x, y, 0, 0, isCancel);
     }
 
-    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio,float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight, final boolean isCancel){
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param x x轴偏移量，需与 gravity 结合使用
+     * @param y y轴偏移量，需与 gravity 结合使用
+     * @param horizontalMargin 水平方向边距
+     * @param verticalMargin 垂直方向边距
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio, int x, int y, float horizontalMargin, float verticalMargin, final boolean isCancel){
+        showDialog(context, contentView, styleId, gravity, widthRatio, x, y, horizontalMargin, verticalMargin, 0, 0, isCancel);
+    }
+
+    /**
+     * 显示对话框
+     * @param context
+     * @param contentView 弹框内容视图
+     * @param styleId Dialog样式
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param x x轴偏移量，需与 gravity 结合使用
+     * @param y y轴偏移量，需与 gravity 结合使用
+     * @param horizontalMargin 水平方向边距
+     * @param verticalMargin 垂直方向边距
+     * @param horizontalWeight 水平方向权重
+     * @param verticalWeight 垂直方向权重
+     * @param isCancel 是否可取消（默认为true，false则拦截back键）
+     */
+    protected void showDialog(Context context, View contentView, @StyleRes int styleId, int gravity, float widthRatio, int x, int y, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight, final boolean isCancel){
         dismissDialog();
         mDialog = new Dialog(context, styleId);
         mDialog.setContentView(contentView);
@@ -536,16 +627,29 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
 
             }
         });
-        setWindow(mDialog.getWindow(),gravity, widthRatio,horizontalMargin, verticalMargin, horizontalWeight, verticalWeight);
+        setWindow(mDialog.getWindow(),gravity, widthRatio, x, y, horizontalMargin, verticalMargin, horizontalWeight, verticalWeight);
         mDialog.show();
 
     }
 
-
-    protected void setWindow(Window window,int gravity,float widthRatio, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
+    /**
+     * 设置 Window 布局相关参数
+     * @param window {@link Window}
+     * @param gravity Dialog的对齐方式
+     * @param widthRatio 宽度比例，根据屏幕宽度计算得来
+     * @param x x轴偏移量，需与 gravity 结合使用
+     * @param y y轴偏移量，需与 gravity 结合使用
+     * @param horizontalMargin 水平方向边距
+     * @param verticalMargin 垂直方向边距
+     * @param horizontalWeight 水平方向权重
+     * @param verticalWeight 垂直方向权重
+     */
+    protected void setWindow(Window window,int gravity,float widthRatio, int x, int y, float horizontalMargin, float verticalMargin, float horizontalWeight, float verticalWeight){
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = (int)(getWidthPixels() * widthRatio);
         lp.gravity = gravity;
+        lp.x = x;
+        lp.y = y;
         lp.horizontalMargin = horizontalMargin;
         lp.verticalMargin = verticalMargin;
         lp.horizontalWeight = horizontalWeight;

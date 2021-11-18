@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.king.frame.mvvmframe.base.BaseModel
 import com.king.frame.mvvmframe.base.DataViewModel
+import com.king.mvvmframe.kotlin.api.ApiService
 import com.king.mvvmframe.kotlin.bean.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 open class BaseViewModel @Inject constructor(application: Application, model: BaseModel) : DataViewModel(application, model) {
 
+    val apiService: ApiService by lazy {
+        getRetrofitService(ApiService::class.java)
+    }
 
     fun isSuccess(result : Result<*>?, showError: Boolean = true): Boolean{
         if(result?.isSuccess == true){

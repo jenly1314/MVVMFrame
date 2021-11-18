@@ -40,7 +40,7 @@ allprojects {
 #### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
 ```gradle
 //AndroidX 版本
-implementation 'com.github.jenly1314:mvvmframe:2.1.1'
+implementation 'com.github.jenly1314:mvvmframe:2.2.0'
 
 ```
 
@@ -545,11 +545,10 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
-#### v2.2.0：2021-11-17
+#### v2.2.0：2021-11-18
 *  minSdk要求从 16+ 改为 21+
 *  更新编译SDK至30
 *  更新Gradle至v6.7.1
-*  更新Appcompat至v1.3.1
 *  更新Okhttp至v4.9.2
 *  更新Hilt至v2.40.1
 *  更新Gson至v2.8.9
