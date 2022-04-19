@@ -17,35 +17,34 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 /**
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * 如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加@HiltViewModel并在构造函数上添加@Inject注解
+ * <p>如果您继承使用了 BaseViewModel 或其子类，你需要参照如下方式在类上添加 @HiltViewModel 并在构造函数上添加 @Inject 注解
  *
- * @example BaseViewModel
- * //-------------------------
- *    @HiltViewModel
+ * <p>Example:
+ * <pre>
+ *    &#64;HiltViewModel
  *    public class YourViewModel extends BaseViewModel<YourModel> {
- *        @Inject
+ *        &#64;Inject
  *        public DataViewModel(@NonNull Application application, YourModel model) {
  *            super(application, model);
  *        }
  *    }
- * //-------------------------
+ * </pre>
  *
- * 如果您继承使用了BaseModel或其子类，你需要参照如下方式在构造函数上添加@Inject注解
+ * <p>如果您继承使用了 BaseModel 或其子类，你需要参照如下方式在构造函数上添加 @Inject 注解
  *
- * @example BaseModel
- * //-------------------------
+ * <p>Example:
+ * <pre>
  *    public class YourModel extends BaseModel {
- *        @Inject
+ *        &#64;Inject
  *        public BaseModel(IDataRepository dataRepository){
  *            super(dataRepository);
  *        }
  *    }
- * //-------------------------
+ * </pre>
  *
- *
- * 标准MVVM模式中的VM (ViewModel)层基类
+ * <p>标准MVVM模式中的VM (ViewModel)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel {

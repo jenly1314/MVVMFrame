@@ -10,9 +10,9 @@ import com.king.mvvmframe.kotlin.app.oil.OilPriceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * Hilt大幅简化了Dagger2的用法，使得我们不用通过@Component注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个Android固定的入口点开始，
+ * Hilt大幅简化了 Dagger2 的用法，使得我们不用通过 @Component 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 Android 固定的入口点开始，
  * Hilt一共支持6个入口点，分别是：
  * Application
  * Activity
@@ -21,55 +21,70 @@ import dagger.hilt.android.AndroidEntryPoint
  * Service
  * BroadcastReceiver
  *
- * //========================================================//
+ * //===================================================//
  *
  * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明，示例如下
  *
- * @example Application
+ * Example: Application
+ *
  * //-------------------------
+ *
  *    @HiltAndroidApp
- *    public class YourApplication extends Application {
+ *    class YourApplication : Application() {
  *
  *    }
+ *
  * //-------------------------
  *
- * //--------------------------------------------------------//
+ * //---------------------------------------------------//
  *
  * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明，示例如下
  *
- * @example Activity
+ * Example: Activity
+ *
  * //-------------------------
+ *
  *    @AndroidEntryPoint
- *    public class YourActivity extends BaseActivity {
+ *    class YourActivity : BaseActivity() {
  *
  *    }
+ *
  * //-------------------------
  *
- * @example Fragment
+ * Example: Fragment
+ *
  * //-------------------------
+ *
  *    @AndroidEntryPoint
- *    public class YourFragment extends BaseFragment {
+ *    class YourFragment : BaseFragment() {
  *
  *    }
+ *
  * //-------------------------
  *
- * @example Service
+ * Example: Service
+ *
  * //-------------------------
+ *
  *    @AndroidEntryPoint
- *    public class YourService extends BaseService {
+ *    class YourService : BaseService() {
  *
  *    }
+ *
  * //-------------------------
  *
- * @example BroadcastReceiver
+ * Example: BroadcastReceiver
+ *
  * //-------------------------
+ *
  *    @AndroidEntryPoint
- *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
+ *    class YourBroadcastReceiver : BaseBroadcastReceiver() {
  *
  *    }
+ *
  * //-------------------------
  *
- * //========================================================//
+ * //===================================================//
  *
  *
  * Kotlin 示例

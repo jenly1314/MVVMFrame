@@ -10,16 +10,19 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 /**
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * 你需要参照如下方式添加@HiltAndroidApp注解
+ * 你需要参照如下方式添加 @HiltAndroidApp 注解
  *
- * @example Application
+ * Example: Application
+ *
  * //-------------------------
+ *
  *    @HiltAndroidApp
- *    public class YourApplication extends Application {
+ *    class YourApplication : Application() {
  *
  *    }
+ *
  * //-------------------------
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

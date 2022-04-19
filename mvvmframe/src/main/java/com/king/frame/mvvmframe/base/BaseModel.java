@@ -12,23 +12,21 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 /**
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * <p>如果您继承使用了 BaseModel 或其子类，你需要参照如下方式在构造函数上添加 @Inject 注解
  *
- * 如果您继承使用了BaseModel或其子类，你需要参照如下方式在构造函数上添加@Inject注解
- *
- * @example BaseModel
- * //-------------------------
+ * <p>Example: BaseModel
+ * <pre>
  *    public class YourModel extends BaseModel {
- *        @Inject
+ *        &#64;Inject
  *        public BaseModel(IDataRepository dataRepository){
  *            super(dataRepository);
  *        }
  *    }
- * //-------------------------
+ * </pre>
  *
- *
- * 标准MVVM模式中的M (Model)层基类
+ * <p>标准MVVM模式中的M (Model)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class BaseModel implements IModel {

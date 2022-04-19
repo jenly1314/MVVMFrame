@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
 /**
- * 懒加载Fragment
+ * 懒加载 Fragment
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class BaseLazyFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends BaseFragment<VM,VDB> {

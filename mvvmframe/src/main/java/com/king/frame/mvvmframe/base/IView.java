@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 
 /**
- * 用来规范{@link BaseActivity} 和{@link BaseFragment} 风格。
+ * 用来规范 {@link BaseActivity} 和 {@link BaseFragment} 风格。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface IView<VM extends ViewModel> {

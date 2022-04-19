@@ -4,17 +4,17 @@ import android.content.BroadcastReceiver;
 
 
 /**
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * 如果您继承使用了BaseBroadcastReceiver或其子类，你需要参照如下方式添加@AndroidEntryPoint注解
+ * <p>如果您继承使用了 BaseBroadcastReceiver 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解
  *
- * @example BroadcastReceiver
- * //-------------------------
- *    @AndroidEntryPoint
+ * <p>Example: BaseBroadcastReceiver
+ * <pre>
+ *    &#64;AndroidEntryPoint
  *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
  *
  *    }
- * //-------------------------
+ * </pre>
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */

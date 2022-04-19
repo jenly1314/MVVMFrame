@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer;
 import timber.log.Timber;
 
 /**
- * 提供观察单个对象{@link T}事件
+ * 提供观察单个对象 {@link T} 事件
  * @see <a href="https://github.com/googlesamples/android-architecture/blob/6419d4c523b67d020120fc400ed5a7372e5615f2/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java">google sample</a>
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */

@@ -12,7 +12,8 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
 /**
- * 用于容纳Fragment的通用Activity，相当于一个Fragment容器，通过{@link Intent} 传递参数和标识，然后实现{@link #switchFragment}处理对应的逻辑
+ * 用于容纳 Fragment 的通用 Activity，相当于一个 Fragment 容器，通过 {@link Intent} 传递参数和标识，
+ * 然后实现 {@link #switchFragment} 处理对应的逻辑
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public abstract class ContentActivity extends BaseActivity<DataViewModel, ViewDataBinding> {

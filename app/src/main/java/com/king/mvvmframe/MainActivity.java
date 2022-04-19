@@ -18,76 +18,76 @@ import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
 
 /**
- * MVVMFrame 框架基于Google官方的 JetPack 构建，在使用MVVMFrame时，需遵循一些规范：
+ * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
  *
- * Hilt大幅简化了Dagger2的用法，使得我们不用通过@Component注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个Android固定的入口点开始，
- * Hilt一共支持6个入口点，分别是：
- * Application
- * Activity
- * Fragment
- * View
- * Service
- * BroadcastReceiver
+ * <p>Hilt 大幅简化了 Dagger2 的用法，使得我们不用通过 @Component 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 Android 固定的入口点开始，
+ * <p>Hilt 一共支持6个入口点，分别是：
+ * <p>Application
+ * <p>Activity
+ * <p>Fragment
+ * <p>View
+ * <p>Service
+ * <p>BroadcastReceiver
  *
- * //========================================================//
+ * //===================================================//
+ * <pre>
+ * 其中，只有 Application 这个入口点是使用 @HiltAndroidApp 注解来声明，示例如下
  *
- * 其中，只有Application这个入口点是使用@HiltAndroidApp注解来声明，示例如下
  *
- * @example Application
+ * &#64;example: Application
  * //-------------------------
- *    @HiltAndroidApp
+ *    &#64;HiltAndroidApp
  *    public class YourApplication extends Application {
  *
  *    }
  * //-------------------------
  *
- * //--------------------------------------------------------//
+ * //---------------------------------------------------//
  *
  * 其他的所有入口点，都是用@AndroidEntryPoint注解来声明，示例如下
  *
- * @example Activity
+ * Example: Activity
  * //-------------------------
- *    @AndroidEntryPoint
+ *    &#64;AndroidEntryPoint
  *    public class YourActivity extends BaseActivity {
  *
  *    }
  * //-------------------------
  *
- * @example Fragment
+ * Example: Fragment
  * //-------------------------
- *    @AndroidEntryPoint
+ *    &#64;AndroidEntryPoint
  *    public class YourFragment extends BaseFragment {
  *
  *    }
  * //-------------------------
  *
- * @example Service
+ * Example: Service
  * //-------------------------
- *    @AndroidEntryPoint
+ *    &#64;AndroidEntryPoint
  *    public class YourService extends BaseService {
  *
  *    }
  * //-------------------------
  *
- * @example BroadcastReceiver
+ * Example: BroadcastReceiver
  * //-------------------------
- *    @AndroidEntryPoint
+ *    &#64;AndroidEntryPoint
  *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
  *
  *    }
  * //-------------------------
+ * </pre>
+ * //===================================================//
  *
- * //========================================================//
- *
- * Java 示例
- *
- * MVVM 精简分层示例 （适用于常规时）
- * 主要示例核心请查看 {@link OilPriceLiteActivity} 和 {@link OilPriceLiteViewModel}
- *
- * MVVM 标准分层示例 （适用于逻辑比较复杂时，分层更细）
- * 主要示例核心请查看 {@link OilPriceActivity} ， {@link OilPriceViewModel} 和 {@link OilPriceModel}
- *
- * Kotlin 示例 请查看 [sample-kotlin]
+ * <p>Java 示例
+ * <p>MVVM 精简分层示例 （适用于常规时）
+ * <p>主要示例核心请查看 {@link OilPriceLiteActivity} 和 {@link OilPriceLiteViewModel}
+ * <p>
+ * <p>MVVM 标准分层示例 （适用于逻辑比较复杂时，分层更细）
+ * <p>主要示例核心请查看 {@link OilPriceActivity} ， {@link OilPriceViewModel} 和 {@link OilPriceModel}
+ * <p>
+ * <p>Kotlin 示例 请查看 [sample-kotlin]
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */

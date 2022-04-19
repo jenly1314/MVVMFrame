@@ -262,11 +262,11 @@ public class AppConfigModule extends FrameConfigModule {
 [**1.x版本**](https://github.com/jenly1314/MVVMFrame/tree/androidx) 将你项目的 **Application** 继承MVVMFrame中的 **BaseApplication**
 ```java
 /**
- *  MVVMFrame 框架基于Google官方的Architecture Components dependencies 构建，在使用MVVMFrame时，需遵循一些规范：
- *  1.你的项目中的Application中需初始化MVVMFrame框架相关信息，有两种方式处理：
- *      a.直接继承本类{@link BaseApplication}即可；
- *      b.如你的项目中的Application本身继承了其它第三方的Application，因为Java是单继承原因，导致没法继承本类，可参照{@link BaseApplication}类，
- *      将{@link BaseApplication}中相关代码复制到你项目的Application中，在相应的生命周期中调用即可。
+ *  MVVMFrame 框架基于 Google 官方的 Architecture Components dependencies 构建，在使用 MVVMFrame 时，需遵循一些规范：
+ *  1.你的项目中的 Application 中需初始化 MVVMFrame 框架相关信息，有两种方式处理：
+ *      a.直接继承本类 {@link BaseApplication} 即可；
+ *      b.如你的项目中的 Application 本身继承了其它第三方的 Application，因为 Java 是单继承原因，导致没法继承本类，可参照 {@link BaseApplication} 类，
+ *      将 {@link BaseApplication} 中相关代码复制到你项目的 Application 中，在相应的生命周期中调用即可。
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -415,7 +415,7 @@ public class App extends BaseApplication {
 直接或间接继承了 **BaseActivity** 的配置示例：
 ```java
 /**
- * Activity模块统一管理：通过{@link ContributesAndroidInjector}方式注入，自动生成模块组件关联代码，减少手动编码
+ * Activity 模块统一管理：通过 {@link ContributesAndroidInjector} 方式注入，自动生成模块组件关联代码，减少手动编码
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @Module(subcomponents = BaseActivitySubcomponent.class)
@@ -430,7 +430,7 @@ public abstract class ActivityModule {
 直接或间接继承了 **BaseFragment** 的配置示例：
 ```java
 /**
- * Fragment模块统一管理：通过{@link ContributesAndroidInjector}方式注入，自动生成模块组件关联代码，减少手动编码
+ * Fragment 模块统一管理：通过 {@link ContributesAndroidInjector} 方式注入，自动生成模块组件关联代码，减少手动编码
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @Module(subcomponents = BaseFragmentSubcomponent.class)
@@ -445,7 +445,7 @@ public abstract class FragmentModule {
 直接或间接继承了 **BaseViewModel** 的配置示例：
 ```java
 /**
- * ViewModel模块统一管理：通过{@link Binds}和{@link ViewModelKey}绑定关联对应的ViewModel
+ * ViewModel 模块统一管理：通过 {@link Binds} 和 {@link ViewModelKey} 绑定关联对应的 ViewModel
  * ViewModelModule 例子
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -462,7 +462,7 @@ public abstract class ViewModelModule {
 **ApplicationModule** 的配置示例
 ```java
 /**
- * Application模块：为{@link ApplicationComponent}提供注入的各个模块
+ * Application 模块：为 {@link ApplicationComponent} 提供注入的各个模块
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 @Module(includes = {ViewModelFactoryModule.class,ViewModelModule.class,ActivityModule.class,FragmentModule.class})
