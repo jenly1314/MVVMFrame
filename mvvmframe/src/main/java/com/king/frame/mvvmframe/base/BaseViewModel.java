@@ -44,14 +44,14 @@ import androidx.lifecycle.Observer;
  *    }
  * </pre>
  *
- * <p>标准MVVM模式中的VM (ViewModel)层基类
+ * <p>MVVM模式中的VM (ViewModel)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IViewModel {
 
 
     /**
-     * 请通过 {@link #getModel()} 获取，后续版本 {@link #mModel}可能会私有化
+     * 请通过 {@link #getModel()} 获取
      */
     private M mModel;
 

@@ -28,6 +28,14 @@ task clean(type: Delete) {
 }
 
 allprojects {
+    plugins.withId("com.vanniktech.maven.publish") {
+        mavenPublish {
+            sonatypeHost = "S01"
+        }
+    }
+}
+
+allprojects {
     tasks.withType(Javadoc) {
         options{
             encoding "UTF-8"

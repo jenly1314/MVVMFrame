@@ -4,13 +4,12 @@ import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
 
 /**
  * 用来规范 {@link BaseActivity} 和 {@link BaseFragment} 风格。
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public interface IView<VM extends ViewModel> {
+public interface IView<VM extends IViewModel> {
 
     /**
      * 根布局id
@@ -26,13 +25,13 @@ public interface IView<VM extends ViewModel> {
     void initData(@Nullable Bundle savedInstanceState);
 
     /**
-     * 是否使用DataBinding
+     * 是否使用 DataBinding
      * @return
      */
     boolean isBinding();
 
     /**
-     * 创建ViewModel
+     * 创建 ViewModel
      * @return
      */
     VM createViewModel();

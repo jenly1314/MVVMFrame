@@ -34,7 +34,7 @@ import timber.log.Timber;
  * 其中，只有 Application 这个入口点是使用 @HiltAndroidApp 注解来声明，示例如下
  *
  *
- * &#64;example: Application
+ * Example: Application
  * //-------------------------
  *    &#64;HiltAndroidApp
  *    public class YourApplication extends Application {

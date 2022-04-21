@@ -8,7 +8,7 @@ import android.app.IntentService;
  *
  * <p>如果您继承使用了 BaseIntentService 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解
  *
- * <p>Example: BaseIntentService
+ * <p>Example:
  * <pre>
  *    &#64;AndroidEntryPoint
  *    public class YourIntentService extends BaseIntentService {

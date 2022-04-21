@@ -47,7 +47,7 @@ import java.lang.reflect.Type;
  *
  * <p>如果您继承使用了 BaseActivity 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解
  *
- * <p>Example: BaseActivity
+ * <p>Example:
  * <pre>
  *    &#64;AndroidEntryPoint
  *    public class YourActivity extends BaseActivity {
@@ -60,11 +60,11 @@ import java.lang.reflect.Type;
 public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewDataBinding> extends AppCompatActivity implements IView<VM>, BaseNavigator {
 
     /**
-     * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
+     * 请通过 {@link #getViewModel()}获取
      */
     private VM mViewModel;
     /**
-     * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
+     * 请通过 {@link #getViewDataBinding()}获取
      */
     private VDB mBinding;
 
@@ -109,6 +109,10 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         }
     }
 
+    /**
+     * 获取泛型VM对应的类
+     * @return
+     */
     private Class<VM> getVMClass(){
         Class<?> cls = getClass();
         Class<VM> vmClass = null;
@@ -122,6 +126,11 @@ public abstract class BaseActivity<VM extends BaseViewModel,VDB extends ViewData
         return vmClass;
     }
 
+    /**
+     * 根据传入的 cls 获取泛型VM对应的类
+     * @param cls
+     * @return
+     */
     private Class getVMClass(Class<?> cls){
         Type type = cls.getGenericSuperclass();
         if(type instanceof ParameterizedType){

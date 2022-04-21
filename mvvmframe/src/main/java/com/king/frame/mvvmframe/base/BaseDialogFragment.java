@@ -45,7 +45,7 @@ import timber.log.Timber;
  *
  * <p>如果您继承使用了 BaseDialogFragment 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解
  *
- * <p>Example: BaseDialogFragment
+ * <p>Example:
  * <pre>
  *    &#64;AndroidEntryPoint
  *    public class YourFragment extends BaseDialogFragment {
@@ -58,15 +58,15 @@ import timber.log.Timber;
 public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends ViewDataBinding> extends DialogFragment implements IView<VM>, BaseNavigator {
 
     /**
-     * 请通过 {@link #getViewModel()}获取，后续版本 {@link #mViewModel}可能会私有化
+     * 请通过 {@link #getViewModel()} 获取
      */
     private VM mViewModel;
     /**
-     * 请通过 {@link #getViewDataBinding()}获取，后续版本 {@link #mBinding}可能会私有化
+     * 请通过 {@link #getViewDataBinding()} 获取
      */
     private VDB mBinding;
     /**
-     * 请通过 {@link #getRootView()} ()}获取，后续版本 {@link #mRootView}可能会私有化
+     * 请通过 {@link #getRootView()} 获取
      */
     private View mRootView;
 
@@ -155,6 +155,10 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         }
     }
 
+    /**
+     * 获取泛型VM对应的类
+     * @return
+     */
     private Class<VM> getVMClass(){
         Class<?> cls = getClass();
         Class<VM> vmClass = null;
@@ -168,6 +172,11 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
         return vmClass;
     }
 
+    /**
+     * 根据传入的 cls 获取泛型VM对应的类
+     * @param cls
+     * @return
+     */
     private Class getVMClass(Class<?> cls){
         Type type = cls.getGenericSuperclass();
         if(type instanceof ParameterizedType){
@@ -320,9 +329,7 @@ public abstract class BaseDialogFragment<VM extends BaseViewModel,VDB extends Vi
 
     //---------------------------------------
     protected void finish(){
-        if(getActivity() != null){
-            getActivity().finish();
-        }
+        requireActivity().finish();
     }
 
     protected Intent newIntent(Class<?> cls){

@@ -52,7 +52,7 @@ public interface AppliesOptions {
         void applyOptions(InterceptorConfig.Builder builder);
     }
     /**
-     * 为框架中的{@link Gson}提供配置参数入口
+     * 为框架中的{@link RoomDatabase}提供配置参数入口
      */
     interface RoomDatabaseOptions<T extends RoomDatabase>{
         void applyOptions(RoomDatabase.Builder<T> builder);

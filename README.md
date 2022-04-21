@@ -40,7 +40,7 @@ allprojects {
 #### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
 ```gradle
 //AndroidX 版本
-implementation 'com.github.jenly1314:mvvmframe:2.2.0'
+implementation 'com.github.jenly1314:mvvmframe:2.2.1'
 
 ```
 
@@ -544,6 +544,11 @@ public interface ApplicationComponent {
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
 ## 版本记录
+
+#### v2.2.1：2022-04-21
+*  更新Okhttp至v4.9.3
+*  更新Hilt至v2.41
+*  更新Gson至v2.9.0
 
 #### v2.2.0：2021-11-18
 *  minSdk要求从 16+ 改为 21+

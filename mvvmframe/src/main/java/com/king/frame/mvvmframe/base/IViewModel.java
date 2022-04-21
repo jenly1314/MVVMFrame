@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
 /**
- * 继承LifecycleObserver提供生命周期感知能力
+ * 通过继承LifecycleObserver提供生命周期感知能力
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public interface IViewModel extends LifecycleObserver {

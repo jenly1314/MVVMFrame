@@ -16,7 +16,7 @@ import androidx.room.RoomDatabase;
  *
  * <p>如果您继承使用了 BaseModel 或其子类，你需要参照如下方式在构造函数上添加 @Inject 注解
  *
- * <p>Example: BaseModel
+ * <p>Example:
  * <pre>
  *    public class YourModel extends BaseModel {
  *        &#64;Inject
@@ -26,7 +26,7 @@ import androidx.room.RoomDatabase;
  *    }
  * </pre>
  *
- * <p>标准MVVM模式中的M (Model)层基类
+ * <p>MVVM模式中的M (Model)层基类
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class BaseModel implements IModel {

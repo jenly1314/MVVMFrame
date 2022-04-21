@@ -8,7 +8,7 @@ import android.content.BroadcastReceiver;
  *
  * <p>如果您继承使用了 BaseBroadcastReceiver 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解
  *
- * <p>Example: BaseBroadcastReceiver
+ * <p>Example:
  * <pre>
  *    &#64;AndroidEntryPoint
  *    public class YourBroadcastReceiver extends BaseBroadcastReceiver {
