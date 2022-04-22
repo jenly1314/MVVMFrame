@@ -33,11 +33,9 @@ open class BaseViewModel @Inject constructor(application: Application, model: Ba
         return false
     }
 
-    fun launch(showLoading: Boolean = true, block: suspend () -> Unit){
-        launch(showLoading, block, {
-            Timber.w(it)
-            sendMessage(it.message)
-        })
+    fun launch(showLoading: Boolean = true, block: suspend () -> Unit) = launch(showLoading, block) {
+        Timber.w(it)
+        sendMessage(it.message)
     }
 
     fun launch(showLoading: Boolean, block: suspend () -> Unit, error: suspend (Throwable) -> Unit) = viewModelScope.launch {

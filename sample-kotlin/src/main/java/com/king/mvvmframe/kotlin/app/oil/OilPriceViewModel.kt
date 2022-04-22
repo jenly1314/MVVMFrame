@@ -28,7 +28,7 @@ class OilPriceViewModel @Inject constructor(application: Application, model: Bas
         launch {
             val result = apiService.getOilPriceInfo(Constants.OIL_PRICE_KEY).await()
             if(isSuccess(result)){
-                result?.data?.let {
+                result.data?.let {
                     oilLiveData.value = it
                 }
             }

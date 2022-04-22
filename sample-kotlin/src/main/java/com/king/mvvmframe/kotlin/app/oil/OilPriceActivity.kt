@@ -35,9 +35,9 @@ class OilPriceActivity : BaseActivity<OilPriceViewModel,OilPriceActivityBinding>
             adapter = mAdapter
         }
 
-        viewModel.oilLiveData.observe(this, Observer {
+        viewModel.oilLiveData.observe(this) {
             mAdapter.refreshData(it)
-        })
+        }
 
         binding.srl.setOnRefreshListener {
             viewModel.getOilPriceInfo()
