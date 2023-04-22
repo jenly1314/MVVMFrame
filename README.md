@@ -22,8 +22,6 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ## 引入
 
-> 由于2021年2月3日 **JFrog宣布将关闭Bintray和JCenter，计划在2022年2月完全关闭。** 所以后续版本不再发布至 **JCenter**
-
 1. 在Project的 **build.gradle** 里面添加远程仓库  
           
 ```gradle
@@ -406,7 +404,7 @@ public class App extends BaseApplication {
 1. 如果你对 **Dagger** 很了解，那么你将会更加轻松的去使用一些注入相关的骚操作。
 > 因为 **MVVMFrame** 中使用到了很多 **Dagger** 注入相关的一些操作。所以会涉及**Dagger**相关技术知识。
 
-但是并不意味着你一定要会使用 **Dagger**，才能使用**MVVMFrameComponent**。
+但是并不意味着你一定要会使用 **Dagger**，才能使用**MVVMFrame**。
 > 如果你对 **Dagger** 并不熟悉，其实也是可以用的，因为使用 **Dagger** 全局注入主要都已经封装好了。你只需参照**Demo** 中的示例，照葫芦画瓢。
 > 主要关注一些继承了**BaseActivity**，**BaseFragment**，**BaseViewModel**等相关类即可。
 
@@ -565,11 +563,12 @@ public interface ApplicationComponent {
 *  优化细节
 
 #### v2.1.0：2021-4-28  (从v2.1.0开始不再发布至JCenter)
-*  更新Hilt至v2.35
-*  移除androidx.hilt:hilt-lifecycle-viewmodel [移除原因请查看Dagger v2.34更新说明](https://github.com/google/dagger/releases)
-*  更新Lifecycle至v2.3.1
-*  更新Room至v2.3.0
-*  更新RetrofitHelper至v1.0.1
+* 更新Hilt至v2.35
+* 移除androidx.hilt:hilt-lifecycle-viewmodel [移除原因请查看Dagger v2.34更新说明](https://github.com/google/dagger/releases)
+* 更新Lifecycle至v2.3.1
+* 更新Room至v2.3.0
+* 更新RetrofitHelper至v1.0.1
+* 发布至Maven Central
 
 #### v2.0.0：2021-1-15
 *  使用Hilt简化Dagger依赖注入用法
@@ -620,27 +619,24 @@ public interface ApplicationComponent {
 ## 赞赏
 如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:<p>
 你也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
-    <div>
-        <img src="https://jenly1314.github.io/image/pay/wxpay.png" width="280" heght="350">
-        <img src="https://jenly1314.github.io/image/pay/alipay.png" width="280" heght="350">
-        <img src="https://jenly1314.github.io/image/pay/qqpay.png" width="280" heght="350">
-        <img src="https://jenly1314.github.io/image/alipay_red_envelopes.jpg" width="233" heght="350">
-    </div>
+<div>
+<img src="https://jenly1314.github.io/image/pay/sponsor.png" width="98%">
+</div>
 
 ## 关于我
-   Name: <a title="关于作者" href="https://about.me/jenly1314" target="_blank">Jenly</a>
+Name: <a title="关于作者" href="https://jenly1314.github.io" target="_blank">Jenly</a>
 
-   Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
+Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
 
-   CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
+CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
 
-   CNBlogs: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
+CNBlogs: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
 
-   GitHub: <a title="GitHub开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
-   
-   Gitee: <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>
+GitHub: <a title="GitHub开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 
-   加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
+Gitee: <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>
+
+加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
    <div>
        <img src="https://jenly1314.github.io/image/jenly666.png">
        <img src="https://jenly1314.github.io/image/qqgourp.png">
