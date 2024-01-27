@@ -10,8 +10,6 @@
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
-[![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
-[![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
 MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{ Lifecycle，LiveData，ViewModel，Room } 构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
 
@@ -22,44 +20,20 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ## 引入
 
-1. 在Project的 **build.gradle** 里面添加远程仓库  
-          
-```gradle
-allprojects {
+1. 在Project的 **build.gradle** 或 **setting.gradle** 中添加远程仓库
+
+   ```gradle
     repositories {
         //...
         mavenCentral()
     }
-}
-```
+   ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
-
-#### **v2.x**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
-```gradle
-//AndroidX 版本
-implementation 'com.github.jenly1314:mvvmframe:2.2.1'
-
-```
-
-
-以前发布至JCenter的版本
-
-#### **v2.0.0**（使用 **Hilt** 简化 **Dagger2** 依赖注入用法）
-```gradle
-//AndroidX 版本
-implementation 'com.king.frame:mvvmframe:2.0.0'
-
-```
-
-#### **v1.x** 以前版本（使用 **Dagger2**）
-```gradle
-//AndroidX 版本
-implementation 'com.king.frame:mvvmframe:1.1.4'
-
-//Android Support版本
-implementation 'com.king.frame:mvvmframe:1.0.2'
-```
+   ```gradle
+   //AndroidX 版本
+   implementation 'com.github.jenly1314:mvvmframe:2.2.1'
+   ```
 
 ### **Dagger**和 **Room** 的相关注解处理器
 
@@ -168,10 +142,9 @@ dependencies{
 
 ```
 
+## 使用
 
-## 示例
-
-集成步骤代码示例 （示例出自于[app](app)中）
+### 集成步骤代码示例 （示例出自于[app](app)中）
 
 **Step.1** 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
 
@@ -288,13 +261,13 @@ public class App extends BaseApplication {
 }
 ```
 
-## 其他
+### 其他
 
-### 关于v2.x
+#### 关于v2.x
 
 因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看 **Step.5**，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
 
-### 关于使用 **Hilt**
+#### 关于使用 **Hilt**
 
 **Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
@@ -524,15 +497,7 @@ public interface ApplicationComponent {
 >>>        选择：这个场景的选择，主要涉及到另外的方法，请查看 {@link RetrofitHelper#putDomain(String, String)} 和 {@link RetrofitHelper#putDomain(String, HttpUrl)}相关详情
 >
 
-
-
-更多使用详情，请查看[app](app)中的源码使用示例或直接查看[API帮助文档](https://jenly1314.github.io/projects/MVVMFrame/doc/)
-
-### 相关开源项目
-##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
-##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
-##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
-##### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MVVMFrame/latest/javadoc/)
 
 ## 压缩与混淆
 
@@ -540,6 +505,12 @@ public interface ApplicationComponent {
  目前推荐第三方库都自己配置混淆规则，这样在混淆时，如果使用 **R8** ，则可以直接包含第三方依赖库的混淆规则，就不用繁琐的去配置每个依赖库的混淆规则。
  
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
+
+## 相关开源项目
+##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
+##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
+##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
+##### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
 
 ## 版本记录
 
@@ -617,30 +588,27 @@ public interface ApplicationComponent {
 *  MVVMFrame初始版本
 
 ## 赞赏
-如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:<p>
-你也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
+如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:
+<p>您也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
+
 <div>
-<img src="https://jenly1314.github.io/image/pay/sponsor.png" width="98%">
+   <img src="https://jenly1314.github.io/image/page/rewardcode.png">
 </div>
 
 ## 关于我
-Name: <a title="关于作者" href="https://jenly1314.github.io" target="_blank">Jenly</a>
 
-Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
+| 我的博客                                                                                | GitHub                                                                                  | Gitee                                                                                  | CSDN                                                                                 | 博客园                                                                            |
+|:------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|
+| <a title="我的博客" href="https://jenly1314.github.io" target="_blank">Jenly's Blog</a> | <a title="GitHub开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a> | <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>  | <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>  | <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>  |
 
-CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
+## 联系我
 
-CNBlogs: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
+| 微信公众号        | Gmail邮箱                                                                          | QQ邮箱                                                                              | QQ群                                                                                                                       | QQ群                                                                                                                       |
+|:-------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
+| [Jenly666](http://weixin.qq.com/r/wzpWTuPEQL4-ract92-R) | <a title="给我发邮件" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314</a> | <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314</a> | <a title="点击加入QQ群" href="https://qm.qq.com/cgi-bin/qm/qr?k=6_RukjAhwjAdDHEk2G7nph-o8fBFFzZz" target="_blank">20867961</a> | <a title="点击加入QQ群" href="https://qm.qq.com/cgi-bin/qm/qr?k=Z9pobM8bzAW7tM_8xC31W8IcbIl0A-zT" target="_blank">64020761</a> |
 
-GitHub: <a title="GitHub开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
-
-Gitee: <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>
-
-加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
-   <div>
-       <img src="https://jenly1314.github.io/image/jenly666.png">
-       <img src="https://jenly1314.github.io/image/qqgourp.png">
-   </div>
-
+<div>
+   <img src="https://jenly1314.github.io/image/page/footer.png">
+</div>
 
    
