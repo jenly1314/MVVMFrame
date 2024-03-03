@@ -18,6 +18,8 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ## 引入
 
+### Gradle：
+
 1. 在Project的 **build.gradle** 或 **setting.gradle** 中添加远程仓库
 
    ```gradle
@@ -34,25 +36,13 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
    implementation 'com.github.jenly1314:mvvmframe:3.0.0'
    ```
 
-## 版本特别说明
-
-### 3.x版本已统一使用`kotlin`并进行了重构；之前2.x版本内部使用的`LiveData`相关代码已全部移除，3.x版本已全部改用kotlin独有的`Flow`进行实现。
-
-### 3.x相比较于2.x版本，更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加下`Compose`的UI相关依赖，稍微封装下即可）
-
-> 建议在新项目中使用，如果你之前使用的是2.x旧版本，请谨慎升级。
-
-> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
-
---- 
-
-从分割线此处开始，以下全部为3.x版本相关说明
-
 ### **Hilt**和 **Room** 的相关注解处理器
 
    你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。
 
 > 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
+
+> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
 
 你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件：
 ```gradle
@@ -83,6 +73,22 @@ dependencies{
 }
 
 ```
+
+> `kapt`适用于kotlin项目，如果你的项目使用的java，请使用`annotationProcessor` 替代 `kapt`
+
+## 版本特别说明
+
+* 3.x版本已统一使用`kotlin`并进行了重构；之前2.x版本内部使用的`LiveData`相关代码已全部移除，3.x版本已全部改用kotlin独有的`Flow`进行实现。
+
+* 3.x相比较于2.x版本，更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加上`Compose`的UI相关依赖，稍微封装下即可）
+
+> 建议在新项目中使用，如果你之前使用的是2.x旧版本，请谨慎升级。
+
+> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
+
+--- 
+
+从分割线此处开始，以下全部为3.x版本相关说明
 
 ## 使用
 
