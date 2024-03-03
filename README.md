@@ -38,7 +38,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### **Hilt**和 **Room** 的相关注解处理器
 
-   你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。
+   因为[mvvmframe](mvvmframe)内部依赖了**Hilt**和**Room**，所以你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。
 
 > 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
@@ -54,7 +54,6 @@ plugins {
 接下来，在 **app/build.gradle** 文件中，引入 **Hilt** 的插件和相关依赖：
 
 ```gradle
-...
 plugins {
     //...
     id 'kotlin-kapt'
@@ -88,11 +87,11 @@ dependencies{
 
 --- 
 
-从分割线此处开始，以下全部为3.x版本相关说明
+> 从分割线此处开始，以下全部为3.x版本相关说明
 
 ## 使用
 
-### 集成步骤代码示例 （示例出自于[app](app)中）
+### 集成步骤代码示例 （完整示例，可直接查看[app](app)）
 
 **Step.1** 启用ViewDataBinding，在你项目中的build.gradle的android{}中添加配置：
 
@@ -176,8 +175,8 @@ class AppConfigModule : FrameConfigModule() {
     }
  }
 ```
-> 如果由于某种原因，导致你不能继承[BaseApplication]；你也可以在你自定义的Application的onCreate函
- 数中通过调用[BaseApplication.initAppConfig]来进行初始化。
+> 如果由于某种原因，导致你不能继承`BaseApplication`；你也可以在你自定义的`Application`的`onCreate`函
+ 数中通过调用`BaseApplication.initAppConfig`来进行初始化。
 
 ### 其他
 
@@ -189,15 +188,15 @@ class AppConfigModule : FrameConfigModule() {
 
 **Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
 
-Hilt 目前支持以下 Android 类：
+#### **Hilt** 目前支持以下 **Android** 类：
 
-Application（通过使用 @HiltAndroidApp）
-ViewModel（通过使用 @HiltViewModel）
-Activity
-Fragment
-View
-Service
-BroadcastReceiver
+* Application（通过使用 @HiltAndroidApp）
+* ViewModel（通过使用 @HiltViewModel）
+* Activity
+* Fragment
+* View
+* Service
+* BroadcastReceiver
 
 **Application** 示例 (这里我们使用BaseApplication)
 ```kotlin
@@ -232,7 +231,7 @@ class YourFragment: BaseFragment() {
     //...
 }
 ```
-> 其他入口点都基本类似，不再一一列举了。更多有关 **Hilt** 的使用说明，可以查看[官方文档](https://developer.android.google.cn/training/dependency-injection/hilt-android)。
+> 其他入口点都基本类似，不再一一列举了。更多有关 **Hilt** 的使用说明，可以查看官方的[Hilt使用指南](https://developer.android.google.cn/training/dependency-injection/hilt-android)。
 
 ### 关于设置 **BaseUrl**
 
@@ -262,9 +261,9 @@ class YourFragment: BaseFragment() {
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MVVMFrame/latest/javadoc/)
 
-## 压缩与混淆
+## 混淆
 
- 目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
+ 目前 **MVVFrame** 所有依赖混淆规则可参见：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
 ## 相关开源项目
 ##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
