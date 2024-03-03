@@ -6,7 +6,6 @@
 [![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe)](https://repo1.maven.org/maven2/com/github/jenly1314/mvvmframe)
 [![JCenter](https://img.shields.io/badge/JCenter-2.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
-[![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
@@ -263,31 +262,27 @@ public class App extends BaseApplication {
 
 ### 其他
 
-#### 关于v2.x
+### 关于v2.x版本说明
 
 因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看 **Step.5**，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
 
-#### 关于使用 **Hilt**
+### 关于使用 **Hilt**
 
 **Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
 之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
 
-**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始，
+**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
 
-**Hilt** 一共支持 **6** 个入口点，分别是：
+#### **Hilt** 目前支持以下 **Android** 类：
 
-**Application**
-
-**Activity**
-
-**Fragment**
-
-**View**
-
-**Service**
-
-**BroadcastReceiver**
+* Application（通过使用 @HiltAndroidApp）
+* ViewModel（通过使用 @HiltViewModel）
+* Activity
+* Fragment
+* View
+* Service
+* BroadcastReceiver
 
 其中，只有 **Application** 这个入口点是使用 **@HiltAndroidApp** 注解来声明，示例如下
 
@@ -367,8 +362,6 @@ public class App extends BaseApplication {
        }
    }
 ```
-
-
 
 ### 关于使用 **Dagger**
 
