@@ -27,6 +27,6 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowAnimationStyle">@style/mvvmframe_dialog_animation</item>
-        <item name="android:progressBarStyle">@android:style/Widget.ProgressBar.Horizontal</item>
+        <item name="android:progressBarStyle">@android:style/Widget.ProgressBar</item>
     </style>
 </resources>

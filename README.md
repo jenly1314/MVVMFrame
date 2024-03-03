@@ -11,12 +11,10 @@
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 
-MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{ Lifecycle，LiveData，ViewModel，Room } 构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
 
 ## 架构
 ![Image](image/mvvm_architecture.jpg)
-
-## [Android version](https://github.com/jenly1314/MVVMFrame/tree/android)
 
 ## 引入
 
@@ -26,119 +24,63 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     repositories {
         //...
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
    ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
    ```gradle
-   //AndroidX 版本
-   implementation 'com.github.jenly1314:mvvmframe:2.2.1'
+   // AndroidX 版本
+   implementation 'com.github.jenly1314:mvvmframe:3.0.0'
    ```
 
-### **Dagger**和 **Room** 的相关注解处理器
+## 版本特别说明
 
-   你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。其它对应版本具体详情可查看 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
-  
-   
-#### **v2.x** 版本（**$versions** 相关可查看[Versions](versions.gradle)）
+### 3.x版本已统一使用`kotlin`并进行了重构；之前2.x版本内部使用的`LiveData`相关代码已全部移除，3.x版本已全部改用kotlin独有的`Flow`进行实现。
 
-你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件路径：
+### 3.x相比较于2.x版本，更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加下`Compose`的UI相关依赖，稍微封装下即可）
+
+> 建议在新项目中使用，如果你之前使用的是2.x旧版本，请谨慎升级。
+
+> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
+
+--- 
+
+从分割线此处开始，以下全部为3.x版本相关说明
+
+### **Hilt**和 **Room** 的相关注解处理器
+
+   你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。
+
+> 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
+
+你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件：
 ```gradle
-buildscript {
-    ...
-    dependencies {
-        ...
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHint"
-    }
+plugins {
+    //...
+    id 'com.google.dagger.hilt.android' version '2.51' apply false
 }
 ```
 接下来，在 **app/build.gradle** 文件中，引入 **Hilt** 的插件和相关依赖：
 
 ```gradle
 ...
-apply plugin: 'dagger.hilt.android.plugin'
-
-dependencies{
-    ...
-
-    //AndroidX ------------------ MVVMFrame v2.x.x
-    //lifecycle
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
-    //room
-    annotationProcessor "androidx.room:room-compiler:$versions.room"
-    //hilt
-    implementation "com.google.dagger:hilt-android:$versions.daggerHint"
-    annotationProcessor "com.google.dagger:hilt-compiler:$versions.daggerHint"
-
-//从2.1.0以后已移除
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt"
-//    annotationProcessor "androidx.hilt:hilt-compiler:$versions.hilt"
+plugins {
+    //...
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
-```
-
-#### **v1.x** 以前版本，建议 [查看分支版本](https://github.com/jenly1314/MVVMFrame/tree/androidx)
-
-在 **app/build.gradle** 文件中引入 **Dagger** 和 **Room** 相关依赖：
-```gradle
-
 dependencies{
-    ...
+    //...
 
-    //AndroidX ------------------ MVVMFrame v1.1.4
-    //dagger
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.30.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
-    //room 
-    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+    // room
+    kapt "androidx.room:room-compiler:2.6.1"
+    // hilt
+    implementation "com.google.dagger:hilt-android:2.51"
+    kapt "com.google.dagger:hilt-compiler:2.51"
+    
 }
-
-```
-
-```gradle
-
-dependencies{
-    ...
-
-    // Android Support ------------------ MVVMFrame v1.0.2
-    //dagger
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
-    //room
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-}
-
-```
- 如果你的项目使用的是 **Kotlin**，记得加上 **kotlin-kapt** 插件，并需使用 **kapt** 替代 **annotationProcessor** 
-
-### MVVMFrame引入的库（具体对应版本请查看 [Versions](versions.gradle)）
-```gradle
-    //appcompat
-    compileOnly deps.appcompat
-
-    //retrofit
-    api deps.retrofit.retrofit
-    api deps.retrofit.gson
-    api deps.retrofit.converter_gson
-
-    //retrofit-helper
-    api deps.jenly.retrofit_helper
-
-    //lifecycle
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
-
-    //room
-    api deps.room.runtime
-    annotationProcessor deps.room.compiler
-
-    //hilt
-    api deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_compiler
-
-    //log
-    api deps.timber
 
 ```
 
@@ -146,126 +88,92 @@ dependencies{
 
 ### 集成步骤代码示例 （示例出自于[app](app)中）
 
-**Step.1** 启用DataBinding，在你项目中的build.gradle的android{}中添加配置：
+**Step.1** 启用ViewDataBinding，在你项目中的build.gradle的android{}中添加配置：
 
-Android Studio 4.x 以后版本
 ```gradle
 buildFeatures{
     dataBinding = true
 }
 ```
 
-Android Studio 4.x 以前版本
-```gradle
-dataBinding {
-    enabled true
-}
-
-```
-
-
-**Step.2** 使用JDK8编译（v1.1.2新增），在你项目中的build.gradle的android{}中添加配置：
+**Step.2** 使用JDK17编译，在你项目中的build.gradle的android{}中添加配置：
 ```gradle
 compileOptions {
-    targetCompatibility JavaVersion.VERSION_1_8
-    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_17
+    sourceCompatibility JavaVersion.VERSION_17
 }
 
 ```
 
 **Step.3** 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
-```java
+```kotlin
 /**
- * 自定义全局配置
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ * 全局配置
  */
-public class AppConfigModule extends FrameConfigModule {
-    @Override
-    public void applyOptions(Context context, ConfigModule.Builder builder) {
-        builder.baseUrl(Constants.BASE_URL)//TODO 配置Retrofit中的baseUrl
-                .retrofitOptions(new RetrofitOptions() {
-                    @Override
-                    public void applyOptions(Retrofit.Builder builder) {
-                        //TODO 配置Retrofit
-                        //如想使用RxJava
-                        //builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    }
-                })
-                .okHttpClientOptions(new OkHttpClientOptions() {
-                    @Override
-                    public void applyOptions(OkHttpClient.Builder builder) {
-                        //TODO 配置OkHttpClient
-                    }
-                })
-                .gsonOptions(new GsonOptions() {
-                    @Override
-                    public void applyOptions(GsonBuilder builder) {
-                        //TODO 配置Gson
-                    }
-                })
-                .roomDatabaseOptions(new RoomDatabaseOptions<RoomDatabase>() {
-                    @Override
-                    public void applyOptions(RoomDatabase.Builder<RoomDatabase> builder) {
-                        //TODO 配置RoomDatabase
-                    }
-                });
+class AppConfigModule : FrameConfigModule() {
+    override fun applyOptions(context: Context, builder: ConfigModule.Builder) {
+        // 通过第一种方式初始化BaseUrl
+        builder.baseUrl(Constants.BASE_URL) // TODO 配置Retrofit中的baseUrl
+
+        builder.retrofitOptions(object : RetrofitOptions {
+            override fun applyOptions(builder: Retrofit.Builder) {
+                // TODO 配置Retrofit
+
+            }
+        })
+            .okHttpClientOptions(object : OkHttpClientOptions {
+                override fun applyOptions(builder: OkHttpClient.Builder) {
+                    // TODO 配置OkHttpClient
+                }
+            })
+            .gsonOptions(object : GsonOptions {
+                override fun applyOptions(builder: GsonBuilder) {
+                    // TODO 配置Gson
+
+                }
+            })
+            .roomDatabaseOptions(object : RoomDatabaseOptions {
+                override fun applyOptions(builder: RoomDatabase.Builder<out RoomDatabase>) {
+                    // TODO 配置RoomDatabase
+                    builder.fallbackToDestructiveMigration()
+                }
+            })
+            .configOptions(object : AppliesOptions.ConfigOptions {
+                override fun applyOptions(builder: Config.Builder) {
+                    // TODO 配置Config
+                    builder.httpLoggingLevel(HttpLoggingInterceptor.Level.BODY)
+                }
+            })
     }
 }
 ```
 
-**Step.4** 在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+然后在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 ```xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.config.AppConfigModule"
            android:value="FrameConfigModule"/>
 ```
+> 此处的`com.king.mvvmframe.config.AppConfigModule` 替换为你自定义的全局配置类
 
-**Step.5** 关于Application
+**Step.4** 配置Application
 
-[**2.x版本**](app) 因为从**2.x**开始使用到了**Hilt**，所以你自定义的**Application**需加上 **@HiltAndroidApp** 注解，这是使用**Hilt**的一个必备前提。示例如下：
-```java
-   @HiltAndroidApp
-   public class YourApplication extends Application {
-
-   }
-```
-
-[**1.x版本**](https://github.com/jenly1314/MVVMFrame/tree/androidx) 将你项目的 **Application** 继承MVVMFrame中的 **BaseApplication**
-```java
-/**
- *  MVVMFrame 框架基于 Google 官方的 Architecture Components dependencies 构建，在使用 MVVMFrame 时，需遵循一些规范：
- *  1.你的项目中的 Application 中需初始化 MVVMFrame 框架相关信息，有两种方式处理：
- *      a.直接继承本类 {@link BaseApplication} 即可；
- *      b.如你的项目中的 Application 本身继承了其它第三方的 Application，因为 Java 是单继承原因，导致没法继承本类，可参照 {@link BaseApplication} 类，
- *      将 {@link BaseApplication} 中相关代码复制到你项目的 Application 中，在相应的生命周期中调用即可。
- *
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-public class App extends BaseApplication {
-
-    @Override
-    public void onCreate() {
-          //TODO 如果默认配置已经能满足你的需求，你不需要自定义配置，可以通过下面注释掉的方式设置 BaseUrl，从而可以省略掉 step3 , setp4 两个步骤。
-//        RetrofitHelper.getInstance().setBaseUrl(baseUrl);
-        super.onCreate();
-        //开始构建项目时，DaggerApplicationComponent类可能不存在，你需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
-        ApplicationComponent appComponent = DaggerApplicationComponent.builder()
-                .appComponent(getAppComponent())
-                .build();
-        //注入
-        appComponent.inject(this);
-
+```kotlin
+ @HiltAndroidApp
+ class YourApplication : BaseApplication() {
+    //...
+    
+    override fun onCreate() {
+        super.onCreate()
+        // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过第二种方式来设置BaseUrl（二选其一即可）
+//        RetrofitHelper.getInstance().setBaseUrl(baseUrl)
     }
-
-
-}
+ }
 ```
+> 如果由于某种原因，导致你不能继承[BaseApplication]；你也可以在你自定义的Application的onCreate函
+ 数中通过调用[BaseApplication.initAppConfig]来进行初始化。
 
 ### 其他
-
-#### 关于v2.x
-
-因为**v2.x版本** 使用了 **Hilt** 的缘故，简化了之前 **Dagger2** 的用法，建议在新项目中使用。如果是从 **v1.x** 升级到 **v2.x**，集成步骤稍有变更，详情请查看 **Step.5**，并且可能还需要删除以前 **@Component**，**@Module**等注解桥接层相关的逻辑代码，因为从**v2.x**开始，这些桥接逻辑无需自己编写，全部交由 **Hilt** 处理。
 
 #### 关于使用 **Hilt**
 
@@ -273,203 +181,52 @@ public class App extends BaseApplication {
 
 之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
 
-**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始，
+**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
 
-**Hilt** 一共支持 **6** 个入口点，分别是：
+Hilt 目前支持以下 Android 类：
 
-**Application**
+Application（通过使用 @HiltAndroidApp）
+ViewModel（通过使用 @HiltViewModel）
+Activity
+Fragment
+View
+Service
+BroadcastReceiver
 
-**Activity**
-
-**Fragment**
-
-**View**
-
-**Service**
-
-**BroadcastReceiver**
-
-其中，只有 **Application** 这个入口点是使用 **@HiltAndroidApp** 注解来声明，示例如下
-
- **Application** 示例
-```java
-   @HiltAndroidApp
-   public class YourApplication extends Application {
-
-   }
-```
-
-其他的所有入口点，都是用 **@AndroidEntryPoint** 注解来声明，示例如下
-
- **Activity** 示例
-```java
-   @AndroidEntryPoint
-   public class YourActivity extends BaseActivity {
-
-   }
-```
-
- **Fragment** 示例
-```java
-   @AndroidEntryPoint
-   public class YourFragment extends BaseFragment {
-
-   }
-```
-
- **Service** 示例
-```java
-   @AndroidEntryPoint
-   public class YourService extends BaseService {
-
-   }
-```
-
- **BroadcastReceiver** 示例
-```java
-   @AndroidEntryPoint
-   public class YourBroadcastReceiver extends BaseBroadcastReceiver {
-
-   }
-```
-
-### 其它示例
-
- **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在类上添加 **@HiltViewModel** 并在构造函数上添加 **@Inject** 注解）
-```java
-   @HiltViewModel
-   public class YourViewModel extends BaseViewModel<YourModel> {
-       @Inject
-       public DataViewModel(@NonNull Application application, YourModel model) {
-           super(application, model);
-       }
-   }
-```
-
- **BaseModel** 示例 （如果您继承使用了BaseModel或其子类，你需要参照如下方式在构造函数上添加 **@Inject** 注解）
-```java
-   public class YourModel extends BaseModel {
-       @Inject
-       public BaseModel(IDataRepository dataRepository){
-           super(dataRepository);
-       }
-   }
-```
-
- 如果使用的是 v2.0.0 版本 （使用 **androidx.hilt:hilt-lifecycle-viewmodel** 的方式）
-
- **BaseViewModel** 示例 （如果您继承使用了BaseViewModel或其子类，你需要参照如下方式在构造函数上添加 **@ViewModelInject** 注解）
-```java
-   public class YourViewModel extends BaseViewModel<YourModel> {
-       @ViewModelInject
-       public DataViewModel(@NonNull Application application, YourModel model) {
-           super(application, model);
-       }
-   }
-```
-
-
-
-### 关于使用 **Dagger**
-
-之所以特意说 **Dagger** 是因为**Dagger**的学习曲线相对陡峭一点，没那么容易理解。
-
-1. 如果你对 **Dagger** 很了解，那么你将会更加轻松的去使用一些注入相关的骚操作。
-> 因为 **MVVMFrame** 中使用到了很多 **Dagger** 注入相关的一些操作。所以会涉及**Dagger**相关技术知识。
-
-但是并不意味着你一定要会使用 **Dagger**，才能使用**MVVMFrame**。
-> 如果你对 **Dagger** 并不熟悉，其实也是可以用的，因为使用 **Dagger** 全局注入主要都已经封装好了。你只需参照**Demo** 中的示例，照葫芦画瓢。
-> 主要关注一些继承了**BaseActivity**，**BaseFragment**，**BaseViewModel**等相关类即可。
-
-这里列一些主要的通用注入参照示例：（下面**Dagger**相关的示例仅适用于**v1.x**版本，因为**v2.x**已基于**Hilt**编写，简化了**Dagger**依赖注入桥接层相关逻辑）
-
-直接或间接继承了 **BaseActivity** 的配置示例：
-```java
-/**
- * Activity 模块统一管理：通过 {@link ContributesAndroidInjector} 方式注入，自动生成模块组件关联代码，减少手动编码
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-@Module(subcomponents = BaseActivitySubcomponent.class)
-public abstract class ActivityModule {
-
-    @ContributesAndroidInjector
-    abstract MainActivity contributeMainActivity();
-
+**Application** 示例 (这里我们使用BaseApplication)
+```kotlin
+@HiltAndroidApp 
+class YourApplication : BaseApplication() {
+    //...
 }
 ```
 
-直接或间接继承了 **BaseFragment** 的配置示例：
-```java
-/**
- * Fragment 模块统一管理：通过 {@link ContributesAndroidInjector} 方式注入，自动生成模块组件关联代码，减少手动编码
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-@Module(subcomponents = BaseFragmentSubcomponent.class)
-public abstract class FragmentModule {
-
-    @ContributesAndroidInjector
-    abstract MainFragment contributeMainFragment();
-
+**ViewModel** 示例 (这里我们使用BaseViewModel)
+```kotlin
+@HiltViewModel 
+class YourViewModel : BaseViewModel() {
+    //...
 }
 ```
 
-直接或间接继承了 **BaseViewModel** 的配置示例：
-```java
-/**
- * ViewModel 模块统一管理：通过 {@link Binds} 和 {@link ViewModelKey} 绑定关联对应的 ViewModel
- * ViewModelModule 例子
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-@Module
-public abstract class ViewModelModule {
+其他的入口点，都是用 **@AndroidEntryPoint** 注解来声明，示例如下
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel.class)
-    abstract ViewModel bindMainViewModel(MainViewModel viewModel);
+**Activity** 示例 (这里我们使用BaseActivity)
+```kotlin
+@AndroidEntryPoint
+class YourActivity: BaseActivity() {
+    //...
 }
 ```
 
-**ApplicationModule** 的配置示例
-```java
-/**
- * Application 模块：为 {@link ApplicationComponent} 提供注入的各个模块
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-@Module(includes = {ViewModelFactoryModule.class,ViewModelModule.class,ActivityModule.class,FragmentModule.class})
-public class ApplicationModule {
-
+**Fragment** 示例 (这里我们使用BaseFragment)
+```kotlin
+@AndroidEntryPoint
+class YourFragment: BaseFragment() {
+    //...
 }
 ```
-
-**ApplicationComponent** 的配置示例
-```java
-/**
- * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
- */
-@ApplicationScope
-@Component(dependencies = AppComponent.class,modules = {ApplicationModule.class})
-public interface ApplicationComponent {
-    //指定你的 Application 继承类
-    void inject(App app);
-}
-```
-
-通过上面的通用配置注入你所需要的相关类之后，如果配置没什么问题，你只需 **执行Make Project** 一下，或通过 **Make Project** 快捷键 **Ctrl + F9** ，就可以自动生产相关代码。
-比如通过 **ApplicationComponent** 生成的 **DaggerApplicationComponent** 类。
-
-然后在你的 **Application** 集成类 **App** 中通过 **DaggerApplicationComponent** 构建 **ApplicationComponent**，然后注入即可。
-```java
-    //开始构建项目时，DaggerApplicationComponent类可能不存在，你需要执行Make Project才能生成，Make Project快捷键 Ctrl + F9
-    ApplicationComponent appComponent = DaggerApplicationComponent.builder()
-            .appComponent(getAppComponent())
-            .build();
-    //注入
-    appComponent.inject(this);
-```
-
-你也可以直接查看[app](app)中的源码示例
-
+> 其他入口点都基本类似，不再一一列举了。更多有关 **Hilt** 的使用说明，可以查看[官方文档](https://developer.android.google.cn/training/dependency-injection/hilt-android)。
 
 ### 关于设置 **BaseUrl**
 
@@ -501,9 +258,6 @@ public interface ApplicationComponent {
 
 ## 压缩与混淆
 
- 从 **Android Studio 3.3+** 之后，AS新增特性代码压缩工具 **R8** ，**R8** 旨在集成 **ProGuard** 和 **D8** 的功能。
- 目前推荐第三方库都自己配置混淆规则，这样在混淆时，如果使用 **R8** ，则可以直接包含第三方依赖库的混淆规则，就不用繁琐的去配置每个依赖库的混淆规则。
- 
  目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
 ## 相关开源项目
@@ -514,78 +268,26 @@ public interface ApplicationComponent {
 
 ## 版本记录
 
+#### v3.0.0：2024-03-03
+* 统一改为使用`kotlin`，并进行了重构
+* 移除所有`LiveData`相关代码改用`Flow`
+* 更新编译SDK至34
+* 更新Gradle至v8.0
+* 新增core-ktx依赖（v1.12.0）
+* 新增fragment-ktx依赖（v1.6.2）
+* 新增lifecycle-ktx相关依赖（v2.7.0）
+* 更新Okhttp至v4.12.0
+* 更新Hilt至v2.51
+* 更新Gson至v2.10.1
+* 更新Room至v2.6.1
+* 更新retrofit-helper至v1.1.0
+
 #### v2.2.1：2022-04-21
-*  更新Okhttp至v4.9.3
-*  更新Hilt至v2.41
-*  更新Gson至v2.9.0
+* 更新Okhttp至v4.9.3
+* 更新Hilt至v2.41
+* 更新Gson至v2.9.0
 
-#### v2.2.0：2021-11-18
-*  minSdk要求从 16+ 改为 21+
-*  更新编译SDK至30
-*  更新Gradle至v6.7.1
-*  更新Okhttp至v4.9.2
-*  更新Hilt至v2.40.1
-*  更新Gson至v2.8.9
-*  更新Timber至v5.0.1
-
-#### v2.1.1：2021-6-29
-*  更新Hilt至v2.37
-*  更新Gson至v2.8.7
-*  优化细节
-
-#### v2.1.0：2021-4-28  (从v2.1.0开始不再发布至JCenter)
-* 更新Hilt至v2.35
-* 移除androidx.hilt:hilt-lifecycle-viewmodel [移除原因请查看Dagger v2.34更新说明](https://github.com/google/dagger/releases)
-* 更新Lifecycle至v2.3.1
-* 更新Room至v2.3.0
-* 更新RetrofitHelper至v1.0.1
-* 发布至Maven Central
-
-#### v2.0.0：2021-1-15
-*  使用Hilt简化Dagger依赖注入用法
-
-#### v1.1.4：2020-12-14
-*  优化细节
-*  更新Dagger至v2.30.1
-
-#### v1.1.3：2020-6-1
-*  支持配置多个BaseUrl，且支持动态改变（详情查看 [RetrofitHelper](https://github.com/jenly1314/RetrofitHelper)） 
-*  对外暴露更多配置，（详情查看 FrameConfigModule）
-*  优化细节
-*  更新Retrofit至v2.9.0
-
-#### v1.1.2：2020-4-5 
-*  优化细节
-*  更新Gradle至v5.6.4
-*  更新Lifecycle至v2.2.0
-*  更新Room至v2.2.5
-*  更新Dagger至v2.27
-*  更新Retrofit至v2.8.1
-
-#### v1.1.1：2019-11-4
-*  优化部分细节
-*  更新编译SDK至29
-*  更新Gradle至v5.4.1
-*  更新Lifecycle至v2.2.0-rc01
-*  更新Room至v2.2.1
-*  更新Dagger至v2.25.2
-*  更新Retrofit至v2.6.2
-*  更新Gson至v2.8.6
-
-#### v1.1.0：2019-7-22
-*  更新Dagger至v2.23.2
-*  更新Gradle至v5.1.1
-*  完全迁移至AndroidX版本
-
-#### v1.0.2：2019-7-22
-*  更新Dagger至v2.19
-*  为迁移至AndroidX做准备（下一版本将直接发布AndroidX版）
-
-#### v1.0.1：2019-7-9
-*  Retrofit更新至v2.6.0
-
-#### v1.0.0：2018-12-12
-*  MVVMFrame初始版本
+#### [查看更多版本记录](change_log.md)
 
 ## 赞赏
 如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:

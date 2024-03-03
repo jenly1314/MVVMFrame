@@ -1,20 +1,21 @@
-apply plugin: 'com.android.library'
-//apply from: 'bintray.gradle'
-apply plugin: "com.vanniktech.maven.publish"
-apply plugin: 'dagger.hilt.android.plugin'
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.vanniktech.maven.publish'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
 
 android {
-
-    compileSdkVersion build_versions.compileSdk
-    buildToolsVersion build_versions.buildTools
+    namespace 'com.king.frame.mvvmframe'
+    compileSdk build_versions.compileSdk
 
     defaultConfig {
-        minSdkVersion build_versions.minSdk
-        targetSdkVersion build_versions.targetSdk
-        versionCode app_version.versionCode
-        versionName app_version.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk build_versions.minSdk
+        targetSdk build_versions.targetSdk
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,8 +30,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
@@ -40,46 +41,46 @@ android {
 
 }
 
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     testImplementation deps.test.junit
     androidTestImplementation deps.test.android_junit
-    androidTestImplementation deps.test.test
     androidTestImplementation deps.test.espresso
-    //appcompat
+    // appcompat
     compileOnly deps.appcompat
 
-    //okhttp
-    api deps.okhttp
-    //retrofit
+    api deps.core_ktx
+    api deps.fragment_ktx
+
+    // okhttp
+    api deps.okhttp.okhttp
+    api deps.okhttp.logging_interceptor
+    // retrofit
     api deps.retrofit.retrofit
-    api deps.retrofit.gson
     api deps.retrofit.converter_gson
+    api deps.gson
 
-    //retrofit-helper
-    api deps.jenly.retrofit_helper
+    // retrofit-helper
+    api deps.retrofit_helper
 
-    //lifecycle
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
+    // lifecycle
+    api deps.lifecycle_runtime_ktx
+    api deps.lifecycle_viewmodel_ktx
 
-    //room
+    // room
     api deps.room.runtime
-    annotationProcessor deps.room.compiler
+    api deps.room.room_ktx
+    kapt deps.room.compiler
 
-    //hilt
+    // hilt
     api deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_compiler
+    kapt  deps.dagger.hilt_compiler
 
-    //log
+    // log
     api deps.timber
+    // toast
+    api deps.toaster
+}
+
+kapt {
+    correctErrorTypes true
 }

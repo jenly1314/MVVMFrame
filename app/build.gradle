@@ -1,20 +1,28 @@
-apply plugin: 'com.android.application'
-apply plugin: 'dagger.hilt.android.plugin'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
 
 android {
-    compileSdkVersion build_versions.compileSdk
-    buildToolsVersion build_versions.buildTools
+    namespace 'com.king.mvvmframe'
+    compileSdk build_versions.compileSdk
 
     defaultConfig {
         applicationId "com.king.mvvmframe"
-        minSdkVersion build_versions.minSdk
-        targetSdkVersion build_versions.targetSdk
+        minSdk build_versions.minSdk
+        targetSdk build_versions.targetSdk
         versionCode app_version.versionCode
         versionName app_version.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,8 +35,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
     }
 
     lintOptions {
@@ -39,11 +47,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     testImplementation deps.test.junit
     androidTestImplementation deps.test.android_junit
-    androidTestImplementation deps.test.test
     androidTestImplementation deps.test.espresso
 
     implementation deps.material
@@ -52,25 +57,25 @@ dependencies {
     implementation deps.recyclerview
     implementation deps.constraintlayout
 
+    implementation deps.base_util
+    implementation deps.base_adapter
+
+    implementation deps.android_ktx
+
     implementation deps.flowlayout
 
     implementation deps.logger
 
     //leakCanary
-    debugImplementation deps.leakcanary.debug
+    debugImplementation deps.leakcanary
 
-    implementation deps.jenly.base_util
-    implementation deps.jenly.base_adapter
-
-    //lifecycle
-    annotationProcessor deps.lifecycle.compiler
-    //room - Room Orm
-    annotationProcessor deps.room.compiler
-    //room.rxjava - Room配合RxJava线程调度使用
-    implementation deps.room.rxjava2
-
+    // MVVMFrame相关依赖
+    kapt deps.room.compiler
     implementation deps.dagger.hilt_android
-    annotationProcessor  deps.dagger.hilt_compiler
-
+    kapt  deps.dagger.hilt_compiler
     implementation project(':mvvmframe')
+}
+
+kapt {
+    correctErrorTypes true
 }

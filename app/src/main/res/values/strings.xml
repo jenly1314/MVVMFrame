@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name">MVVMFrame</string>
-    <string name="author_">作者：</string>
+
+    <!-- Error -->
+    <string name="result_connect_failed_error">服务器连接失败，请稍后再试。</string>
+    <string name="result_connect_timeout_error">服务器连接超时，请稍后再试。</string>
+    <string name="result_error">系统繁忙，请稍后再试。</string>
+    <string name="result_network_unavailable_error">网络不给力，请检查网络。</string>
 
     <string name="result_failure">获取失败</string>
 
     <string name="label_search_history">历史查询</string>
     <string name="label_search_result">查询结果</string>
 
+    <string name="word_search_hint">输入需要查询的汉字</string>
     <string name="tips_search_content">输入的内容不能为空</string>
+
+    <string name="cleared">已清空</string>
 
     <string name="btn_close">关闭</string>
 
