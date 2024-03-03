@@ -122,7 +122,6 @@ class AppConfigModule : FrameConfigModule() {
         builder.retrofitOptions(object : RetrofitOptions {
             override fun applyOptions(builder: Retrofit.Builder) {
                 // TODO 配置Retrofit
-
             }
         })
             .okHttpClientOptions(object : OkHttpClientOptions {
@@ -133,13 +132,11 @@ class AppConfigModule : FrameConfigModule() {
             .gsonOptions(object : GsonOptions {
                 override fun applyOptions(builder: GsonBuilder) {
                     // TODO 配置Gson
-
                 }
             })
             .roomDatabaseOptions(object : RoomDatabaseOptions {
                 override fun applyOptions(builder: RoomDatabase.Builder<out RoomDatabase>) {
                     // TODO 配置RoomDatabase
-                    builder.fallbackToDestructiveMigration()
                 }
             })
             .configOptions(object : AppliesOptions.ConfigOptions {
