@@ -6,7 +6,6 @@
 [![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe)](https://repo1.maven.org/maven2/com/github/jenly1314/mvvmframe)
 [![JCenter](https://img.shields.io/badge/JCenter-2.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
-[![CI](https://travis-ci.org/jenly1314/MVVMFrame.svg?branch=master)](https://travis-ci.org/jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
@@ -38,7 +37,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### **Hilt**和 **Room** 的相关注解处理器
 
-   因为[mvvmframe](mvvmframe)内部依赖了**Hilt**和**Room**，所以你需要引入下面的列出的编译时的注解处理器，用于自动生成相关代码。
+   因为[mvvmframe](mvvmframe)内部依赖了**Hilt**和**Room**，所以你需要引入下面列出的编译时的注解处理器，用于自动生成相关代码。
 
 > 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
@@ -81,7 +80,7 @@ dependencies{
 
 * 3.x相比较于2.x版本，更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加上`Compose`的UI相关依赖，稍微封装下即可）
 
-> 建议在新项目中使用，如果你之前使用的是2.x旧版本，请谨慎升级。
+> 建议在新项目中使用；如果你之前使用的是2.x旧版本，请谨慎升级。
 
 > 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
 
