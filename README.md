@@ -179,7 +179,7 @@ class AppConfigModule : FrameConfigModule() {
 
 ### 其他
 
-#### 关于使用 **Hilt**
+### 关于使用 **Hilt**
 
 **Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
