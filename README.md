@@ -31,13 +31,13 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
    ```gradle
-   // AndroidX 版本
+   // AndroidX 
    implementation 'com.github.jenly1314:mvvmframe:3.0.0'
    ```
 
 ### **Hilt**和 **Room** 的相关注解处理器
 
-   因为[mvvmframe](mvvmframe)内部依赖了**Hilt**和**Room**，所以你需要引入下面列出的编译时的注解处理器，用于自动生成相关代码。
+   因为 [mvvmframe](mvvmframe) 内部依赖了 **Hilt** 和 **Room**，所以你需要引入下面列出的编译时的注解处理器，用于自动生成相关代码。
 
 > 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
@@ -62,23 +62,25 @@ plugins {
 dependencies{
     //...
 
-    // room
-    kapt "androidx.room:room-compiler:2.6.1"
     // hilt
     implementation "com.google.dagger:hilt-android:2.51"
     kapt "com.google.dagger:hilt-compiler:2.51"
     
+    // room
+    kapt "androidx.room:room-compiler:2.6.1"
 }
 
 ```
 
 > `kapt`适用于kotlin项目，如果你的项目使用的java，请使用`annotationProcessor` 替代 `kapt`
 
-## 版本特别说明
+## 使用
 
-* 3.x版本已统一使用`kotlin`并进行了重构；之前2.x版本内部使用的`LiveData`相关代码已全部移除，3.x版本已全部改用kotlin独有的`Flow`进行实现。
+### 版本特别说明
 
-* 3.x相比较于2.x版本，更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加上`Compose`的UI相关依赖，稍微封装下即可）
+* 3.x版本统一改为使用`kotlin`并进行了重构；之前2.x版本内部使用的`LiveData`相关代码已全部移除，3.x版本已全部改用kotlin独有的`Flow`进行实现。
+
+* 3.x相比较于2.x版本更为精简，可定制性更高。（如果需要在`Compose`中进行使用，只需加上`Compose`的UI相关依赖，稍微封装下即可）
 
 > 建议在新项目中使用；如果你之前使用的是2.x旧版本，请谨慎升级。
 
@@ -87,8 +89,6 @@ dependencies{
 --- 
 
 > 从分割线此处开始，以下全部为3.x版本相关说明
-
-## 使用
 
 ### 集成步骤代码示例 （完整示例，可直接查看[app](app)）
 
@@ -256,7 +256,7 @@ class YourFragment: BaseFragment() {
 >
 >> 特殊场景：对于支持多个 BaseUrl 且支持动态可变的。
 >>>        选择：这个场景的选择，主要涉及到另外的方法，请查看 {@link RetrofitHelper#putDomain(String, String)} 和 {@link RetrofitHelper#putDomain(String, HttpUrl)}相关详情
->
+
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MVVMFrame/latest/javadoc/)
 
