@@ -267,7 +267,7 @@ class YourFragment: BaseFragment() {
 #### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
 #### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
 #### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
-#### [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现笔记App
+#### [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
 
 
 ## 版本记录
