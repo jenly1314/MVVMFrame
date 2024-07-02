@@ -261,11 +261,14 @@ class YourFragment: BaseFragment() {
 
  目前 **MVVFrame** 所有依赖混淆规则可参见：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
-## 相关开源项目
-##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
-##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
-##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
-##### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
+## 相关推荐
+
+#### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
+#### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
+#### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
+#### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
+#### [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现笔记App
+
 
 ## 版本记录
 
