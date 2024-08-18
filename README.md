@@ -35,13 +35,13 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
    implementation 'com.github.jenly1314:mvvmframe:3.0.0'
    ```
 
-### **Hilt**和 **Room** 的相关注解处理器
+### **Hilt** 和 **Room** 的相关注解处理器
 
    因为 [mvvmframe](mvvmframe) 内部依赖了 **Hilt** 和 **Room**，所以你需要引入下面列出的编译时的注解处理器，用于自动生成相关代码。
 
 > 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
 
-> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
+> 如果你使用 **v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
 
 你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件：
 ```gradle
@@ -84,7 +84,7 @@ dependencies{
 
 > 建议在新项目中使用；如果你之前使用的是2.x旧版本，请谨慎升级。
 
-> 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
+> 如果你使用 **v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
 
 ---
 
@@ -178,11 +178,11 @@ class AppConfigModule : FrameConfigModule() {
 
 ### 关于使用 **Hilt**
 
-**Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
+**Hilt** 是JetPack中新增的一个依赖注入库，其基于 **Dagger2** 研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
-之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
+之前使用的 **Dagger for Android** 虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt** 的诞生改善了这些问题。
 
-**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
+**Hilt** 大幅简化了 **Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
 
 #### **Hilt** 目前支持以下 **Android** 类：
 
@@ -263,8 +263,8 @@ class YourFragment: BaseFragment() {
 
 ## 相关推荐
 
-#### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
-#### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
+#### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于 **MVVMFrame** 构建的App模板
+#### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于 **MVVMFrame** 构建的组件化方案
 #### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
 #### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 #### [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
