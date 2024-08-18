@@ -31,7 +31,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
    ```gradle
-   // AndroidX 
+   // AndroidX
    implementation 'com.github.jenly1314:mvvmframe:3.0.0'
    ```
 
@@ -65,7 +65,7 @@ dependencies{
     // hilt
     implementation "com.google.dagger:hilt-android:2.51"
     kapt "com.google.dagger:hilt-compiler:2.51"
-    
+
     // room
     kapt "androidx.room:room-compiler:2.6.1"
 }
@@ -86,7 +86,7 @@ dependencies{
 
 > 如果你使用**v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
 
---- 
+---
 
 > 从分割线此处开始，以下全部为3.x版本相关说明
 
@@ -163,7 +163,7 @@ class AppConfigModule : FrameConfigModule() {
  @HiltAndroidApp
  class YourApplication : BaseApplication() {
     //...
-    
+
     override fun onCreate() {
         super.onCreate()
         // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过第二种方式来设置BaseUrl（二选其一即可）
@@ -196,7 +196,7 @@ class AppConfigModule : FrameConfigModule() {
 
 **Application** 示例 (这里我们使用BaseApplication)
 ```kotlin
-@HiltAndroidApp 
+@HiltAndroidApp
 class YourApplication : BaseApplication() {
     //...
 }
@@ -204,7 +204,7 @@ class YourApplication : BaseApplication() {
 
 **ViewModel** 示例 (这里我们使用BaseViewModel)
 ```kotlin
-@HiltViewModel 
+@HiltViewModel
 class YourViewModel : BaseViewModel() {
     //...
 }
@@ -269,8 +269,9 @@ class YourFragment: BaseFragment() {
 #### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 #### [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
 
+<!-- end -->
 
-## 版本记录
+## 版本日志
 
 #### v3.0.0：2024-03-03
 * 统一改为使用`kotlin`，并进行了重构
@@ -291,7 +292,7 @@ class YourFragment: BaseFragment() {
 * 更新Hilt至v2.41
 * 更新Gson至v2.9.0
 
-#### [查看更多版本记录](change_log.md)
+#### [查看更多版本记录](CHANGELOG)
 
 ## 赞赏
 如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:
@@ -317,4 +318,4 @@ class YourFragment: BaseFragment() {
    <img src="https://jenly1314.github.io/image/page/footer.png">
 </div>
 
-   
+

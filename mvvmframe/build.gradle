@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.vanniktech.maven.publish'
     id 'kotlin-kapt'
+    id 'org.jetbrains.dokka'
     id 'com.google.dagger.hilt.android'
 }
 
