@@ -36,7 +36,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### Gradle Plugin（v3.0.0新增）
 
-1. 首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中
+1. 首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中：
 
     ```gradle
     plugins {
@@ -45,7 +45,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     }
     ```
 
-2. 接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件
+2. 接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件：
 
     ```gradle
     plugins {
@@ -72,7 +72,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### 集成步骤代码示例 （完整示例，可直接查看[app](app)）
 
-**Step.1** 启用ViewDataBinding，在你项目中的build.gradle的android{}中添加配置：
+**Step.1** 启用 **ViewDataBinding** ，在你项目中的 **build.gradle** 的 **android{}** 中添加配置：
 
 ```gradle
 buildFeatures{
@@ -80,7 +80,7 @@ buildFeatures{
 }
 ```
 
-**Step.2** 使用JDK17编译，在你项目中的build.gradle的android{}中添加配置：
+**Step.2** 使用JDK17编译，在你项目中的 **build.gradle** 的 **android{}** 中添加配置：
 
 ```gradle
 compileOptions {
@@ -90,7 +90,7 @@ compileOptions {
 
 ```
 
-**Step.3** 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+**Step.3** 自定义全局配置(继承MVVMFrame中的`FrameConfigModule` )（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 
 ```kotlin
 /**
@@ -131,7 +131,7 @@ class AppConfigModule : FrameConfigModule() {
 }
 ```
 
-然后在你项目中的AndroidManifest.xml中通过配置meta-data来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+然后在你项目中的 **AndroidManifest.xml** 中通过配置`meta-data`来自定义全局配置（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
 ```xml
 <!-- MVVMFrame 全局配置 -->
 <meta-data android:name="com.king.mvvmframe.config.AppConfigModule"
