@@ -20,36 +20,39 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 1. 在Project的 **build.gradle** 或 **setting.gradle** 中添加远程仓库
 
-   ```gradle
+    ```gradle
     repositories {
         //...
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
-   ```
+    ```
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
-   ```gradle
-   implementation 'com.github.jenly1314:mvvmframe:3.1.0'
-   ```
+
+    ```gradle
+    implementation 'com.github.jenly1314:mvvmframe:3.1.0'
+    ```
 
 ### Gradle Plugin（v3.0.0新增）
 
 首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中：
 
-```gradle
-plugins {
-    //...
-    id 'com.github.jenly1314.mvvmframe' version '3.1.0' apply false
-}
-```
+    ```gradle
+    plugins {
+        //...
+        id 'com.github.jenly1314.mvvmframe' version '3.1.0' apply false
+    }
+    ```
+
 接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件：
 
-```gradle
-plugins {
-    //...
-    id 'com.github.jenly1314.mvvmframe'
-}
+    ```gradle
+    plugins {
+        //...
+        id 'com.github.jenly1314.mvvmframe'
+    }
+    ```
 
 ## 使用
 
@@ -78,6 +81,7 @@ buildFeatures{
 ```
 
 **Step.2** 使用JDK17编译，在你项目中的build.gradle的android{}中添加配置：
+
 ```gradle
 compileOptions {
     targetCompatibility JavaVersion.VERSION_17
@@ -87,6 +91,7 @@ compileOptions {
 ```
 
 **Step.3** 自定义全局配置(继承MVVMFrame中的FrameConfigModule)（提示：如果你没有自定义配置的需求，可以直接忽略此步骤）
+
 ```kotlin
 /**
  * 全局配置
