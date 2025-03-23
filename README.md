@@ -70,7 +70,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 > 从分割线此处开始，以下全部为3.x版本相关说明
 
-### 集成步骤代码示例 （完整示例，可直接查看[app](app)）
+### 集成步骤说明（完整示例可直接查看[app](app)）
 
 **Step.1** 启用 **ViewDataBinding** ，在你项目中的 **build.gradle** 的 **android{}** 中添加配置：
 
@@ -124,7 +124,13 @@ class AppConfigModule : FrameConfigModule() {
             .configOptions(object : AppliesOptions.ConfigOptions {
                 override fun applyOptions(builder: Config.Builder) {
                     // TODO 配置Config
-                    builder.httpLoggingLevel(HttpLoggingInterceptor.Level.BODY)
+                    builder.httpLoggingLevel(
+                        if (BuildConfig.DEBUG) {
+                            HttpLoggingInterceptor.Level.BODY
+                        } else {
+                            HttpLoggingInterceptor.Level.NONE
+                        }
+                    )
                 }
             })
     }
@@ -139,7 +145,7 @@ class AppConfigModule : FrameConfigModule() {
 ```
 > 此处的`com.king.mvvmframe.config.AppConfigModule` 替换为你自定义的全局配置类
 
-**Step.4** 配置Application
+**Step.4** 配置`Application`
 
 ```kotlin
  @HiltAndroidApp
@@ -148,7 +154,7 @@ class AppConfigModule : FrameConfigModule() {
 
     override fun onCreate() {
         super.onCreate()
-        // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过第二种方式来设置BaseUrl（二选其一即可）
+        // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过此处的第二种方式来设置BaseUrl（二选其一即可）
 //        RetrofitHelper.getInstance().setBaseUrl(baseUrl)
     }
  }
