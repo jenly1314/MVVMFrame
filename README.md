@@ -36,7 +36,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### Gradle Plugin（v3.0.0新增）
 
-首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中：
+1. 首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中
 
     ```gradle
     plugins {
@@ -45,7 +45,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     }
     ```
 
-接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件：
+2. 接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件
 
     ```gradle
     plugins {
