@@ -18,8 +18,8 @@ sed -i "s|](mvvmframe|](${GITHUB_URL}blob/master/mvvmframe|g" docs/index.md
 cat CHANGELOG.md | grep -v '## 版本日志' > docs/changelog.md
 
 cp app/src/main/ic_launcher-web.png docs/ic_logo.png
-mkdir -p docs/image
-cp image/mvvm_architecture.jpg docs/image/mvvm_architecture.jpg
+mkdir -p docs/art
+cp art/mvvm_architecture.jpg docs/art/mvvm_architecture.jpg
 
 # Build the site locally
 mkdocs build

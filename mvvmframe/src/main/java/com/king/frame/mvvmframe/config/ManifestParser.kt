@@ -12,8 +12,7 @@ import timber.log.Timber
  * <a href="https://github.com/jenly1314">Follow me</a>
  * <p>
  */
-
-class ManifestParser constructor(private val context: Context) {
+class ManifestParser(private val context: Context) {
 
     /**
      * 解析
@@ -54,9 +53,15 @@ class ManifestParser constructor(private val context: Context) {
         val module = try {
             clazz.getDeclaredConstructor().newInstance()
         } catch (e: InstantiationException) {
-            throw RuntimeException("Unable to instantiate FrameConfigModule implementation for $clazz", e)
+            throw RuntimeException(
+                "Unable to instantiate FrameConfigModule implementation for $clazz",
+                e
+            )
         } catch (e: IllegalAccessException) {
-            throw RuntimeException("Unable to instantiate FrameConfigModule implementation for $clazz", e)
+            throw RuntimeException(
+                "Unable to instantiate FrameConfigModule implementation for $clazz",
+                e
+            )
         }
         if (module !is FrameConfigModule) {
             throw RuntimeException("Expected instanceof FrameConfigModule, but found: $module")

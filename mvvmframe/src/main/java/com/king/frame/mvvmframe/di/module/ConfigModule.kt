@@ -68,12 +68,8 @@ object ConfigModule {
 
     @Singleton
     @Provides
-    fun provideRoomDatabaseOptions(builder: Builder): RoomDatabaseOptions {
-        return builder.roomDatabaseOptions ?: object : RoomDatabaseOptions {
-            override fun applyOptions(builder: RoomDatabase.Builder<out RoomDatabase>) {
-
-            }
-        }
+    fun provideRoomDatabaseOptions(builder: Builder): RoomDatabaseOptions? {
+        return builder.roomDatabaseOptions
     }
 
     @Singleton

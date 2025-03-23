@@ -2,7 +2,7 @@ package com.king.frame.mvvmframe.config
 
 import androidx.collection.LruCache
 import androidx.room.RoomDatabase
-import com.king.frame.mvvmframe.data.Repository
+import com.king.frame.mvvmframe.data.datasource.DataSource
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.converter.gson.GsonConverterFactory
@@ -35,7 +35,7 @@ class Config(builder: Builder) {
     class Builder {
 
         internal var isAddGsonConverterFactory: Boolean = true
-        internal var httpLoggingLevel: Level = Level.BASIC
+        internal var httpLoggingLevel: Level = Level.NONE
         internal var retrofitServiceMaxCacheSize = DEFAULT_RETROFIT_SERVICE_MAX_SIZE
         internal var roomDatabaseMaxCacheSize = DEFAULT_ROOM_DATABASE_MAX_SIZE
 
@@ -56,7 +56,7 @@ class Config(builder: Builder) {
         }
 
         /**
-         *  [Repository]中通过[Repository.getRetrofitService]获取 service 实例的最大可缓存数量，
+         *  [DataSource]中通过[DataSource.getRetrofitService]获取 service 实例的最大可缓存数量，
          *  采用[LruCache]缓存策略；默认值为：[DEFAULT_RETROFIT_SERVICE_MAX_SIZE]
          */
         fun retrofitServiceMaxCacheSize(size: Int): Builder {
@@ -65,7 +65,7 @@ class Config(builder: Builder) {
         }
 
         /**
-         * [Repository]中 通过 [Repository.getRoomDatabase] 获取 [RoomDatabase] 实例的最大缓存数量，
+         * [DataSource]中 通过 [DataSource.getRoomDatabase] 获取 [RoomDatabase] 实例的最大缓存数量，
          * 采用[LruCache]缓存策略；默认值为：[DEFAULT_ROOM_DATABASE_MAX_SIZE]
          */
         fun roomDatabaseMaxCacheSize(size: Int): Builder {
@@ -82,9 +82,9 @@ class Config(builder: Builder) {
 
         override fun toString(): String {
             return "Builder(isAddGsonConverterFactory=$isAddGsonConverterFactory, " +
-                    "httpLoggingLevel=$httpLoggingLevel, " +
-                    "retrofitServiceMaxCacheSize=$retrofitServiceMaxCacheSize, " +
-                    "roomDatabaseMaxCacheSize=$roomDatabaseMaxCacheSize)"
+                "httpLoggingLevel=$httpLoggingLevel, " +
+                "retrofitServiceMaxCacheSize=$retrofitServiceMaxCacheSize, " +
+                "roomDatabaseMaxCacheSize=$roomDatabaseMaxCacheSize)"
         }
 
     }

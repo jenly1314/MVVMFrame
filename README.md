@@ -4,7 +4,6 @@
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
 [![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe)](https://repo1.maven.org/maven2/com/github/jenly1314/mvvmframe)
-[![JCenter](https://img.shields.io/badge/JCenter-2.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
 [![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
@@ -13,7 +12,7 @@
 MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
 
 ## 架构
-![Image](image/mvvm_architecture.jpg)
+![Image](art/mvvm_architecture.jpg)
 
 ## 引入
 
@@ -31,48 +30,26 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
    ```gradle
-   // AndroidX
-   implementation 'com.github.jenly1314:mvvmframe:3.0.0'
+   implementation 'com.github.jenly1314:mvvmframe:3.1.0'
    ```
 
-### **Hilt** 和 **Room** 的相关注解处理器
+### Gradle Plugin（v3.0.0新增）
 
-   因为 [mvvmframe](mvvmframe) 内部依赖了 **Hilt** 和 **Room**，所以你需要引入下面列出的编译时的注解处理器，用于自动生成相关代码。
-
-> 以下配置为当前最新版本的，其它对应版本可查看版本说明，或对应的版本发布 [Versions](https://github.com/jenly1314/MVVMFrame/releases)
-
-> 如果你使用 **v2.x** 版本的话，请直接 [查看2.x分支版本](https://github.com/jenly1314/MVVMFrame/tree/2.x)
-
-你需要在项目根目录的 **build.gradle** 文件中配置 **Hilt** 的插件：
-```gradle
-plugins {
-    //...
-    id 'com.google.dagger.hilt.android' version '2.51' apply false
-}
-```
-接下来，在 **app/build.gradle** 文件中，引入 **Hilt** 的插件和相关依赖：
+首先，将 **MVVMFrame** 插件添加到项目根级 **build.gradle** 文件中：
 
 ```gradle
 plugins {
     //...
-    id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
+    id 'com.github.jenly1314.mvvmframe' version '3.1.0' apply false
 }
-
-dependencies{
-    //...
-
-    // hilt
-    implementation "com.google.dagger:hilt-android:2.51"
-    kapt "com.google.dagger:hilt-compiler:2.51"
-
-    // room
-    kapt "androidx.room:room-compiler:2.6.1"
-}
-
 ```
+接下来，在 **app/build.gradle** 文件中，添加 **MVVMFrame** 插件：
 
-> `kapt`适用于kotlin项目，如果你的项目使用的java，请使用`annotationProcessor` 替代 `kapt`
+```gradle
+plugins {
+    //...
+    id 'com.github.jenly1314.mvvmframe'
+}
 
 ## 使用
 
@@ -182,7 +159,7 @@ class AppConfigModule : FrameConfigModule() {
 
 之前使用的 **Dagger for Android** 虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt** 的诞生改善了这些问题。
 
-**Hilt** 大幅简化了 **Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
+使用 **Hilt** 之后，依赖注入变得更简单。
 
 #### **Hilt** 目前支持以下 **Android** 类：
 
@@ -268,31 +245,27 @@ class YourFragment: BaseFragment() {
 - [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
 - [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 - [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
+- [RetrofitHelper](http://github.com/jenly1314/RetrofitHelper) 一个支持动态改变BaseUrl，动态配置超时时长的Retrofit帮助类
+- [LogX](http://github.com/jenly1314/LogX) 一个小而美的日志记录框架；好用不解释。
 
 <!-- end -->
 
 ## 版本日志
 
-#### v3.0.0：2024-03-03
-* 统一改为使用`kotlin`，并进行了重构
-* 移除所有`LiveData`相关代码改用`Flow`
-* 更新编译SDK至34
-* 更新Gradle至v8.0
-* 新增core-ktx依赖（v1.12.0）
-* 新增fragment-ktx依赖（v1.6.2）
-* 新增lifecycle-ktx相关依赖（v2.7.0）
-* 更新Okhttp至v4.12.0
-* 更新Hilt至v2.51
-* 更新Gson至v2.10.1
-* 更新Room至v2.6.1
-* 更新retrofit-helper至v1.1.0
+#### v3.1.0：2025-3-23
+* 优化插件配置
+* 优化一些细节
+* 更新gradle至v8.9
+* 更新kotlin至v1.9.24
+* 更新appcompat至v1.7.0
+* 更新core-ktx至v1.13.1
+* 更新fragment-ktx至v1.8.6
+* 更新lifecycle-ktx至v2.8.7
+* 更新hilt至v2.52
+* 更新retrofit至v2.11.0
+* 更新gson至v2.12.1
 
-#### v2.2.1：2022-04-21
-* 更新Okhttp至v4.9.3
-* 更新Hilt至v2.41
-* 更新Gson至v2.9.0
-
-#### [查看更多版本记录](CHANGELOG)
+#### [查看更多版本记录](CHANGELOG.md)
 
 ## 赞赏
 如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:

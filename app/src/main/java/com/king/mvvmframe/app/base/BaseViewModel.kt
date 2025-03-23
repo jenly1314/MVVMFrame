@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.king.base.util.SystemUtils
 import com.king.frame.mvvmframe.base.BaseAndroidViewModel
-import com.king.mvvmframe.bean.Result
+import com.king.mvvmframe.data.model.Result
 import com.king.mvvmframe.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,6 +12,8 @@ import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * 基类
@@ -23,6 +25,9 @@ import javax.inject.Inject
 @HiltViewModel
 open class BaseViewModel @Inject constructor(application: Application) : BaseAndroidViewModel(application) {
 
+    /**
+     * 是否成功
+     */
     fun isSuccess(result: Result<*>, showError: Boolean = true): Boolean {
         if (result.isSuccess()) {
             return true
@@ -33,8 +38,13 @@ open class BaseViewModel @Inject constructor(application: Application) : BaseAnd
         return false
     }
 
-    fun launch(showLoading: Boolean = true, block: suspend () -> Unit) =
-        launch(showLoading, block) {
+    /**
+     * 启动一个协程
+     */
+    fun launch(
+        showLoading: Boolean = true,
+        context: CoroutineContext = EmptyCoroutineContext,
+        error: suspend (Throwable) -> Unit = {
             Timber.w(it)
             if (SystemUtils.isNetWorkActive(getApplication())) {
                 when (it) {
@@ -45,13 +55,9 @@ open class BaseViewModel @Inject constructor(application: Application) : BaseAnd
             } else {
                 sendMessage(R.string.result_network_unavailable_error)
             }
-        }
-
-    fun launch(
-        showLoading: Boolean,
+        },
         block: suspend () -> Unit,
-        error: suspend (Throwable) -> Unit
-    ) = viewModelScope.launch {
+    ) = viewModelScope.launch(context = context) {
         try {
             if (showLoading) {
                 showLoading()
@@ -59,9 +65,10 @@ open class BaseViewModel @Inject constructor(application: Application) : BaseAnd
             block()
         } catch (e: Throwable) {
             error(e)
-        }
-        if (showLoading) {
-            hideLoading()
+        } finally {
+            if (showLoading) {
+                hideLoading()
+            }
         }
     }
 }

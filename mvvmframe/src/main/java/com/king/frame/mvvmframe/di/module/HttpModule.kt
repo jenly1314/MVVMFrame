@@ -46,9 +46,7 @@ object HttpModule {
         options: OkHttpClientOptions?
     ): OkHttpClient {
         options?.applyOptions(builder)
-        val loggingInterceptor = HttpLoggingInterceptor {
-            Timber.tag(TAG).d(it)
-        }.apply {
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = config.httpLoggingLevel
         }
         builder.addInterceptor(loggingInterceptor)

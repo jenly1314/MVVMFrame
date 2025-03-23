@@ -14,10 +14,20 @@ import dagger.hilt.components.SingletonComponent
  * <p>
  * <a href="https://github.com/jenly1314">Follow me</a>
  */
+@Deprecated(
+    "This Class is deprecated. Use DataModule instead",
+    replaceWith = ReplaceWith(
+        expression = "DataModule",
+        imports = ["com.king.frame.mvvmframe.di.module.DataModule"]
+    )
+)
 @InstallIn(SingletonComponent::class)
 @Module
 abstract class RepositoryModule {
 
+    /**
+     * 绑定Repository
+     */
     @Binds
     abstract fun bindRepository(dataRepository: DataRepository): Repository
 }

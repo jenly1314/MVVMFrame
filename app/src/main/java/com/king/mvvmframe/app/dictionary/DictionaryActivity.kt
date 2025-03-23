@@ -1,5 +1,6 @@
 package com.king.mvvmframe.app.dictionary
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -16,7 +17,7 @@ import com.king.frame.mvvmframe.base.BaseActivity
 import com.king.mvvmframe.R
 import com.king.mvvmframe.app.adapter.BindingAdapter
 import com.king.mvvmframe.app.adapter.SearchHistoryAdapter
-import com.king.mvvmframe.bean.SearchHistory
+import com.king.mvvmframe.data.model.SearchHistory
 import com.king.mvvmframe.databinding.DictionaryActivityBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -93,6 +94,7 @@ class DictionaryActivity : BaseActivity<DictionaryViewModel, DictionaryActivityB
         }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search_view_menu, menu)
         val searchItem = menu.findItem(R.id.searchItem)
@@ -133,8 +135,8 @@ class DictionaryActivity : BaseActivity<DictionaryViewModel, DictionaryActivityB
         binding.srl.isRefreshing = false
     }
 
-    private fun deleteSearchHistory() {
-        viewModel.deleteSearchHistory()
+    private fun clearSearchHistory() {
+        viewModel.clearSearchHistory()
         mAdapter.refreshData(null)
         word = ""
         searchView?.setQuery(word, false)
@@ -142,7 +144,7 @@ class DictionaryActivity : BaseActivity<DictionaryViewModel, DictionaryActivityB
 
     fun onClick(v: View) {
         when (v.id) {
-            R.id.ivDeleteHistory -> deleteSearchHistory()
+            R.id.ivDeleteHistory -> clearSearchHistory()
         }
     }
 }

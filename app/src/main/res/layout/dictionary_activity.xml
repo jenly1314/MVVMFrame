@@ -31,9 +31,10 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:src="@drawable/btn_delete_selector"
-                style="@style/onClick"/>
+                style="@style/onClick"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/tflHistory"

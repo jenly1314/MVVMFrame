@@ -1,9 +1,7 @@
 package com.king.frame.mvvmframe.base
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 
 /**
@@ -16,7 +14,7 @@ import androidx.lifecycle.ViewModel
 interface IView<VM> {
 
     /**
-     * 根布局ID
+     * 获取根布局ID
      * @return
      */
     @LayoutRes
@@ -38,23 +36,4 @@ interface IView<VM> {
      */
     fun createViewModel(): VM
 
-    /**
-     * 显示加载中
-     */
-    fun showLoading()
-
-    /**
-     * 隐藏加载中
-     */
-    fun hideLoading()
-
-    /**
-     * 通过[Toast]显示提示信息
-     */
-    fun showToast(text: CharSequence)
-
-    /**
-     * 通过[Toast]显示提示信息
-     */
-    fun showToast(@StringRes resId: Int)
 }

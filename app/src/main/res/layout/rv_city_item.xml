@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.king.mvvmframe.bean.City" />
+            type="com.king.mvvmframe.data.model.City" />
     </data>
 
     <TextView
@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
-        android:paddingTop="10dp"
+        android:paddingTop="12dp"
         android:paddingRight="16dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
         android:text="@{data.name}" />
 </layout>

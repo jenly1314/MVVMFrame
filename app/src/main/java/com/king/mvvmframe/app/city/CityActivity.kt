@@ -8,7 +8,7 @@ import com.king.base.adapter.divider.DividerItemDecoration
 import com.king.frame.mvvmframe.base.BaseActivity
 import com.king.mvvmframe.R
 import com.king.mvvmframe.app.adapter.BindingAdapter
-import com.king.mvvmframe.bean.City
+import com.king.mvvmframe.data.model.City
 import com.king.mvvmframe.databinding.CityActivityBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

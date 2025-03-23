@@ -16,7 +16,6 @@ import com.king.frame.mvvmframe.R
  *
  * 如果您继承使用了 BaseActivity 或其子类，你需要参照如下方式添加 @AndroidEntryPoint 注解标记，来进行注入
  *
- *
  * ```
  * // 示例
  * @AndroidEntryPoint

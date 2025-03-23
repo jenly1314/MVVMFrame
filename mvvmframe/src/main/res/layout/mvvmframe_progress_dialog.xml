@@ -4,4 +4,4 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:indeterminateDuration="1000"
-    android:indeterminateDrawable="@drawable/mvvmframe_progress_drawable"/>
+    android:indeterminateDrawable="@drawable/mvvmframe_progress"/>

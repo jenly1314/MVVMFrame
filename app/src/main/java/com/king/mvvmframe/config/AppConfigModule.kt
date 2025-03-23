@@ -11,7 +11,8 @@ import com.king.frame.mvvmframe.config.AppliesOptions.RoomDatabaseOptions
 import com.king.frame.mvvmframe.config.Config
 import com.king.frame.mvvmframe.config.FrameConfigModule
 import com.king.frame.mvvmframe.di.module.ConfigModule
-import com.king.mvvmframe.app.Constants
+import com.king.mvvmframe.BuildConfig
+import com.king.mvvmframe.constant.Constants
 import com.king.retrofit.retrofithelper.RetrofitHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -68,7 +69,6 @@ class AppConfigModule : FrameConfigModule() {
             .gsonOptions(object : GsonOptions {
                 override fun applyOptions(builder: GsonBuilder) {
                     // TODO 配置Gson
-
                 }
             })
             .roomDatabaseOptions(object : RoomDatabaseOptions {
@@ -80,7 +80,13 @@ class AppConfigModule : FrameConfigModule() {
             .configOptions(object : AppliesOptions.ConfigOptions {
                 override fun applyOptions(builder: Config.Builder) {
                     // TODO 配置Config
-                    builder.httpLoggingLevel(HttpLoggingInterceptor.Level.BODY)
+                    builder.httpLoggingLevel(
+                        if (BuildConfig.DEBUG) {
+                            HttpLoggingInterceptor.Level.BODY
+                        } else {
+                            HttpLoggingInterceptor.Level.NONE
+                        }
+                    )
                 }
             })
     }

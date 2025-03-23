@@ -1,18 +1,14 @@
 package com.king.mvvmframe.app.dictionary
 
 import android.app.Application
-import com.king.frame.mvvmframe.data.Repository
 import com.king.mvvmframe.R
-import com.king.mvvmframe.api.ApiService
 import com.king.mvvmframe.app.base.BaseViewModel
-import com.king.mvvmframe.bean.DictionaryInfo
-import com.king.mvvmframe.bean.SearchHistory
-import com.king.mvvmframe.data.AppDatabase
+import com.king.mvvmframe.data.model.DictionaryInfo
+import com.king.mvvmframe.data.repository.DictionaryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.filterNotNull
-import javax.inject.Inject
 
 /**
  * 示例
@@ -23,17 +19,9 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class DictionaryViewModel @Inject constructor(
-    private val repository: Repository,
+    private val dictionaryRepository: DictionaryRepository,
     application: Application
 ) : BaseViewModel(application) {
-
-    private val apiService: ApiService by lazy {
-        repository.getRetrofitService(ApiService::class.java)
-    }
-
-    private val searchHistoryDao by lazy {
-        repository.getRoomDatabase(AppDatabase::class.java, null).searchHistoryDao
-    }
 
     private val _dictionaryFlow = MutableStateFlow<DictionaryInfo?>(null)
     val dictionaryFlow = _dictionaryFlow.asSharedFlow()
@@ -43,14 +31,7 @@ class DictionaryViewModel @Inject constructor(
      */
     fun getDictionaryInfo(word: String) {
         launch {
-            searchHistoryDao.insert(
-                SearchHistory(
-                    word = word,
-                    timestamp = System.currentTimeMillis()
-                )
-            )
-
-            val result = apiService.getDictionaryInfo(word)
+            val result = dictionaryRepository.getDictionaryInfo(word)
             if (isSuccess(result)) {
                 _dictionaryFlow.emit(result.data)
             }
@@ -60,14 +41,14 @@ class DictionaryViewModel @Inject constructor(
     /**
      * 获取搜索历史
      */
-    fun getSearchHistoryFlow() = searchHistoryDao.getHistoryFlow(10).filterNotNull()
+    fun getSearchHistoryFlow() = dictionaryRepository.getSearchHistoryFlow()
 
     /**
      * 删除搜索历史
      */
-    fun deleteSearchHistory() {
+    fun clearSearchHistory() {
         launch {
-            searchHistoryDao.deleteAll()
+            dictionaryRepository.clearSearchHistory()
             sendMessage(R.string.cleared)
         }
     }

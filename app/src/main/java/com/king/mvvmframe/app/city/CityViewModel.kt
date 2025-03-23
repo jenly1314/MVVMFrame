@@ -1,10 +1,9 @@
 package com.king.mvvmframe.app.city
 
 import android.app.Application
-import com.king.frame.mvvmframe.data.Repository
-import com.king.mvvmframe.api.ApiService
 import com.king.mvvmframe.app.base.BaseViewModel
-import com.king.mvvmframe.bean.City
+import com.king.mvvmframe.data.model.City
+import com.king.mvvmframe.data.repository.CityRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,13 +18,9 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class CityViewModel @Inject constructor(
-    private val repository: Repository,
+    private val cityRepository: CityRepository,
     application: Application
 ) : BaseViewModel(application) {
-
-    private val apiService: ApiService by lazy {
-        repository.getRetrofitService(ApiService::class.java)
-    }
 
     private val _cityFlow = MutableStateFlow<List<City>>(emptyList())
     val cityFlow = _cityFlow.asSharedFlow()
@@ -35,7 +30,7 @@ class CityViewModel @Inject constructor(
      */
     fun getHotCities() {
         launch {
-            apiService.getHotCities().also {
+            cityRepository.getHotCities().also {
                 _cityFlow.emit(it)
             }
         }

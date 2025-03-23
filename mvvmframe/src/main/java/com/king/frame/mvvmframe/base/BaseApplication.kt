@@ -1,6 +1,7 @@
 package com.king.frame.mvvmframe.base
 
 import android.app.Application
+import android.view.Gravity
 import com.hjq.toast.Toaster
 
 /**
@@ -37,6 +38,8 @@ open class BaseApplication : Application() {
         fun initAppConfig(application: Application) {
             // 初始化Toaster
             Toaster.init(application)
+            val offsetY = application.resources.displayMetrics.heightPixels / 6
+            Toaster.setGravity(Gravity.BOTTOM, 0, offsetY)
         }
     }
 }

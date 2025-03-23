@@ -17,5 +17,4 @@ open class BaseProgressDialog : Dialog {
     constructor(context: Context, themeResId: Int) : super(context, themeResId) {
         window?.attributes?.gravity = Gravity.CENTER
     }
-
 }

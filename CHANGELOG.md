@@ -1,8 +1,22 @@
 ## 版本日志
 
-#### v3.0.0：2024-03-03
+#### v3.1.0：2025-3-23
+* 优化插件配置
+* 优化一些细节
+* 更新gradle至v8.9
+* 更新kotlin至v1.9.24
+* 更新appcompat至v1.7.0
+* 更新core-ktx至v1.13.1
+* 更新fragment-ktx至v1.8.6
+* 更新lifecycle-ktx至v2.8.7
+* 更新hilt至v2.52
+* 更新retrofit至v2.11.0
+* 更新gson至v2.12.1
+
+#### v3.0.0：2024-3-3
 * 统一改为使用`kotlin`进行了重构
 * 移除所有`LiveData`相关代码改用`Flow`
+* 支持插件配置
 * 更新编译SDK至34
 * 更新Gradle至v8.0
 * 新增core-ktx依赖（v1.12.0）
@@ -14,7 +28,7 @@
 * 更新Room至v2.6.1
 * 更新retrofit-helper至v1.1.0
 
-#### v2.2.1：2022-04-21
+#### v2.2.1：2022-4-21
 * 更新Okhttp至v4.9.3
 * 更新Hilt至v2.41
 * 更新Gson至v2.9.0

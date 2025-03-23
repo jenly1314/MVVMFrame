@@ -1,0 +1,102 @@
+[versions]
+minSdk = "21"
+targetSdk = "34"
+compileSdk = "34"
+
+agp = "8.7.2"
+kotlin = "1.9.24"
+
+coreKtx = "1.13.1"
+material = "1.12.0"
+appcompat = "1.7.0"
+fragmentKtx = "1.8.6"
+swiperefreshlayout = "1.1.0"
+recyclerview = "1.3.2"
+constraintLayout = "2.2.1"
+lifecycleKtx="2.8.7"
+
+junit = "4.13.2"
+androidJunit = "1.2.1"
+espresso = "3.6.1"
+
+room = "2.6.1"
+daggerHilt = "2.52"
+okhttp = "4.12.0"
+retrofit = "2.11.0"
+gson = "2.12.1"
+leakcanary = "2.14"
+javapoet = "1.13.0"
+base = "3.2.1-androidx"
+retrofitHelper = "1.1.0"
+logx = "1.1.0"
+
+dokka = "1.9.20"
+mavenPublish = "0.31.0"
+
+mvvmFrame = "3.1.0"
+
+[libraries]
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlin-android = { group = "org.jetbrains.kotlin.android", name = "org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
+kotlin-kapt = { group = "org.jetbrains.kotlin.kapt", name = "org.jetbrains.kotlin.kapt.gradle.plugin", version.ref = "kotlin" }
+
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidJunit" }
+androidx-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
+lifecycle-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleKtx" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleKtx" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+dagger-hilt-android-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHilt" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
+javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
+
+base-adapter = { group = "com.github.jenly1314.Base", name = "adapter", version.ref = "base" }
+base-util = { group = "com.github.jenly1314.Base", name = "util", version.ref = "base" }
+retrofit-helper = { group = "com.github.jenly1314", name = "retrofit-helper", version.ref = "retrofitHelper" }
+
+logx = { group = "com.github.jenly1314", name = "logx", version.ref = "logx" }
+
+timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
+
+android-ktx = { group = "io.github.androidktx", name = "android-ktx", version = "1.1.0" }
+toaster = { group = "com.github.getActivity", name = "Toaster", version = "12.8" }
+flowlayout = { group = "com.github.hongyangAndroid", name = "FlowLayout", version = "master" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version = "1.9.24-1.0.20" }
+
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"  }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"  }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish"  }
+
+mvvmframe = { id = "com.github.jenly1314.mvvmframe", version.ref = "mvvmFrame" }
+
+

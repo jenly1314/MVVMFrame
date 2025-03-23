@@ -1,12 +1,9 @@
 package com.king.mvvmframe
 
 import com.king.frame.mvvmframe.base.BaseApplication
-import com.king.mvvmframe.app.Constants
+import com.king.logx.LogX
+import com.king.mvvmframe.constant.Constants
 import com.king.retrofit.retrofithelper.RetrofitHelper
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.FormatStrategy
-import com.orhanobut.logger.Logger
-import com.orhanobut.logger.PrettyFormatStrategy
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -33,7 +30,7 @@ class App : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        initLogger()
+        initLog()
         //------------------------------
         // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过第二种方式来设置BaseUrl（二选其一即可）
 //        RetrofitHelper.getInstance().setBaseUrl(Constants.BASE_URL)
@@ -45,20 +42,13 @@ class App : BaseApplication() {
     }
 
     /**
-     * 初始化[Logger]
+     * 初始化
      */
-    private fun initLogger() {
+    private fun initLog() {
         // 初始化日志打印
-        val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
-            .methodOffset(5)
-            .tag(Constants.TAG)
-            .build()
-        Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
         Timber.plant(object : Timber.DebugTree() {
             override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                if (BuildConfig.DEBUG) {
-                    Logger.log(priority, tag, message, t)
-                }
+                LogX.offset(4).log(priority, message)
             }
         })
     }
