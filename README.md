@@ -257,7 +257,7 @@ class YourFragment: BaseFragment() {
 - [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
 - [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
 - [RetrofitHelper](http://github.com/jenly1314/RetrofitHelper) 一个支持动态改变BaseUrl，动态配置超时时长的Retrofit帮助类
-- [LogX](http://github.com/jenly1314/LogX) 一个小而美的日志记录框架；好用不解释。
+- [LogX](http://github.com/jenly1314/LogX) 一个轻量而强大的日志框架；好用不解释。
 
 <!-- end -->
 
