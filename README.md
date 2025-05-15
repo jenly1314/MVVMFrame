@@ -2,15 +2,14 @@
 
 ![Image](app/src/main/ic_launcher-web.png)
 
-[![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
-[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe)](https://repo1.maven.org/maven2/com/github/jenly1314/mvvmframe)
-[![JCenter](https://img.shields.io/badge/JCenter-2.0.0-46C018.svg)](https://bintray.com/beta/#/jenly/maven/mvvmframe)
-[![JitPack](https://jitpack.io/v/jenly1314/MVVMFrame.svg)](https://jitpack.io/#jenly1314/MVVMFrame)
-[![CircleCI](https://circleci.com/gh/jenly1314/MVVMFrame.svg?style=svg)](https://circleci.com/gh/jenly1314/MVVMFrame)
-[![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
+[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe?logo=sonatype)](https://repo1.maven.org/maven2/com/github/jenly1314/MVVMFrame)
+[![JitPack](https://img.shields.io/jitpack/v/github/jenly1314/MVVMFrame?logo=jitpack)](https://jitpack.io/#jenly1314/MVVMFrame)
+[![CI](https://img.shields.io/github/actions/workflow/status/jenly1314/MVVMFrame/build.yml?logo=github)](https://github.com/jenly1314/MVVMFrame/actions/workflows/build.yml)
+[![Download](https://img.shields.io/badge/download-APK-brightgreen?logo=github)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen?logo=android)](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels)
+[![License](https://img.shields.io/github/license/jenly1314/MVVMFrame?logo=open-source-initiative)](https://opensource.org/licenses/mit)
 
-MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）{ Lifecycle，LiveData，ViewModel，Room } 构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
+MVVMFrame for Android 是一个基于Google官方推出的Architecture Components dependencies（现在叫JetPack）构建的快速开发框架。有了 **MVVMFrame** 的加持，从此构建一个 **MVVM** 模式的项目变得快捷简单。
 
 ## 架构
 ![Image](image/mvvm_architecture.jpg)
@@ -28,7 +27,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     }
    ```
 
-2. 在Module的 **build.gradle** 里面添加引入依赖项
+2. 在Module的 **build.gradle** 中添加依赖项
    ```gradle
    //AndroidX 版本
    implementation 'com.github.jenly1314:mvvmframe:2.2.1'
@@ -268,11 +267,11 @@ public class App extends BaseApplication {
 
 ### 关于使用 **Hilt**
 
-**Hilt** 是JetPack中新增的一个依赖注入库，其基于**Dagger2**研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
+**Hilt** 是JetPack中新增的一个依赖注入库，其基于 **Dagger2** 研发（后面统称为Dagger），但它不同于Dagger。对于Android开发者来说，Hilt可以说专门为Android 打造。
 
-之前使用的**Dagger for Android**虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt**的诞生改善了这些问题。
+之前使用的 **Dagger for Android** 虽然也是针对于Android打造，也能通过 **@ContributesAndroidInjector** 来通过生成简化一部分样板代码，但是感觉还不够彻底。因为 **Component** 层相关的桥接还是要自己写。**Hilt** 的诞生改善了这些问题。
 
-**Hilt** 大幅简化了**Dagger** 的用法，使得我们不用通过 **@Component** 注解去编写桥接层的逻辑，但是也因此限定了注入功能只能从几个 **Android** 固定的入口点开始。
+使用 **Hilt** 之后，依赖注入变得更简单。
 
 #### **Hilt** 目前支持以下 **Android** 类：
 
@@ -490,22 +489,28 @@ public interface ApplicationComponent {
 >>>        选择：这个场景的选择，主要涉及到另外的方法，请查看 {@link RetrofitHelper#putDomain(String, String)} 和 {@link RetrofitHelper#putDomain(String, HttpUrl)}相关详情
 >
 
-更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/MVVMFrame/latest/javadoc/)
+更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jenly1314.github.io/MVVMFrame/api/)
 
-## 压缩与混淆
+## 混淆
 
- 从 **Android Studio 3.3+** 之后，AS新增特性代码压缩工具 **R8** ，**R8** 旨在集成 **ProGuard** 和 **D8** 的功能。
- 目前推荐第三方库都自己配置混淆规则，这样在混淆时，如果使用 **R8** ，则可以直接包含第三方依赖库的混淆规则，就不用繁琐的去配置每个依赖库的混淆规则。
- 
- 目前 **MVVFrame** 所有依赖混淆规则详情：[ProGuard rules](mvvmframe/proguard-rules.pro)
+ 目前 **MVVFrame** 所有依赖混淆规则可参见：[ProGuard rules](mvvmframe/proguard-rules.pro)
 
-## 相关开源项目
-##### [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
-##### [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
-##### [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于**MVVMFrame**构建的App模板
-##### [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于**MVVMFrame**构建的组件化方案
+## 相关推荐
+- [AppTemplate](https://github.com/jenly1314/AppTemplate) 一款基于 **MVVMFrame** 构建的App模板
+- [MVVMFrameComponent](https://github.com/jenly1314/MVVMFrameComponent) 一款基于 **MVVMFrame** 构建的组件化方案
+- [EasyChat](https://github.com/yetel/EasyChatAndroidClient) 一款即时通讯APP
+- [KingWeather](https://github.com/jenly1314/KingWeather)  一款天气预报APP
+- [EasyNote](https://github.com/jenly1314/EasyNote) 一款遵循 **Clean Architecture** 架构分层， 使用 **Jetpack Compose** 实现的笔记App
+- [RetrofitHelper](http://github.com/jenly1314/RetrofitHelper) 一个支持动态改变BaseUrl，动态配置超时时长的Retrofit帮助类。
+- [AppUpdater](http://github.com/jenly1314/AppUpdater) 一个专注于App更新，一键傻瓜式集成App版本升级的轻量开源库。
+- [LogX](http://github.com/jenly1314/LogX) 一个轻量而强大的日志框架；好用不解释。
+- [KVCache](http://github.com/jenly1314/KVCache) 一个便于统一管理的键值缓存库；支持无缝切换缓存实现。
+- [AndroidKTX](http://github.com/AndroidKTX/AndroidKTX) 一个简化 Android 开发的 Kotlin 工具类集合。
+- [AndroidUtil](http://github.com/AndroidUtil/AndroidUtil) 一个整理了Android常用工具类集合，平时在开发的过程中可能会经常用到。
 
-## 版本记录
+<!-- end -->
+
+## 版本日志
 
 #### v2.2.1：2022-04-21
 *  更新Okhttp至v4.9.3
@@ -580,28 +585,8 @@ public interface ApplicationComponent {
 #### v1.0.0：2018-12-12
 *  MVVMFrame初始版本
 
-## 赞赏
-如果你喜欢MVVMFrame，或感觉MVVMFrame帮助到了你，可以点右上角“Star”支持一下，你的支持就是我的动力，谢谢 :smiley:
-<p>您也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
+---
 
-<div>
-   <img src="https://jenly1314.github.io/image/page/rewardcode.png">
-</div>
-
-## 关于我
-
-| 我的博客                                                                                | GitHub                                                                                  | Gitee                                                                                  | CSDN                                                                                 | 博客园                                                                            |
-|:------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|
-| <a title="我的博客" href="https://jenly1314.github.io" target="_blank">Jenly's Blog</a> | <a title="GitHub开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a> | <a title="Gitee开源项目" href="https://gitee.com/jenly1314" target="_blank">jenly1314</a>  | <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>  | <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>  |
-
-## 联系我
-
-| 微信公众号        | Gmail邮箱                                                                          | QQ邮箱                                                                              | QQ群                                                                                                                       | QQ群                                                                                                                       |
-|:-------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
-| [Jenly666](http://weixin.qq.com/r/wzpWTuPEQL4-ract92-R) | <a title="给我发邮件" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314</a> | <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314</a> | <a title="点击加入QQ群" href="https://qm.qq.com/cgi-bin/qm/qr?k=6_RukjAhwjAdDHEk2G7nph-o8fBFFzZz" target="_blank">20867961</a> | <a title="点击加入QQ群" href="https://qm.qq.com/cgi-bin/qm/qr?k=Z9pobM8bzAW7tM_8xC31W8IcbIl0A-zT" target="_blank">64020761</a> |
-
-<div>
-   <img src="https://jenly1314.github.io/image/page/footer.png">
-</div>
+![footer](https://jenly1314.github.io/page/footer.svg)
 
    
