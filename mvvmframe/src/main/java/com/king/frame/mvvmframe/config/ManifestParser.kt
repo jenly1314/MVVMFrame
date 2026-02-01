@@ -2,7 +2,7 @@ package com.king.frame.mvvmframe.config
 
 import android.content.Context
 import android.content.pm.PackageManager
-import timber.log.Timber
+import com.king.logx.LogX
 
 /**
  * Manifest解析器；实现参考 [ManifestParse](https://github.com/bumptech/glide/blob/f7d860412f061e059aa84a42f2563a01ac8c303b/library/src/main/java/com/bumptech/glide/module/ManifestParser.java)
@@ -19,7 +19,7 @@ class ManifestParser(private val context: Context) {
      */
     @Suppress("DEPRECATION")
     fun parse(): List<FrameConfigModule> {
-        Timber.d("Loading MVVMFrame modules")
+        LogX.d("Loading MVVMFrame modules")
         val modules: MutableList<FrameConfigModule> = ArrayList()
         try {
             val appInfo = context.packageManager.getApplicationInfo(
@@ -27,20 +27,20 @@ class ManifestParser(private val context: Context) {
                 PackageManager.GET_META_DATA
             )
             if (appInfo.metaData == null) {
-                Timber.d("Got null app info metadata")
+                LogX.d("Got null app info metadata")
                 return modules
             }
-            Timber.v("Got app info metadata: " + appInfo.metaData)
+            LogX.v("Got app info metadata: " + appInfo.metaData)
             for (key in appInfo.metaData.keySet()) {
                 if (CONFIG_MODULE_VALUE == appInfo.metaData[key]) {
                     modules.add(parseModule(key))
-                    Timber.d("Loaded MVVMFrame module: $key")
+                    LogX.d("Loaded MVVMFrame module: $key")
                 }
             }
         } catch (e: PackageManager.NameNotFoundException) {
             throw RuntimeException("Unable to find metadata to parse FrameConfigModules", e)
         }
-        Timber.d("Finished loading MVVMFrame modules")
+        LogX.d("Finished loading MVVMFrame modules")
         return modules
     }
 

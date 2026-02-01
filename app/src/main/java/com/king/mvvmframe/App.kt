@@ -1,11 +1,9 @@
 package com.king.mvvmframe
 
 import com.king.frame.mvvmframe.base.BaseApplication
-import com.king.logx.LogX
 import com.king.mvvmframe.constant.Constants
 import com.king.retrofit.retrofithelper.RetrofitHelper
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
 
 /**
  * MVVMFrame 框架基于 Google 官方的 JetPack 构建，在使用 MVVMFrame 时，需遵循一些规范：
@@ -30,7 +28,6 @@ class App : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        initLog()
         //------------------------------
         // 如果你没有使用FrameConfigModule中的第一中方式初始化BaseUrl，也可以通过第二种方式来设置BaseUrl（二选其一即可）
 //        RetrofitHelper.getInstance().setBaseUrl(Constants.BASE_URL)
@@ -41,15 +38,4 @@ class App : BaseApplication() {
         }
     }
 
-    /**
-     * 初始化
-     */
-    private fun initLog() {
-        // 初始化日志打印
-        Timber.plant(object : Timber.DebugTree() {
-            override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                LogX.offset(4).log(priority, message)
-            }
-        })
-    }
 }

@@ -11,12 +11,6 @@ java {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = javaVersion.toString()
-    }
-}
-
 dependencies {
     implementation(gradleApi())
     implementation(libs.kotlin.stdlib)
@@ -31,6 +25,7 @@ gradlePlugin {
         create("mvvmFramePlugin") { // 插件配置
             id = "com.github.jenly1314.mvvmframe" // 插件 ID
             implementationClass = "com.king.frame.mvvmframe.plugin.MvvmFramePlugin" // 插件实现类
+            displayName = "MvvmFramePlugin"
         }
     }
 }

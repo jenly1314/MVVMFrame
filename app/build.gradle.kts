@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
+//    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.mvvmframe)
 }
 
@@ -35,7 +36,7 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         buildConfig = true
     }
@@ -44,10 +45,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+
+    gradle.projectsEvaluated {
+        tasks.withType<JavaCompile>().configureEach {
+            options.compilerArgs.addAll(listOf("-Xmaxerrs", "500"))
+        }
+    }
 }
+
+val useMvvmframePlugin = true
 
 dependencies {
 
@@ -74,7 +84,16 @@ dependencies {
     //leakCanary
     debugImplementation(libs.leakcanary)
 
-    ksp(libs.room.compiler)
+    if (!useMvvmframePlugin) {
+        // room
+        implementation(libs.room.runtime)
+        implementation(libs.room.ktx)
+        ksp(libs.room.compiler)
+
+        // hilt
+        implementation(libs.dagger.hilt.android)
+        kapt(libs.dagger.hilt.compiler)
+    }
 
     // MVVMFrame
     implementation(project(":mvvmframe"))
@@ -86,5 +105,5 @@ mvvmFrame {
 }
 
 kapt {
-    correctErrorTypes =  true
+    correctErrorTypes = true
 }

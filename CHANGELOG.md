@@ -1,5 +1,22 @@
 ## 版本日志
 
+#### v3.2.0：2026-2-1
+* 新增[LogX](https://github.com/jenly1314/LogX)依赖（v1.2.0）
+* 移除Timber依赖（改用LogX统一管理日志）
+* 更新compileSdk至35
+* 更新gradle至v8.13
+* 更新kotlin至v2.0.21
+* 更新appcompat至v1.7.1
+* 更新core-ktx至v1.16.0
+* 更新fragment-ktx至v1.8.9
+* 更新lifecycle-ktx至v2.9.4
+* 更新hilt至v2.55
+* 更新retrofit至v3.0.0
+* 更新gson至v2.13.2
+* 更新room至v2.7.2
+* 优化细节
+
+
 #### v3.1.0：2025-3-23
 * 优化插件配置
 * 优化一些细节

@@ -31,7 +31,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 2. 在Module的 **build.gradle** 中添加依赖项
 
     ```gradle
-    implementation 'com.github.jenly1314:mvvmframe:3.1.0'
+    implementation 'com.github.jenly1314:mvvmframe:3.2.0'
     ```
 
 ### Gradle Plugin（v3.0.0新增）
@@ -41,7 +41,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     ```gradle
     plugins {
         //...
-        id 'com.github.jenly1314.mvvmframe' version '3.1.0' apply false
+        id 'com.github.jenly1314.mvvmframe' version '3.2.0' apply false
     }
     ```
 
@@ -267,20 +267,22 @@ class YourFragment: BaseFragment() {
 
 ## 版本日志
 
-#### v3.1.0：2025-3-23
-* 优化插件配置
-* 优化一些细节
-* 更新gradle至v8.9
-* 更新kotlin至v1.9.24
-* 更新appcompat至v1.7.0
-* 更新core-ktx至v1.13.1
-* 更新fragment-ktx至v1.8.6
-* 更新lifecycle-ktx至v2.8.7
-* 更新hilt至v2.52
-* 更新retrofit至v2.11.0
-* 更新gson至v2.12.1
+#### v3.2.0：2026-2-1
+* 新增[LogX](https://github.com/jenly1314/LogX)依赖（v1.2.0）
+* 移除Timber依赖（改用LogX统一管理日志）
+* 更新compileSdk至35
+* 更新gradle至v8.13
+* 更新kotlin至v2.0.21
+* 更新appcompat至v1.7.1
+* 更新core-ktx至v1.16.0
+* 更新fragment-ktx至v1.8.9
+* 更新lifecycle-ktx至v2.9.4
+* 更新hilt至v2.55
+* 更新retrofit至v3.0.0
+* 更新gson至v2.13.2
+* 优化细节
 
-#### [查看更多版本记录](CHANGELOG.md)
+#### [查看更多版本日志](CHANGELOG.md)
 
 ---
 

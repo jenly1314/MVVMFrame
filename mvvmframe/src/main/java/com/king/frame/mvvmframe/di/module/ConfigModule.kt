@@ -1,7 +1,6 @@
 package com.king.frame.mvvmframe.di.module
 
 import android.content.Context
-import androidx.room.RoomDatabase
 import com.king.frame.mvvmframe.config.AppliesOptions.ConfigOptions
 import com.king.frame.mvvmframe.config.AppliesOptions.GsonOptions
 import com.king.frame.mvvmframe.config.AppliesOptions.OkHttpClientOptions

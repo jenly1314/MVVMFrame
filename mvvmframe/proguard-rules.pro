@@ -343,16 +343,6 @@
 # Timber
 -dontwarn org.jetbrains.annotations.**
 
-# MVVMFrame
--keep class com.king.frame.** { *; }
--keep interface com.king.frame.** { *; }
--dontwarn com.king.frame.**
-
-# RetrofitHelper
--keep class com.king.retrofit.** { *; }
--keep interface com.king.retrofit.** { *; }
--dontwarn com.king.retrofit.**
-
 # kotlin
 -dontwarn kotlin.**
 -keep class kotlin.** { *; }
@@ -376,3 +366,7 @@
 -keep class org.jetbrains.** { *; }
 -keep interface org.jetbrains.** { *; }
 -dontwarn org.jetbrains.**
+
+-keep class com.king.** { *; }
+-keep interface com.king.** { *; }
+-dontwarn com.king.**

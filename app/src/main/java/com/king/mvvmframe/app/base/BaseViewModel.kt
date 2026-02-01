@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.king.base.util.SystemUtils
 import com.king.frame.mvvmframe.base.BaseAndroidViewModel
+import com.king.logx.LogX
 import com.king.mvvmframe.data.model.Result
 import com.king.mvvmframe.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
@@ -45,7 +45,7 @@ open class BaseViewModel @Inject constructor(application: Application) : BaseAnd
         showLoading: Boolean = true,
         context: CoroutineContext = EmptyCoroutineContext,
         error: suspend (Throwable) -> Unit = {
-            Timber.w(it)
+            LogX.w(it)
             if (SystemUtils.isNetWorkActive(getApplication())) {
                 when (it) {
                     is SocketTimeoutException -> sendMessage(R.string.result_connect_timeout_error)

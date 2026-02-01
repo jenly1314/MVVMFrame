@@ -36,10 +36,7 @@ import retrofit2.Retrofit
     )
 )
 @Singleton
-open class DataRepository @Inject constructor() : Repository {
-
-    @Inject
-    internal lateinit var dataSource: DefaultDataSource
+open class DataRepository @Inject constructor(private val dataSource: DataSource) : Repository {
 
     /**
      * 传入API接口类的Class，通过[Retrofit.create] 获得对应的Class

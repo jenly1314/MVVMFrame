@@ -7,6 +7,8 @@ import com.king.frame.mvvmframe.config.AppliesOptions.GsonOptions
 import com.king.frame.mvvmframe.config.AppliesOptions.OkHttpClientOptions
 import com.king.frame.mvvmframe.config.AppliesOptions.RetrofitOptions
 import com.king.frame.mvvmframe.config.Config
+import com.king.logx.LogX
+import com.king.logx.logger.LogFormat
 import com.king.retrofit.retrofithelper.RetrofitHelper
 import dagger.Module
 import dagger.Provides
@@ -17,7 +19,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import timber.log.Timber
 import javax.inject.Singleton
 
 /**
@@ -46,7 +47,9 @@ object HttpModule {
         options: OkHttpClientOptions?
     ): OkHttpClient {
         options?.applyOptions(builder)
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
+        val loggingInterceptor = HttpLoggingInterceptor {
+            LogX.format(LogFormat.PLAIN).d(it)
+        }.apply {
             level = config.httpLoggingLevel
         }
         builder.addInterceptor(loggingInterceptor)

@@ -1,39 +1,39 @@
 [versions]
 minSdk = "21"
-targetSdk = "34"
-compileSdk = "34"
+targetSdk = "35"
+compileSdk = "35"
 
-agp = "8.7.2"
-kotlin = "1.9.24"
+agp = "8.8.0"
+kotlin = "2.0.21"
 
-coreKtx = "1.13.1"
-material = "1.12.0"
-appcompat = "1.7.0"
-fragmentKtx = "1.8.6"
-swiperefreshlayout = "1.1.0"
-recyclerview = "1.3.2"
+coreKtx = "1.16.0"
+material = "1.13.0"
+appcompat = "1.7.1"
+fragmentKtx = "1.8.9"
+swiperefreshlayout = "1.2.0"
+recyclerview = "1.4.0"
 constraintLayout = "2.2.1"
-lifecycleKtx="2.8.7"
+lifecycleKtx="2.9.4"
 
 junit = "4.13.2"
-androidJunit = "1.2.1"
-espresso = "3.6.1"
+androidJunit = "1.3.0"
+espresso = "3.7.0"
 
-room = "2.6.1"
-daggerHilt = "2.52"
+room = "2.7.2"
+daggerHilt = "2.55"
 okhttp = "4.12.0"
-retrofit = "2.11.0"
-gson = "2.12.1"
+retrofit = "3.0.0"
+gson = "2.13.2"
 leakcanary = "2.14"
 javapoet = "1.13.0"
 base = "3.2.1-androidx"
 retrofitHelper = "1.1.0"
-logx = "1.1.0"
+logx = "1.2.0"
 
-dokka = "1.9.20"
-mavenPublish = "0.31.0"
+dokka = "2.0.0"
+mavenPublish = "0.35.0"
 
-mvvmFrame = "3.1.0"
+mvvmFrame = "3.2.0"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -79,10 +79,8 @@ retrofit-helper = { group = "com.github.jenly1314", name = "retrofit-helper", ve
 
 logx = { group = "com.github.jenly1314", name = "logx", version.ref = "logx" }
 
-timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
-
 android-ktx = { group = "io.github.androidktx", name = "android-ktx", version = "1.1.0" }
-toaster = { group = "com.github.getActivity", name = "Toaster", version = "12.8" }
+toaster = { group = "com.github.getActivity", name = "Toaster", version = "13.8" }
 flowlayout = { group = "com.github.hongyangAndroid", name = "FlowLayout", version = "master" }
 
 [plugins]
@@ -91,7 +89,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version = "1.9.24-1.0.20" }
+ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.28" }
 
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"  }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"  }

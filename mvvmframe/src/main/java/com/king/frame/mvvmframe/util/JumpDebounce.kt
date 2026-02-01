@@ -2,7 +2,7 @@ package com.king.frame.mvvmframe.util
 
 import android.content.Intent
 import android.os.SystemClock
-import timber.log.Timber
+import com.king.logx.LogX
 
 /**
  * 跳转防抖
@@ -30,7 +30,7 @@ internal class JumpDebounce {
             return false
         }
         if (jumpTag == lastTag && lastJumpTime > SystemClock.elapsedRealtime() - intervalTime) {
-            Timber.d("Ignore Intent:$jumpTag")
+            LogX.d("Ignore Intent: $jumpTag")
             return true
         }
         lastTag = jumpTag

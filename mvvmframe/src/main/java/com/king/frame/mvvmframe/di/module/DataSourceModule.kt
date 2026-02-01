@@ -16,7 +16,7 @@ import dagger.hilt.components.SingletonComponent
  */
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class DataSourceModule {
+interface DataSourceModule {
 
     /**
      * 绑定DataSource

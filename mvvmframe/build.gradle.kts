@@ -37,11 +37,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
-
 }
+
 
 dependencies {
 
@@ -82,7 +83,7 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
 
     // log
-    api(libs.timber)
+    api(libs.logx)
     // toast
     implementation(libs.toaster)
 }
