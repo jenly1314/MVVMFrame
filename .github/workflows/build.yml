@@ -1,16 +1,13 @@
-name: Docs
+name: Build
 
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  docs:
-    permissions:
-      contents: write
-      id-token: write
-      pages: write
-    if: github.ref == 'refs/heads/master'
-    uses: jenly1314/actions/.github/workflows/reusable-docs.yml@v1
+  build:
+    uses: jenly1314/actions/.github/workflows/reusable-build.yml@v1
     with:
       java-version-file: '.github/workflows/.java-version'
