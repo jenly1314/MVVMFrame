@@ -8,10 +8,6 @@ on:
 
 jobs:
   docs:
-    permissions:
-      contents: write
-      id-token: write
-      pages: write
     uses: jenly1314/actions/.github/workflows/reusable-docs.yml@v1
     with:
       java-version-file: '.github/workflows/.java-version'
