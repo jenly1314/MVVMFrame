@@ -1,11 +1,23 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.mvvmframe)
+    alias(libs.plugins.dagger.hilt.android)
+//    id("com.github.jenly1314.mvvmframe")
 }
+
+val useMvvmFramePlugin = providers.gradleProperty("useMvvmFramePlugin").orNull?.toBoolean() == true
+
+// 使用mvvmframe插件时可自定义配置
+//if(useMvvmFramePlugin) {
+//    mvvmFrame {
+//        //..
+//        // 是否使用KSP进行注解处理器的编译，默认为：false（即：使用KAPT）
+//        useKsp = true
+//    }
+//}
 
 android {
     namespace = "com.king.mvvmframe"
@@ -57,7 +69,6 @@ android {
     }
 }
 
-val useMvvmframePlugin = true
 
 dependencies {
 
@@ -84,7 +95,7 @@ dependencies {
     //leakCanary
     debugImplementation(libs.leakcanary)
 
-    if (!useMvvmframePlugin) {
+    if (!useMvvmFramePlugin) {
         // room
         implementation(libs.room.runtime)
         implementation(libs.room.ktx)
@@ -92,7 +103,7 @@ dependencies {
 
         // hilt
         implementation(libs.dagger.hilt.android)
-        kapt(libs.dagger.hilt.compiler)
+        ksp(libs.dagger.hilt.compiler)
     }
 
     // MVVMFrame
@@ -100,10 +111,4 @@ dependencies {
 
 }
 
-mvvmFrame {
-    //..
-}
 
-kapt {
-    correctErrorTypes = true
-}

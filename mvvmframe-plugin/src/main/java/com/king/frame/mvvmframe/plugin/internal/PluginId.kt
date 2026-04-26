@@ -10,5 +10,6 @@ package com.king.frame.mvvmframe.plugin.internal
 internal object PluginId {
     const val KOTLIN_ANDROID = "org.jetbrains.kotlin.android"
     const val KOTLIN_KAPT = "org.jetbrains.kotlin.kapt"
+    const val KOTLIN_KSP = "com.google.devtools.ksp"
     const val HILT_ANDROID = "com.google.dagger.hilt.android"
 }

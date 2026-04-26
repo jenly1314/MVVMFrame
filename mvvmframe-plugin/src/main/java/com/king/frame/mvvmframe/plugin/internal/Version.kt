@@ -8,6 +8,6 @@ package com.king.frame.mvvmframe.plugin.internal
  * <a href="https://github.com/jenly1314">Follow me</a>
  */
 internal object Version {
-    const val HILT_VERSION = "2.55"
-    const val ROOM_VERSION = "2.7.2"
+    const val HILT_VERSION = "2.57.2"
+    const val ROOM_VERSION = "2.8.4"
 }

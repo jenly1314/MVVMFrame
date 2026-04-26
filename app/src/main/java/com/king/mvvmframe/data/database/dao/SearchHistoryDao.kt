@@ -35,5 +35,5 @@ interface SearchHistoryDao {
      * @param size 获取历史记录的条数
      */
     @Query("SELECT * FROM SearchHistory ORDER BY timestamp DESC LIMIT :size")
-    fun getHistoryFlow(size: Int): Flow<List<SearchHistory>?>
+    fun getHistoryFlow(size: Int): Flow<List<SearchHistory>>
 }

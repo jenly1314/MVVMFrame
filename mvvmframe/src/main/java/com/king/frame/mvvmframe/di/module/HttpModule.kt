@@ -107,6 +107,4 @@ object HttpModule {
     fun provideConfigBuilder(): Config.Builder {
         return Config.Builder()
     }
-
-    private const val TAG = "OkHttp"
 }

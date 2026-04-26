@@ -76,11 +76,11 @@ dependencies {
     // room
     api(libs.room.runtime)
     api(libs.room.ktx)
-    ksp(libs.room.compiler)
+//    ksp(libs.room.compiler)
 
     // hilt
     api(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
 
     // log
     api(libs.logx)
@@ -88,6 +88,3 @@ dependencies {
     implementation(libs.toaster)
 }
 
-kapt {
-    correctErrorTypes = true
-}

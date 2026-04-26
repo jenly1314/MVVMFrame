@@ -40,6 +40,18 @@ internal fun DependencyHandler.kapt(
     add(KAPT, group, artifact, version)
 }
 
+
+/**
+ * kapt
+ */
+internal fun DependencyHandler.ksp(
+    group: String,
+    artifact: String,
+    version: String
+) {
+    add(KSP, group, artifact, version)
+}
+
 /**
  * 添加依赖
  */
@@ -54,3 +66,4 @@ internal fun DependencyHandler.add(
 
 private const val IMPLEMENTATION = "implementation"
 private const val KAPT = "kapt"
+private const val KSP = "ksp"
