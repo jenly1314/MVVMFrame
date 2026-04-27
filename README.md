@@ -2,7 +2,7 @@
 
 ![Image](app/src/main/ic_launcher-web.png)
 
-[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe?logo=sonatype)](https://repo1.maven.org/maven2/com/github/jenly1314/MVVMFrame)
+[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/mvvmframe?logo=sonatype)](https://repo1.maven.org/maven2/com/github/jenly1314/mvvmframe)
 [![JitPack](https://img.shields.io/jitpack/v/github/jenly1314/MVVMFrame?logo=jitpack)](https://jitpack.io/#jenly1314/MVVMFrame)
 [![CI](https://img.shields.io/github/actions/workflow/status/jenly1314/MVVMFrame/build.yml?logo=github)](https://github.com/jenly1314/MVVMFrame/actions/workflows/build.yml)
 [![Download](https://img.shields.io/badge/download-APK-brightgreen?logo=github)](https://raw.githubusercontent.com/jenly1314/MVVMFrame/master/app/release/app-release.apk)
@@ -61,6 +61,8 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
         useKsp = true
     }
     ```
+
+> MVVMFrame 插件的主要作用是简化 Hilt 和 Room 相关依赖中的 kapt/ksp 配置。如果你的项目希望完全自主管理 Hilt 和 Room 的编译器依赖，可以忽略此插件。
 
 ## 使用
 
