@@ -1,8 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt.android)
 //    id("com.github.jenly1314.mvvmframe")
@@ -14,8 +13,10 @@ val useMvvmFramePlugin = providers.gradleProperty("useMvvmFramePlugin").orNull?.
 //if(useMvvmFramePlugin) {
 //    mvvmFrame {
 //        //..
-//        // 是否使用KSP进行注解处理器的编译，默认为：false（即：使用KAPT）
-//        useKsp = true
+          // 是否启用依赖：androidx.room:room-runtime
+//        enabledRoomRuntime = true
+//        // 是否启用依赖：androidx.room:room-compiler
+//        enabledRoomCompiler = true
 //    }
 //}
 
@@ -42,7 +43,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -58,10 +59,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-
     gradle.projectsEvaluated {
         tasks.withType<JavaCompile>().configureEach {
             options.compilerArgs.addAll(listOf("-Xmaxerrs", "500"))
@@ -69,6 +66,11 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_0
+    }
+}
 
 dependencies {
 
@@ -110,5 +112,3 @@ dependencies {
     implementation(project(":mvvmframe"))
 
 }
-
-

@@ -1,42 +1,41 @@
 [versions]
 minSdk = "23"
-targetSdk = "35"
-compileSdk = "35"
+targetSdk = "36"
+compileSdk = "36"
 
-agp = "8.8.0"
-kotlin = "2.0.21"
+agp = "9.1.0"
+kotlin = "2.2.21"
 
-coreKtx = "1.16.0"
-material = "1.13.0"
-appcompat = "1.7.1"
-fragmentKtx = "1.8.9"
+coreKtx = "1.17.0"
+material = "1.14.0"
+appcompat = "1.8.0"
+fragmentKtx = "1.9.0"
 swiperefreshlayout = "1.2.0"
 recyclerview = "1.4.0"
-constraintLayout = "2.2.1"
+constraintLayout = "2.2.2"
 lifecycleKtx="2.10.0"
 
 junit = "4.13.2"
 androidJunit = "1.3.0"
 espresso = "3.7.0"
 
-room = "2.8.4"
-daggerHilt = "2.57.2"
-okhttp = "4.12.0"
+room = "2.8.5"
+daggerHilt = "2.60.1"
+okhttp = "5.4.0"
 retrofit = "3.0.0"
-gson = "2.13.2"
+gson = "2.14.0"
 leakcanary = "2.14"
 javapoet = "1.13.0"
 base = "3.2.1-androidx"
 retrofitHelper = "1.1.0"
 logx = "1.3.0"
 
+ksp = "2.3.2"
 dokka = "2.0.0"
-mavenPublish = "0.35.0"
+mavenPublish = "0.37.0"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
-kotlin-android = { group = "org.jetbrains.kotlin.android", name = "org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
-kotlin-kapt = { group = "org.jetbrains.kotlin.kapt", name = "org.jetbrains.kotlin.kapt.gradle.plugin", version.ref = "kotlin" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -84,10 +83,8 @@ flowlayout = { group = "com.github.hongyangAndroid", name = "FlowLayout", versio
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.28" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt"  }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"  }

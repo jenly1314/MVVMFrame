@@ -3,19 +3,14 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-val javaVersion = 17
-
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
 dependencies {
     implementation(gradleApi())
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.android)
-    implementation(libs.kotlin.kapt)
     implementation(libs.dagger.hilt.android.plugin)
     implementation(libs.javapoet)
 }

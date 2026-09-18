@@ -31,7 +31,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 2. 在Module的 **build.gradle** 中添加依赖项
 
     ```gradle
-    implementation 'com.github.jenly1314:mvvmframe:3.3.0'
+    implementation 'com.github.jenly1314:mvvmframe:3.4.0'
     ```
 
 ### Gradle Plugin（v3.0.0新增）
@@ -41,7 +41,7 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     ```gradle
     plugins {
         //...
-        id 'com.github.jenly1314.mvvmframe' version '3.3.0' apply false
+        id 'com.github.jenly1314.mvvmframe' version '3.4.0' apply false
     }
     ```
 
@@ -57,8 +57,11 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
     ```gradle
     // 可选：如果有需要可以自定义mvvmFrame插件配置
     mvvmFrame {
-        // 是否使用KSP进行注解处理器的编译，默认为：false（即：使用KAPT）
-        useKsp = true
+        //...
+        // 是否启用依赖：androidx.room:room-runtime
+        enabledRoomRuntime true
+        // 是否启用依赖：androidx.room:room-compiler
+        enabledRoomCompiler true
     }
     ```
 
@@ -82,20 +85,26 @@ MVVMFrame for Android 是一个基于Google官方推出的Architecture Component
 
 ### 集成步骤说明（完整示例可直接查看[app](app)）
 
-**Step.1** 启用 **ViewDataBinding** ，在你项目中的 **build.gradle** 的 **android{}** 中添加配置：
+**Step.1** 启用 **ViewDataBinding** ，在你项目中的 **build.gradle** 中添加配置：
 
 ```gradle
-buildFeatures{
-    dataBinding = true
+android {
+    //...
+    buildFeatures {
+        dataBinding true
+    }
 }
 ```
 
-**Step.2** 使用JDK17编译，在你项目中的 **build.gradle** 的 **android{}** 中添加配置：
+**Step.2** 使用JDK17编译，在你项目中的 **build.gradle** 中添加配置：
 
 ```gradle
-compileOptions {
-    targetCompatibility JavaVersion.VERSION_17
-    sourceCompatibility JavaVersion.VERSION_17
+android {
+    //...
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
+    }
 }
 
 ```
@@ -245,7 +254,7 @@ class YourFragment: BaseFragment() {
 >>>     场景2:如果本库的默认配置不满足你的需求，你需要自定义一些配置的。（比如需要使用 RxJava相关）
 >          选择：建议你在自定义配置中通过 {@link ConfigModule.Builder#baseUrl(String)} 来初始化 BaseUrl。
 >
->> 二般场景：对于只使用单个 BaseUrl 但是，BaseUrl中途会变动的。
+>> 进阶场景：对于只使用单个 BaseUrl 但是，BaseUrl中途会变动的。
 >>>     场景3：和一般场景一样，也能分两种，所以选择也和一般场景也可以是一样的。
 >          选择：两种选择都行，但当 BaseUrl需要中途变动时，还需将 {@link RetrofitHelper#setDynamicDomain(boolean)} 设置为 {@code true} 才能支持动态改变 BaseUrl。
 >
@@ -277,29 +286,21 @@ class YourFragment: BaseFragment() {
 
 ## 版本日志
 
-#### v3.3.0：2026-4-26
-- 更新minSdk要求至23（21 -> 23）
+#### v3.4.0：2026-9-18
+- 更新compileSdk至36
+- 更新gradle至v9.3.1
+- 更新kotlin至v2.2.21
+- 更新appcompat至v1.8.0
 - 更新core-ktx至v1.17.0
-- 更新lifecycle至v2.10.0
-- 更新hilt至v2.57.2
-- 更新room至v2.8.4
-- 更新LogX至v1.3.0
-- mvvmframe-plugin 新增`useKsp`配置项，支持使用KSP进行注解处理器的编译（默认使用KAPT）
-- 优化细节
-
-#### v3.2.0：2026-2-1
-- 新增[LogX](https://github.com/jenly1314/LogX)依赖（v1.2.0）
-- 移除Timber依赖（改用LogX统一管理日志）
-- 更新compileSdk至35
-- 更新gradle至v8.13
-- 更新kotlin至v2.0.21
-- 更新appcompat至v1.7.1
-- 更新core-ktx至v1.16.0
-- 更新fragment-ktx至v1.8.9
-- 更新lifecycle-ktx至v2.9.4
-- 更新hilt至v2.55
-- 更新retrofit至v3.0.0
-- 更新gson至v2.13.2
+- 更新fragment-ktx至v1.9.0
+- 更新lifecycle-ktx至v2.10.0
+- 更新hilt至v2.60.1
+- 更新room至v2.8.5
+- 更新okhttp至v5.4.0
+- 更新gson至v2.14.0
+- 更新ksp至v2.3.2
+- 移除kapt
+- 源码目录调整（src/main/java -> src/main/kotlin）
 - 优化细节
 
 #### [查看更多版本日志](CHANGELOG.md)

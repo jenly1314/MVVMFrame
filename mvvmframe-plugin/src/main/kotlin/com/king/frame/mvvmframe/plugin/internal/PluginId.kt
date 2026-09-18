@@ -1,0 +1,13 @@
+package com.king.frame.mvvmframe.plugin.internal
+
+/**
+ * 插件
+ *
+ * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ * <p>
+ * <a href="https://github.com/jenly1314">Follow me</a>
+ */
+internal object PluginId {
+    const val KOTLIN_KSP = "com.google.devtools.ksp"
+    const val HILT_ANDROID = "com.google.dagger.hilt.android"
+}

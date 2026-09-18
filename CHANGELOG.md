@@ -1,5 +1,22 @@
 ## 版本日志
 
+#### v3.4.0：2026-9-18
+- 更新compileSdk至36
+- 更新gradle至v9.3.1
+- 更新kotlin至v2.2.21
+- 更新appcompat至v1.8.0
+- 更新core-ktx至v1.17.0
+- 更新fragment-ktx至v1.9.0
+- 更新lifecycle-ktx至v2.10.0
+- 更新hilt至v2.60.1
+- 更新room至v2.8.5
+- 更新okhttp至v5.4.0
+- 更新gson至v2.14.0
+- 更新ksp至v2.3.2
+- 移除kapt
+- 源码目录调整（src/main/java -> src/main/kotlin）
+- 优化细节
+
 #### v3.3.0：2026-4-26
 - 更新minSdk要求至23（21 -> 23）
 - 更新core-ktx至v1.17.0
